@@ -1,0 +1,39 @@
+.properties {
+	display: flex;
+	flex-direction: column;
+}
+
+.property {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	
+	.property__item {
+		position: relative;
+		z-index: 1;
+		font-size: 16px;
+	}
+	
+	.property__value {
+		font-weight: 600;
+		color: var(--color-dark);
+	}
+	
+	.property__item::before {
+		top: 10px;
+		bottom: -5px;
+		right: -5px;
+		left: -5px;
+		content: '';
+		position: absolute;
+		z-index: -1;
+		background: var(--color-background);
+	}
+}
+
+.property::before {
+	content: '';
+	position: absolute;
+	inset: 4px;
+	border-bottom: 1px dashed rgba(157, 157, 157, .5);
+}

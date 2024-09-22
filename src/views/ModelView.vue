@@ -3,12 +3,10 @@
 </script>
 
 <template>
-	<Main>
-		<model-swiper></model-swiper>
-		<model-info-main></model-info-main>
-		<preferences></preferences>
-		<reviews></reviews>
-	</Main>
+	<model-swiper></model-swiper>
+	<model-info-main></model-info-main>
+	<preferences></preferences>
+	<reviews></reviews>
 </template>
 
 <style scoped>

@@ -18,13 +18,15 @@ export const i18n = createI18n({
 				cancel: 'Отмена',
 				search: 'Поиск',
 				filter: 'Фильтр',
-				hour: 'Час',
+				hours: 'Час',
 				hours_2: '2 часа',
 				night: 'Ночь',
 				rate: 'Оценка',
 				languages: 'Языка',
 				reviews_count: 'Отзывов',
-				years: 'Отзывов',
+				years: 'лет',
+				details: 'Подробнее о девушке',
+				more: 'Показать еще',
 				reviews: {
 					1: 'Отзывы',
 					2: 'Клиентов',
@@ -54,7 +56,55 @@ export const i18n = createI18n({
 			},
 		},
 		en: {
-
+			header: {
+				chat: 'Chat bot'
+			},
+			footer: {
+				tech: 'Technical support',
+				apply: 'Fill out the form',
+			},
+			shared: {
+				swipe: 'Swipe',
+				catalogue: 'Catalog',
+				cancel: 'Cancel',
+				search: 'Search',
+				filter: 'Filter',
+				hours: 'Hour',
+				hours_2: '2 hours',
+				night: 'Night',
+				rate: 'Rating',
+				languages: 'Languages',
+				reviews_count: 'Reviews',
+				years: 'years',
+				details: 'More about the girl',
+				more: 'Show more',
+				reviews: {
+					1: 'Reviews',
+					2: 'Clients',
+				},
+			},
+			main: {
+			
+			},
+			model: {
+				preferences: 'Preferences',
+			},
+			catalogue: {
+				extended_filter: 'Advanced filter',
+				found: 'girls found',
+			},
+			filters: {
+				main: 'General',
+				parameters: 'Girl parameters',
+				services: 'Services',
+				pricing: 'Prices',
+			},
+			policy: {
+				title: "Privacy Policy"
+			},
+			terms: {
+				title: "Terms of Use"
+			},
 		}
 	}
 })

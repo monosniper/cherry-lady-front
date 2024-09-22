@@ -1,0 +1,23 @@
+@import 'base.css';
+@import 'fonts.css';
+@import 'header.css';
+@import 'footer.css';
+@import 'tools.css';
+@import 'components.css';
+
+.rating {
+	transition: color .5s;
+	
+	path {
+		fill: white;
+		transition: fill .5s;
+	}
+}
+
+.slide.current {
+	.rating {
+		path {
+			fill: var(--color-accent);
+		}
+	}
+}

@@ -3,15 +3,13 @@
 </script>
 
 <template>
-	<Main>
-		<div class="container">
-			<div class="center">
-				<type-switch></type-switch>
-			</div>
-			<filter></filter>
-			<models></models>
+	<div class="container">
+		<div class="center">
+			<type-switch></type-switch>
 		</div>
-	</Main>
+		<filter></filter>
+		<models></models>
+	</div>
 </template>
 
 <style scoped>

@@ -1,0 +1,53 @@
+button {
+	border: none;
+	color: white;
+	border-radius: 5px;
+	padding: 10px 20px;
+	background: var(--color-accent);
+	backdrop-filter: blur(35px);
+	box-shadow: 0 9px 28px 0 rgba(255, 0, 64, 0.35), 0 4px 0 0 #a4003d;
+	height: fit-content;
+	font-size: 14px;
+	font-weight: 600;
+	transition: .2s ease-in-out;
+	cursor: pointer;
+	
+	img {
+		max-width: 20px;
+		max-height: 20px;
+	}
+}
+
+button:hover {
+	background: var(--color-accent-hover);
+}
+
+button:active {
+	box-shadow: 0 9px 28px 0 rgba(255, 0, 64, 0.35), 0 2px 0 0 #a4003d;
+	transform: translateY(2px);
+}
+
+button.round {
+	border-radius: 100px;
+}
+
+button.upper {
+	text-transform: uppercase;
+}
+
+button.circle {
+	border-radius: 100%;
+	width: 60px;
+	height: 60px;
+}
+
+button.dark {
+	background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+	backdrop-filter: blur(35.83000183105469px);
+	box-shadow: 0 2px 0 0 rgba(192, 27, 88, 0.81), 0 -2px 0 0 rgba(192, 27, 88, 0.9);
+	padding: 20px 30px;
+}
+
+button.dark:hover {
+	background: linear-gradient(136deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+}

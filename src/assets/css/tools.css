@@ -1,0 +1,29 @@
+.container {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.flex {
+	display: flex;
+}
+
+.between {
+	display: flex;
+	justify-content: space-between;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sep {
+	color: #D7D7D7;
+	font-size: 20px;
+}

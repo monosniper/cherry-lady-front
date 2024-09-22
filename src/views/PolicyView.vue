@@ -3,9 +3,7 @@
 </script>
 
 <template>
-	<Main>
-		<Title></Title>
-	</Main>
+	<title></Title>
 </template>
 
 <style scoped>

@@ -1,0 +1,17 @@
+.icon-label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	font-size: 18px;
+	
+	i {
+		display: flex;
+		align-items: center;
+	}
+}
+
+
+.icon-label.reverse {
+	flex-direction: row-reverse;
+}
