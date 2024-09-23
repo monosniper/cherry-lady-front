@@ -1,5 +1,6 @@
 import './assets/css/main.css'
 import '@nanoandrew4/vue3-carousel-3d/dist/style.css'
+import 'vue-final-modal/style.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -34,6 +35,8 @@ import Tags from "@/components/shared/Tags.vue";
 import { Carousel3dPlugin } from '@nanoandrew4/vue3-carousel-3d'
 import Pagination from "@/components/shared/Pagination.vue";
 import Menu from "@/components/layout/Menu.vue";
+import { createVfm } from 'vue-final-modal'
+import Thanks from "@/components/modals/Thanks.vue";
 
 const app = createApp(App)
 
@@ -41,6 +44,7 @@ app.use(createPinia())
 app.use(router)
 app.use(i18n)
 app.use(Carousel3dPlugin)
+app.use(createVfm())
 
 app.component('Main', Main)
 	.component('Header', Header)
@@ -67,6 +71,7 @@ app.component('Main', Main)
 	.component('VIcon', VIcon)
 	.component('Menu', Menu)
 	.component('Tags', Tags)
+	.component('Thanks', Thanks)
 	.component('Pagination', Pagination)
 
 app.mount('#app')

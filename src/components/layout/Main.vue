@@ -1,15 +1,14 @@
 <script setup>
-
 </script>
 
 <template>
 	<main>
 		<Header></Header>
 		<slot></slot>
-		<Footer></Footer>
-		
-		<Modals></Modals>
 	</main>
+	
+	<Footer></Footer>
+	<Modals></Modals>
 </template>
 
 <style scoped>
