@@ -18,7 +18,7 @@
 		
 		<tags :data="current.tags" style="margin-bottom: 20px;"></tags>
 		
-		<div class="flex between" style="margin-bottom: 20px;">
+		<div class="flex between wrap" style="margin-bottom: 20px;">
 			<icon-label icon="location">
 				<Transition name="fade" mode="out-in">
 					<span :key="current.location">{{ current.location }}</span>

@@ -35,8 +35,9 @@
 	
 	@media screen and (max-width: 950px) {
 		.sides {
+			display: flex;
+			flex-direction: column;
 			gap: 0;
-			grid-template-columns: 1fr;
 		}
 		
 		.side:last-child {
