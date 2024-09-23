@@ -19,6 +19,7 @@
 		window.addEventListener('resize', handleResize)
 		innerWidth.value = window.innerWidth
 	})
+	
 	onUnmounted(() => window.removeEventListener('resize', handleResize))
 
 	watch(innerWidth, (value) => {

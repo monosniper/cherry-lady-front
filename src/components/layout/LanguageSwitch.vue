@@ -38,7 +38,7 @@ import {i18n} from "@/i18n.js";
 		position: relative;
 		
 		.lang__item {
-			backdrop-filter: blur(35.83000183105469px);
+			backdrop-filter: blur(35px);
 			box-shadow: 0 2px 0 0 rgba(192, 27, 88, 0.81), 0 -2px 4px 0 rgba(192, 27, 88, 0.9);
 			background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 			width: 80px;
@@ -80,6 +80,20 @@ import {i18n} from "@/i18n.js";
 			display: flex;
 			align-items: center;
 			justify-content: center;
+		}
+	}
+	
+	@media screen and (max-width: 400px) {
+		.lang {
+			.lang__item {
+				width: 60px;
+				height: 30px;
+			}
+			.lang__flag {
+				img {
+					width: 20px !important;
+				}
+			}
 		}
 	}
 </style>
