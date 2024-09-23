@@ -2,3 +2,10 @@ footer {
 	background: var(--color-footer);
 	padding: 15px 0;
 }
+
+@media screen and (max-width: 1050px) {
+	.footer__wrapper {
+		flex-direction: column;
+		gap: 2rem;
+	}
+}

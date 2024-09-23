@@ -26,4 +26,12 @@
 			font-size: 14px;
 		}
 	}
+	
+	@media screen and (max-width: 1050px) {
+		.menu {
+			flex-direction: column;
+			gap: 20px;
+			align-items: center;
+		}
+	}
 </style>

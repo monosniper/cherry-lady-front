@@ -19,11 +19,13 @@
 		window.addEventListener('resize', handleResize)
 		innerWidth.value = window.innerWidth
 	})
+	
 	onUnmounted(() => window.removeEventListener('resize', handleResize))
 
 	watch(innerWidth, (value) => {
 		space.value = findValueForRange({
-			0: 100,
+			0: 40,
+			400: 100,
 			1200: 200,
 		}, value)
 		
@@ -37,7 +39,7 @@
 <template>
 	<carousel-3d
 		ref="slider"
-		class="container"
+		class="swiper-container"
 		:display="3"
 		:width="size[0]"
 		:height="size[1]"
@@ -67,7 +69,7 @@
 </template>
 
 <style scoped>
-	.container {
+	.swiper-container {
 		overflow: visible;
 		margin-bottom: 25px;
 	}

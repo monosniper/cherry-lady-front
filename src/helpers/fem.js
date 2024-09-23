@@ -1,0 +1,1 @@
+export const fem = (obj, cb, method='map') => Object.fromEntries(Object.entries(obj)[method](cb))

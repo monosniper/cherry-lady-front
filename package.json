@@ -12,6 +12,7 @@
     "@nanoandrew4/vue3-carousel-3d": "^1.0.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
+    "vue-final-modal": "^4.5.5",
     "vue-i18n": "^10.0.1",
     "vue-router": "^4.3.3"
   },

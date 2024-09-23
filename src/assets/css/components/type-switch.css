@@ -10,7 +10,7 @@
 		text-transform: uppercase;
 		font-weight: 600;
 		transition: 0.1s;
-		backdrop-filter: blur(35.83000183105469px);
+		backdrop-filter: blur(35px);
 		box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.31), 0 -2px 4px 0 rgba(0, 0, 0, 0.28);
 		background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 	}
@@ -34,7 +34,7 @@
 	}
 	
 	a.active {
-		backdrop-filter: blur(35.83000183105469px);
+		backdrop-filter: blur(35px);
 		box-shadow: 0 2px 0 0 rgba(192, 27, 88, 0.81), 0 -2px 4px 0 rgba(192, 27, 88, 0.9);
 		background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
 		color: var(--color-accent);
