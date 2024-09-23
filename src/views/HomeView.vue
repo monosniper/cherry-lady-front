@@ -23,9 +23,26 @@
 		grid-template-columns: 5fr 4fr;
 	}
 	
+	.side {
+		width: 100%;
+	}
+	
 	@media screen and (max-width: 1200px) {
 		.sides {
 			grid-template-columns: 1fr 1fr;
+		}
+	}
+	
+	@media screen and (max-width: 950px) {
+		.sides {
+			gap: 0;
+			grid-template-columns: 1fr;
+		}
+		
+		.side:last-child {
+			width: 600px;
+			max-width: 100%;
+			margin: 0 auto;
 		}
 	}
 </style>

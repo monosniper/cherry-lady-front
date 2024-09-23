@@ -5,7 +5,7 @@
 <template>
 	<footer>
 		<div class="container">
-			<div class="flex between align-center">
+			<div class="flex between align-center footer__wrapper">
 				<logo dark></logo>
 				<Menu></Menu>
 				<v-button icon="blank" dark reverse>{{ $t('footer.apply') }}</v-button>

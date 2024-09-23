@@ -34,6 +34,7 @@ import {i18n} from "@/i18n.js";
 	}
 
 	.lang {
+		z-index: 10;
 		position: relative;
 		
 		.lang__item {

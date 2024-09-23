@@ -23,7 +23,8 @@
 
 	watch(innerWidth, (value) => {
 		space.value = findValueForRange({
-			0: 100,
+			0: 80,
+			400: 100,
 			1200: 200,
 		}, value)
 		

@@ -15,3 +15,13 @@
 .icon-label.reverse {
 	flex-direction: row-reverse;
 }
+
+@media screen and (max-width: 700px) {
+	.icon-label {
+		font-size: 14px;
+		
+		img {
+			width: 25px;
+		}
+	}
+}
