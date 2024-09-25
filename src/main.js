@@ -37,6 +37,11 @@ import Pagination from "@/components/shared/Pagination.vue";
 import Menu from "@/components/layout/Menu.vue";
 import { createVfm } from 'vue-final-modal'
 import Thanks from "@/components/modals/Thanks.vue";
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import { MotionPlugin } from '@vueuse/motion'
+import Model from "@/components/Model.vue";
+
 
 const app = createApp(App)
 
@@ -44,6 +49,8 @@ app.use(createPinia())
 app.use(router)
 app.use(i18n)
 app.use(Carousel3dPlugin)
+app.use(ElementPlus)
+app.use(MotionPlugin)
 app.use(createVfm())
 
 app.component('Main', Main)
@@ -73,5 +80,6 @@ app.component('Main', Main)
 	.component('Tags', Tags)
 	.component('Thanks', Thanks)
 	.component('Pagination', Pagination)
+	.component('Model', Model)
 
 app.mount('#app')

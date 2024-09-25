@@ -12,9 +12,7 @@
 			     :key="item.key"
 			>
 				<div class="property__item property__key">{{ item.key }}</div>
-				<Transition name="fade">
-					<div  :key="item.value" class="property__item property__value">{{ item.value }}</div>
-				</Transition>
+				<div  :key="item.value" class="property__item property__value">{{ item.value }}</div>
 			</div>
 		</TransitionGroup>
 	</div>

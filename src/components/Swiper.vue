@@ -50,7 +50,7 @@
 		@before-slide-change="index => paginationRef.goTo(index + 1)"
 	>
 		<slide class="slide" :index="i" v-for="(model, i) in models">
-			<div class="model">
+			<div class="slide-model">
 				<div class="rating">
 					<icon-label :icon="StarIcon" svg>{{ model.rating }}</icon-label>
 				</div>
@@ -74,22 +74,14 @@
 		margin-bottom: 25px;
 	}
 	
-	.model {
+	.slide-model {
 		position: relative;
 		height: 100%;
 	}
 	
 	.rating {
-		position: absolute;
-		top: 35px;
-		font-size: 18px;
 		color: white;
-		backdrop-filter: blur(35px);
-		box-shadow: 0 2px 0 0 rgba(192, 27, 88, 0.81), 0 -2px 4px 0 rgba(192, 27, 88, 0.9);
-		background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-		border-top-right-radius: 20px;
-		border-bottom-right-radius: 20px;
-		padding: 7px 20px;
+		top: 35px;
 	}
 
 	.slide {

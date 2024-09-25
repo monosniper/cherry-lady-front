@@ -10,6 +10,11 @@
 	--color-footer: #1B1E25;
 }
 
+* {
+	--el-color-primary-light-9: #ffe8ef;
+	--el-color-primary: var(--color-accent);
+}
+
 *,
 *::before,
 *::after {
@@ -26,7 +31,6 @@ body {
 	background: var(--color-background);
 	transition: color 0.5s,
 	background-color 0.5s;
-	line-height: 1.6;
 	font-family: Gilroy, sans-serif;
 	font-size: 15px;
 	text-rendering: optimizeLegibility;

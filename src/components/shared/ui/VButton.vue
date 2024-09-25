@@ -1,6 +1,10 @@
 <script setup>
 	defineProps({
 		icon: String,
+		size: {
+			type: String,
+			default: 'medium',
+		},
 		round: {
 			type: Boolean,
 			default: true
@@ -25,7 +29,7 @@
 </script>
 
 <template>
-	<button :class="{ round, upper, circle, dark }">
+	<button :class="{ round, upper, circle, dark, ['button--'+size]: true }">
 		<icon-label :icon="icon" :reverse="reverse">
 			<slot></slot>
 		</icon-label>

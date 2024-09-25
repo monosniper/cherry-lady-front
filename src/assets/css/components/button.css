@@ -18,6 +18,28 @@ button {
 	}
 }
 
+button.button--small {
+	padding: 10px 15px;
+	font-size: 14px;
+	
+	.icon-label {
+		font-size: 14px;
+	}
+}
+
+button.circle.button--xs {
+	width: 40px;
+	height: 40px;
+	box-shadow: none;
+	padding: 0;
+	
+	.icon-label {
+		img {
+			width: 20px;
+		}
+	}
+}
+
 button:hover {
 	background: var(--color-accent-hover);
 }

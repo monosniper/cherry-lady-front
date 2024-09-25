@@ -1,11 +1,351 @@
 <script setup>
+	import FilterStore from '@/stores/filters.js'
 
+	const {
+		filters,
+		hair_colors,
+		sorts,
+	} = FilterStore
 </script>
 
 <template>
-
+	<div class="filter">
+		<spacer class="between">
+			<v-button :round="false" size="small" @click="filters.extend = true">
+				<icon-label icon="filter">
+					{{ $t("catalogue.extended_filter") }}
+				</icon-label>
+			</v-button>
+			<el-dropdown trigger="click">
+		        <spacer class="filter__item" :size="5">
+					Рост: <span class="accent">от {{ filters.height[0] }} до {{ filters.height[1] }}</span>
+			        <v-icon name="select"></v-icon>
+		        </spacer>
+				<template #dropdown>
+					<div class="filter__group">
+						<spacer>
+							<input class="filter__field" type="number" v-model="filters.height[0]" placeholder="От">
+							<input class="filter__field" type="number" v-model="filters.height[1]" placeholder="До">
+						</spacer>
+					</div>
+				</template>
+			</el-dropdown>
+			<el-dropdown trigger="click">
+				<spacer class="filter__item" :size="5">
+					Вес: <span class="accent">от {{ filters.weight[0] }}кг до {{ filters.weight[1] }}кг</span>
+					<v-icon name="select"></v-icon>
+				</spacer>
+				<template #dropdown>
+					<div class="filter__group">
+						<spacer>
+							<input class="filter__field" type="number" v-model="filters.weight[0]" placeholder="От">
+							<input class="filter__field" type="number" v-model="filters.weight[1]" placeholder="До">
+						</spacer>
+					</div>
+				</template>
+			</el-dropdown>
+			<el-dropdown trigger="click">
+				<spacer class="filter__item" :size="5">
+					Цвет волос: <span class="accent">{{ filters.hair }}</span>
+					<v-icon name="select"></v-icon>
+				</spacer>
+				<template #dropdown>
+					<el-dropdown-menu>
+						<el-dropdown-item
+							v-for="color in hair_colors"
+						    @click="filters.hair = color"
+							:disabled="color === filters.hair"
+						>{{ color }}</el-dropdown-item>
+					</el-dropdown-menu>
+				</template>
+			</el-dropdown>
+			<el-dropdown trigger="click">
+				<spacer class="filter__item" :size="5">
+					Сортировка: <span class="accent">{{ filters.sort }}</span>
+					<v-icon name="select"></v-icon>
+				</spacer>
+				<template #dropdown>
+					<el-dropdown-menu>
+						<el-dropdown-item
+							v-for="sort in sorts"
+							@click="filters.sort = sort"
+							:disabled="sort === filters.sort"
+						>{{ sort }}</el-dropdown-item>
+					</el-dropdown-menu>
+				</template>
+			</el-dropdown>
+			
+			<div>
+				{{ $t('catalogue.found') }}: <span class="accent">128</span>
+			</div>
+		</spacer>
+	</div>
+	
+	<el-drawer
+		v-model="filters.extend"
+		direction="rtl"
+		:with-header="false"
+		class="extended-wrapper"
+	>
+		<el-form label-position="top" size="large" class="extended">
+			<div class="extended__title">{{ $t('filters.main') }}</div>
+			<div class="extended__row">
+				<el-form-item class="extended__group" label="По тегам">
+					<el-select v-model="filters.tags" size="large" placeholder="Выберите теги" multiple>
+						<el-option value="1" label="hello"></el-option>
+						<el-option value="2" label="hello 2"></el-option>
+						<el-option value="3" label="hello 3"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item class="extended__group" label="По языку">
+					<el-select v-model="filters.language" size="large" placeholder="Выберите теги">
+						<el-option value="1" label="hello"></el-option>
+						<el-option value="2" label="hello 2"></el-option>
+						<el-option value="3" label="hello 3"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item class="extended__group" label="Сортировка">
+					<el-select v-model="filters.sort" size="large" placeholder="Выберите теги">
+						<el-option value="1" label="hello"></el-option>
+						<el-option value="2" label="hello 2"></el-option>
+						<el-option value="3" label="hello 3"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item>
+					<el-radio-group v-model="filters.leave" class="radio-group">
+						<el-radio value="1" size="large">Выезжаю</el-radio>
+						<el-radio value="2" size="large">Не выезжаю</el-radio>
+					</el-radio-group>
+				</el-form-item>
+			</div>
+			<div class="extended__title">{{ $t('filters.parameters') }}</div>
+			<div class="extended__row">
+				<el-form-item class="extended__group" label="Возраст, лет">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.age[0]"></el-input>
+						<el-input type="number" v-model="filters.age[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.age" range />
+				</el-form-item>
+				<el-form-item class="extended__group" label="Рост, см">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.height[0]"></el-input>
+						<el-input type="number" v-model="filters.height[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.height" range />
+				</el-form-item>
+				<el-form-item class="extended__group" label="Вес, кг">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.weight[0]"></el-input>
+						<el-input type="number" v-model="filters.weight[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.weight" range />
+				</el-form-item>
+			</div>
+			<div class="extended__row">
+				<el-form-item class="extended__group" label="Возраст, лет">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.age[0]"></el-input>
+						<el-input type="number" v-model="filters.age[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.age" range />
+				</el-form-item>
+				<el-form-item class="extended__group" label="Рост, см">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.height[0]"></el-input>
+						<el-input type="number" v-model="filters.height[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.height" range />
+				</el-form-item>
+				<el-form-item class="extended__group" label="Вес, кг">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.weight[0]"></el-input>
+						<el-input type="number" v-model="filters.weight[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.weight" range />
+				</el-form-item>
+			</div>
+			<div class="extended__title">{{ $t('filters.services') }}</div>
+			<div class="expended__subtitle">Секс</div>
+			<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+				<el-checkbox label="Минет без резинки" value="8" />
+				<el-checkbox label="Минет горловой" value="9" />
+				<el-checkbox label="Минет в машине" value="10" />
+				<el-checkbox label="Целуюсь" value="11" />
+				<el-checkbox label="Игрушки" value="12" />
+				<el-checkbox label="Окончание на грудь" value="13" />
+				<el-checkbox label="Окончание на лицо" value="14" />
+				<el-checkbox label="Окончание в рот" value="15" />
+				<el-checkbox label="Поза 69" value="16" />
+			</el-checkbox-group>
+			<div class="expended__subtitle">Массаж</div>
+			<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+				<el-checkbox label="Целуюсь" value="11" />
+				<el-checkbox label="Игрушки" value="12" />
+				<el-checkbox label="Окончание на грудь" value="13" />
+				<el-checkbox label="Окончание на лицо" value="14" />
+				<el-checkbox label="Окончание в рот" value="15" />
+				<el-checkbox label="Поза 69" value="16" />
+			</el-checkbox-group>
+			<div class="expended__subtitle">Стриптиз</div>
+			<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+				<el-checkbox label="Секс классический" value="1" />
+				<el-checkbox label="Секс анальный" value="2" />
+				<el-checkbox label="Секс групповой" value="3" />
+				<el-checkbox label="Секс лесбийский" value="4" />
+				<el-checkbox label="Семейной паре" value="5" />
+				<el-checkbox label="Куннилингус" value="6" />
+				<el-checkbox label="Минет в резинке" value="7" />
+				<el-checkbox label="Минет без резинки" value="8" />
+				<el-checkbox label="Минет горловой" value="9" />
+				<el-checkbox label="Минет в машине" value="10" />
+				<el-checkbox label="Целуюсь" value="11" />
+				<el-checkbox label="Игрушки" value="12" />
+				<el-checkbox label="Окончание на грудь" value="13" />
+			</el-checkbox-group>
+			<div class="expended__subtitle">Садо-мазо</div>
+			<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+				<el-checkbox label="Секс классический" value="1" />
+				<el-checkbox label="Секс анальный" value="2" />
+				<el-checkbox label="Секс групповой" value="3" />
+				<el-checkbox label="Секс лесбийский" value="4" />
+				<el-checkbox label="Семейной паре" value="5" />
+				<el-checkbox label="Куннилингус" value="6" />
+				<el-checkbox label="Минет в резинке" value="7" />
+				<el-checkbox label="Минет без резинки" value="8" />
+				<el-checkbox label="Минет горловой" value="9" />
+				<el-checkbox label="Минет в машине" value="10" />
+				<el-checkbox label="Целуюсь" value="11" />
+				<el-checkbox label="Игрушки" value="12" />
+				<el-checkbox label="Окончание на грудь" value="13" />
+				<el-checkbox label="Окончание на лицо" value="14" />
+				<el-checkbox label="Окончание в рот" value="15" />
+				<el-checkbox label="Поза 69" value="16" />
+			</el-checkbox-group>
+			<div class="extended__title">{{ $t('filters.pricing') }}</div>
+			<div class="expended__subtitle">Апартаменты</div>
+			<div class="extended__row">
+				<el-form-item class="extended__group" label="Возраст, лет">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.age[0]"></el-input>
+						<el-input type="number" v-model="filters.age[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.age" range />
+				</el-form-item>
+				<el-form-item class="extended__group" label="Рост, см">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.height[0]"></el-input>
+						<el-input type="number" v-model="filters.height[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.height" range />
+				</el-form-item>
+				<el-form-item class="extended__group" label="Вес, кг">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.weight[0]"></el-input>
+						<el-input type="number" v-model="filters.weight[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.weight" range />
+				</el-form-item>
+			</div>
+			<div class="expended__subtitle">Выезд</div>
+			<div class="extended__row">
+				<el-form-item class="extended__group" label="Возраст, лет">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.age[0]"></el-input>
+						<el-input type="number" v-model="filters.age[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.age" range />
+				</el-form-item>
+				<el-form-item class="extended__group" label="Рост, см">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.height[0]"></el-input>
+						<el-input type="number" v-model="filters.height[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.height" range />
+				</el-form-item>
+				<el-form-item class="extended__group" label="Вес, кг">
+					<el-space spacer="-">
+						<el-input type="number" v-model="filters.weight[0]"></el-input>
+						<el-input type="number" v-model="filters.weight[1]"></el-input>
+					</el-space>
+					<el-slider  v-model="filters.weight" range />
+				</el-form-item>
+			</div>
+		</el-form>
+	</el-drawer>
 </template>
 
 <style scoped>
+	.expended__subtitle {
+		position: relative;
+		width: 100%;
+		font-size: 18px;
+		font-weight: 500;
+		margin-bottom: 1rem;
+	}
+	
+	.expended__subtitle::before {
+		content: '';
+		position: absolute;
+		bottom: -7px;
+		left: 0;
+		right: 0;
+		background: #DADADA;
+		height: 1px;
+	}
+	
+	.expended__subtitle::after {
+		content: '';
+		position: absolute;
+		bottom: -7px;
+		left: 0;
+		width: 100px;
+		background: var(--color-accent);
+		height: 3px;
+		border-radius: 3px;
+	}
+	
+	.extended__title {
+		font-size: 20px;
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
 
+	.filter {
+		padding: 15px 30px;
+		border: 1px solid var(--color-accent);
+		border-radius: 15px;
+		
+		.filter__item {
+			font-weight: 600;
+			font-size: 16px;
+			cursor: pointer;
+		}
+	}
+	
+	.radio-group {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+	
+	.extended {
+		.extended__row {
+			display: flex;
+			gap: 1.5rem;
+			align-items: center;
+		}
+		.extended__group {
+			flex: 1;
+		}
+	}
+	
+	.checkbox-group {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		margin-bottom: 1rem;
+	}
+	
+	
 </style>

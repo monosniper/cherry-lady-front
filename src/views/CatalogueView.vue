@@ -4,10 +4,10 @@
 
 <template>
 	<div class="container">
-		<div class="center">
+		<div class="center" style="margin-bottom: 2rem;">
 			<type-switch></type-switch>
 		</div>
-		<filter></filter>
+		<Filter></Filter>
 		<models></models>
 	</div>
 </template>

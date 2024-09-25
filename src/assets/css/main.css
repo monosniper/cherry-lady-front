@@ -14,10 +14,19 @@
 	}
 }
 
+.model .rating path {
+	fill: var(--color-accent);
+}
+
 .slide.current {
 	.rating {
 		path {
 			fill: var(--color-accent);
 		}
 	}
+}
+
+.extended-wrapper {
+	width: 770px !important;
+	max-width: 100%;
 }
