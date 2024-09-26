@@ -12,7 +12,6 @@ import {computed, ref, watch} from "vue";
 	const format_total = props.total < 10 ? `0${props.total}` : props.total
 
 	watch(current, (value) => {
-		console.log(value)
 		emit('change', value)
 	})
 
@@ -49,6 +48,7 @@ import {computed, ref, watch} from "vue";
 		justify-content: center;
 		font-family: Montserrat, sans-serif;
 		align-items: center;
+		color: var(--color-dark);
 		
 		.arrow {
 			cursor: pointer;
@@ -67,7 +67,7 @@ import {computed, ref, watch} from "vue";
 			font-size: 32px;
 			font-weight: 600;
 			position: relative;
-			color: var(--color-dark);
+			
 		}
 		
 		.pagination__total {

@@ -35,6 +35,7 @@
 					</Transition>
 				</spacer>
 			</icon-label>
+			<slot name="third"></slot>
 			<icon-label icon="age">
 				<Transition name="fade" mode="out-in">
 					<span :key="current.age">{{ current.age }} года</span>

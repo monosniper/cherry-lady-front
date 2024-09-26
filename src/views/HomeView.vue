@@ -19,6 +19,8 @@
 <style scoped>
 	.sides {
 		display: grid;
+		align-items: center;
+		height: 100%;
 		gap: 60px;
 		grid-template-columns: 5fr 4fr;
 	}

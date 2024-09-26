@@ -68,6 +68,7 @@ export const i18n = createI18n({
 		preferences: 'Предпочтения',
 	    },
 	    catalogue: {
+		filter: 'Фильтр',
 		extended_filter: 'Расширенный фильтр',
 		found: 'Найдено девушек',
 	    },

@@ -76,6 +76,8 @@
 			border-right: 1px solid rgba(192, 27, 88, 0.2);
 		}
 	}
+	
+	
 
 	.model {
 		backdrop-filter: blur(35px);
@@ -138,6 +140,7 @@
 		
 		.model__top {
 			display: flex;
+			margin-bottom: 10px;
 		}
 		
 		.model__tags {
@@ -165,6 +168,42 @@
 			
 			.rating {
 				bottom: 40px;
+			}
+		}
+	}
+	
+	@media screen and (max-width: 600px) {
+		.model {
+			height: fit-content;
+			max-height: none;
+			z-index: 10;
+			backdrop-filter: blur(35px);
+			box-shadow: 0 3px 0 0 rgba(192, 27, 88, 0.81), 0 -4px 3px 0 rgba(192, 27, 88, 0.9);
+			
+			.model__img {
+				height: 260px;
+			}
+			
+			.model__tags {
+				width: 100px;
+				opacity: 1;
+			}
+			
+			.model__top {
+				gap: 10px;
+			}
+			
+			.model__properties {
+				opacity: 1;
+				height: 170px;
+			}
+			.model__button {
+				opacity: 1;
+			}
+			
+			.model__body {
+				border-left: 1px solid rgba(192, 27, 88, 0.2);
+				border-right: 1px solid rgba(192, 27, 88, 0.2);
 			}
 		}
 	}

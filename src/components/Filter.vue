@@ -13,68 +13,78 @@
 		<spacer class="between">
 			<v-button :round="false" size="small" @click="filters.extend = true">
 				<icon-label icon="filter">
-					{{ $t("catalogue.extended_filter") }}
+					<div class="long">{{ $t("catalogue.extended_filter") }}</div>
+					<div class="short">{{ $t("catalogue.filter") }}</div>
 				</icon-label>
 			</v-button>
-			<el-dropdown trigger="click">
-		        <spacer class="filter__item" :size="5">
-					Рост: <span class="accent">от {{ filters.height[0] }} до {{ filters.height[1] }}</span>
-			        <v-icon name="select"></v-icon>
-		        </spacer>
-				<template #dropdown>
-					<div class="filter__group">
-						<spacer>
-							<input class="filter__field" type="number" v-model="filters.height[0]" placeholder="От">
-							<input class="filter__field" type="number" v-model="filters.height[1]" placeholder="До">
-						</spacer>
-					</div>
-				</template>
-			</el-dropdown>
-			<el-dropdown trigger="click">
-				<spacer class="filter__item" :size="5">
-					Вес: <span class="accent">от {{ filters.weight[0] }}кг до {{ filters.weight[1] }}кг</span>
-					<v-icon name="select"></v-icon>
-				</spacer>
-				<template #dropdown>
-					<div class="filter__group">
-						<spacer>
-							<input class="filter__field" type="number" v-model="filters.weight[0]" placeholder="От">
-							<input class="filter__field" type="number" v-model="filters.weight[1]" placeholder="До">
-						</spacer>
-					</div>
-				</template>
-			</el-dropdown>
-			<el-dropdown trigger="click">
-				<spacer class="filter__item" :size="5">
-					Цвет волос: <span class="accent">{{ filters.hair }}</span>
-					<v-icon name="select"></v-icon>
-				</spacer>
-				<template #dropdown>
-					<el-dropdown-menu>
-						<el-dropdown-item
-							v-for="color in hair_colors"
-						    @click="filters.hair = color"
-							:disabled="color === filters.hair"
-						>{{ color }}</el-dropdown-item>
-					</el-dropdown-menu>
-				</template>
-			</el-dropdown>
-			<el-dropdown trigger="click">
-				<spacer class="filter__item" :size="5">
-					Сортировка: <span class="accent">{{ filters.sort }}</span>
-					<v-icon name="select"></v-icon>
-				</spacer>
-				<template #dropdown>
-					<el-dropdown-menu>
-						<el-dropdown-item
-							v-for="sort in sorts"
-							@click="filters.sort = sort"
-							:disabled="sort === filters.sort"
-						>{{ sort }}</el-dropdown-item>
-					</el-dropdown-menu>
-				</template>
-			</el-dropdown>
+			<div class="block-1">
+				<el-dropdown trigger="click">
+					<spacer class="filter__item" :size="5">
+						Рост: <span class="accent">от {{ filters.height[0] }} до {{ filters.height[1] }}</span>
+						<v-icon name="select"></v-icon>
+					</spacer>
+					<template #dropdown>
+						<div class="filter__group">
+							<spacer>
+								<input class="filter__field" type="number" v-model="filters.height[0]" placeholder="От">
+								<input class="filter__field" type="number" v-model="filters.height[1]" placeholder="До">
+							</spacer>
+						</div>
+					</template>
+				</el-dropdown>
+			</div>
 			
+			<div class="block-2">
+				<el-dropdown trigger="click" class="block">
+					<spacer class="filter__item" :size="5">
+						Вес: <span class="accent">от {{ filters.weight[0] }}кг до {{ filters.weight[1] }}кг</span>
+						<v-icon name="select"></v-icon>
+					</spacer>
+					<template #dropdown>
+						<div class="filter__group">
+							<spacer>
+								<input class="filter__field" type="number" v-model="filters.weight[0]" placeholder="От">
+								<input class="filter__field" type="number" v-model="filters.weight[1]" placeholder="До">
+							</spacer>
+						</div>
+					</template>
+				</el-dropdown>
+			</div>
+			<div class="block-3">
+				<el-dropdown trigger="click" class="block">
+					<spacer class="filter__item" :size="5">
+						Цвет волос: <span class="accent">{{ filters.hair }}</span>
+						<v-icon name="select"></v-icon>
+					</spacer>
+					<template #dropdown>
+						<el-dropdown-menu>
+							<el-dropdown-item
+								v-for="color in hair_colors"
+								@click="filters.hair = color"
+								:disabled="color === filters.hair"
+							>{{ color }}</el-dropdown-item>
+						</el-dropdown-menu>
+					</template>
+				</el-dropdown>
+			</div>
+			<div class="block-4">
+				<el-dropdown trigger="click" class="block">
+					<spacer class="filter__item" :size="5">
+						Сортировка: <span class="accent">{{ filters.sort }}</span>
+						<v-icon name="select"></v-icon>
+					</spacer>
+					<template #dropdown>
+						<el-dropdown-menu>
+							<el-dropdown-item
+								v-for="sort in sorts"
+								@click="filters.sort = sort"
+								:disabled="sort === filters.sort"
+							>{{ sort }}</el-dropdown-item>
+						</el-dropdown-menu>
+					</template>
+				</el-dropdown>
+			
+			</div>
 			<div>
 				{{ $t('catalogue.found') }}: <span class="accent">128</span>
 			</div>
@@ -272,10 +282,27 @@
 				</el-form-item>
 			</div>
 		</el-form>
+		<div class="center">
+			<el-space size="large">
+				<v-button class="filter__button filter__button--outline" @click="filters.extend = false">{{ $t('shared.cancel') }}</v-button>
+				<v-button class="filter__button" @click="filters.extend = false">{{ $t('shared.search') }}</v-button>
+			</el-space>
+		</div>
 	</el-drawer>
 </template>
 
 <style scoped>
+.filter__button--outline {
+	background: #fff;
+	color: var(--color-dark);
+	font-size: 14px;
+}
+.filter__button--outline:hover {
+	background: #f5f5f5;
+}
+	.filter__button {
+		padding: 15px 40px;
+	}
 	.expended__subtitle {
 		position: relative;
 		width: 100%;
@@ -347,5 +374,71 @@
 		margin-bottom: 1rem;
 	}
 	
+	.short {
+		display: none;
+	}
 	
+	@media screen and (max-width: 1440px) {
+		.block-1 {
+			display: none !important;
+		}
+	}
+	
+	@media screen and (max-width: 1150px) {
+		.block-2 {
+			display: none !important;
+		}
+	}
+	
+	@media screen and (max-width: 950px) {
+		.block-3 {
+			display: none !important;
+		}
+	}
+	
+	@media screen and (max-width: 780px) {
+		.block-4 {
+			display: none !important;
+		}
+		
+		.short {
+			display: block;
+		}
+		.long {
+			display: none;
+		}
+	}
+
+@media screen and (max-width: 650px) {
+	.extended__row {
+		flex-wrap: wrap;
+		
+		.extended__group {
+			flex: none;
+			flex-basis: 30%;
+		}
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.extended__row {
+		.extended__group {
+			flex-basis: 45%;
+		}
+	}
+	.checkbox-group {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 380px) {
+	.extended__row {
+		.extended__group {
+			flex-basis: 100%;
+		}
+	}
+	.checkbox-group {
+		grid-template-columns: 1fr;
+	}
+}
 </style>

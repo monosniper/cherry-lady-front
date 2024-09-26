@@ -1,43 +1,66 @@
 <script setup>
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import ModelsStore from "@/stores/models.js";
+import {Carousel, Slide} from 'vue3-carousel'
+import {ref} from "vue";
 
 const modelsStore = ModelsStore
-const { data: models } = modelsStore
+const {data: models} = modelsStore
+
+const slider = ref()
+const paginationRef = ref()
+
+const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentSlideIndex + 1)
+
 </script>
 
 <template>
-	<Splide :options="{
-		type: 'loop',
-		gap: '15px',
-		rewind: false,
-		perMove: 1,
-		arrows: false,
-		pagination: false,
-		autoWidth: true,
-		cover: true,
-		focus: 'center',
-	}">
-		<SplideSlide v-for="model in models" :key="model.id">
-			<img :src="model.image" alt="Sample 1">
-		</SplideSlide>
-	</Splide>
+	<div class="model-slider">
+		<Carousel
+			ref="slider"
+			:itemsToShow="3.95"
+			:wrapAround="true"
+			:transition="500"
+			@slide-end="handleSlide"
+		>
+			<Slide v-for="model in models" :key="model.id">
+				<div class="carousel__item" :style="{backgroundImage: `url(${model.image})`}"></div>
+			</Slide>
+		</Carousel>
+		<div class="model-slider__pagination-wrapper">
+			<pagination
+				@prev="() => slider.prev()"
+				@next="() => slider.next()"
+				@change="(index) => slider.slideTo(index - 1)"
+				ref="paginationRef"
+				:total="models.length"
+				class="model-slider__pagination"
+			></pagination>
+		</div>
+	</div>
 </template>
 
-<style scoped>
-	.splide__slide.is-active {
-		filter: none;
-		height: 630px;
-		width: 500px;
-	}
-	.splide__slide {
-		transition: .1s ease-in;
-		background-position: top !important;
-		width: 400px;
-		height: 500px;
-		border-radius: 30px;
-		filter: grayscale(100%);
-		box-shadow: 0 4px 52px 0 rgba(0, 0, 0, 0.39);
-	}
+<style>
+.model-slider {
+	position: relative;
+}
+
+.model-slider__pagination-wrapper {
+	position: absolute;
+	bottom: 50px;
+	display: flex;
+	justify-content: center;
+	z-index: 10;
+	width: 100%;
+}
+
+.model-slider__pagination {
+	background: rgba(4, 2, 15, .5);
+	padding: 5px 10px;
+	border-radius: 5px;
+	color: white !important;
 	
+	.pagination__total {
+		color: #999999 !important;
+	}
+}
 </style>
