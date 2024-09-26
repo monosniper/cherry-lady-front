@@ -1,15 +1,23 @@
 <script setup>
 	defineProps({
-		data: Array
+		data: Array,
+		size: {
+			type: String,
+			default: "default",
+		},
+		limit: Number,
 	})
 </script>
 
 <template>
 	<div class="tags">
 		<TransitionGroup name="list">
-			<div class="tag" :key="item" v-for="item in data">{{ item }}</div>
+			<div
+				:class="['tag', `tag--${size}`]"
+				:key="item"
+				v-for="item in data.slice(0, limit ?? data.length)"
+			>{{ item }}</div>
 		</TransitionGroup>
-		
 	</div>
 </template>
 
@@ -33,5 +41,28 @@
 .fade-in-enter,
 .fade-in-leave-to {
 	opacity: 0;
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.tag {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	font-size: 14px;
+	padding: 6px 12px;
+	border: 1px solid var(--color-accent);
+	border-radius: 5px;
+}
+
+.tag--small {
+	font-size: 12px;
+	padding: 3px 5px;
+	text-align: center;
+	color: var(--color-dark);
 }
 </style>

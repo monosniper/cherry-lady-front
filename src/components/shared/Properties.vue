@@ -1,6 +1,6 @@
 <script setup>
 	defineProps({
-		data: Array
+		data: Array,
 	})
 </script>
 
@@ -12,7 +12,7 @@
 			     :key="item.key"
 			>
 				<div class="property__item property__key">{{ item.key }}</div>
-				<div  :key="item.value" class="property__item property__value">{{ item.value }}</div>
+				<div  :key="item.value" :class="['property__item property__value', {'property__value--accent': !!item.accent}]">{{ item.value }}</div>
 			</div>
 		</TransitionGroup>
 	</div>
@@ -39,5 +39,10 @@
 .fade-in-enter,
 .fade-in-leave-to {
 	opacity: 0;
+}
+
+.property__value--accent {
+	text-transform: uppercase;
+	color: var(--color-accent);
 }
 </style>

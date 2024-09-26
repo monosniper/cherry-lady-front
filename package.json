@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nanoandrew4/vue3-carousel-3d": "^1.0.0",
+    "@splidejs/vue-splide": "^0.6.12",
     "@vueuse/motion": "^2.2.5",
     "element-plus": "^2.8.3",
     "pinia": "^2.1.7",

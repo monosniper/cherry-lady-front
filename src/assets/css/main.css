@@ -30,3 +30,12 @@
 	width: 770px !important;
 	max-width: 100%;
 }
+
+.splide__list {
+	height: 630px !important;
+	align-items: center;
+}
+
+.splide__track {
+	overflow: visible !important;
+}

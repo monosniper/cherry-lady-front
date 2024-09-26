@@ -1,9 +1,11 @@
-import './assets/css/main.css'
 import '@nanoandrew4/vue3-carousel-3d/dist/style.css'
 import 'vue-final-modal/style.css'
+import './assets/css/main.css'
+import '@splidejs/vue-splide/css';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+
+import {createApp} from 'vue'
+import {createPinia} from 'pinia'
 
 import App from './App.vue'
 import router from './router'
@@ -32,14 +34,14 @@ import LanguageSwitch from "@/components/layout/LanguageSwitch.vue";
 import VButton from "@/components/shared/ui/VButton.vue";
 import VIcon from "@/components/shared/ui/VIcon.vue";
 import Tags from "@/components/shared/Tags.vue";
-import { Carousel3dPlugin } from '@nanoandrew4/vue3-carousel-3d'
+import {Carousel3dPlugin} from '@nanoandrew4/vue3-carousel-3d'
 import Pagination from "@/components/shared/Pagination.vue";
 import Menu from "@/components/layout/Menu.vue";
-import { createVfm } from 'vue-final-modal'
+import {createVfm} from 'vue-final-modal'
 import Thanks from "@/components/modals/Thanks.vue";
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-import { MotionPlugin } from '@vueuse/motion'
+import {MotionPlugin} from '@vueuse/motion'
 import Model from "@/components/Model.vue";
 
 
@@ -54,32 +56,32 @@ app.use(MotionPlugin)
 app.use(createVfm())
 
 app.component('Main', Main)
-	.component('Header', Header)
-	.component('Footer', Footer)
-	.component('Modals', Modals)
-	.component('Blank', Blank)
-	.component('LinkNotifier', LinkNotifier)
-	.component('VButton', VButton)
-	.component('IconLabel', IconLabel)
-	.component('Logo', Logo)
-	.component('Properties', Properties)
-	.component('Spacer', Spacer)
-	.component('TypeSwitch', TypeSwitch)
-	.component('Filter', Filter)
-	.component('ModelInfo', ModelInfo)
-	.component('ModelInfoMain', ModelInfoMain)
-	.component('Models', Models)
-	.component('ModelSwiper', ModelSwiper)
-	.component('Preferences', Preferences)
-	.component('Reviews', Reviews)
-	.component('Swiper', Swiper)
-	.component('Title', Title)
-	.component('LanguageSwitch', LanguageSwitch)
-	.component('VIcon', VIcon)
-	.component('Menu', Menu)
-	.component('Tags', Tags)
-	.component('Thanks', Thanks)
-	.component('Pagination', Pagination)
-	.component('Model', Model)
+    .component('Header', Header)
+    .component('Footer', Footer)
+    .component('Modals', Modals)
+    .component('Blank', Blank)
+    .component('LinkNotifier', LinkNotifier)
+    .component('VButton', VButton)
+    .component('IconLabel', IconLabel)
+    .component('Logo', Logo)
+    .component('Properties', Properties)
+    .component('Spacer', Spacer)
+    .component('TypeSwitch', TypeSwitch)
+    .component('Filter', Filter)
+    .component('ModelInfo', ModelInfo)
+    .component('ModelInfoMain', ModelInfoMain)
+    .component('Models', Models)
+    .component('ModelSwiper', ModelSwiper)
+    .component('Preferences', Preferences)
+    .component('Reviews', Reviews)
+    .component('Swiper', Swiper)
+    .component('Title', Title)
+    .component('LanguageSwitch', LanguageSwitch)
+    .component('VIcon', VIcon)
+    .component('Menu', Menu)
+    .component('Tags', Tags)
+    .component('Thanks', Thanks)
+    .component('Pagination', Pagination)
+    .component('Model', Model)
 
 app.mount('#app')
