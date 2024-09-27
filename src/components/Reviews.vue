@@ -103,4 +103,10 @@
 			color: #676767;
 		}
 	}
+	
+	@media screen and (max-width: 700px) {
+		.review {
+			padding: 20px;
+		}
+	}
 </style>
