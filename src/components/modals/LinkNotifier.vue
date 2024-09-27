@@ -44,7 +44,7 @@
 		</i18n-t>
 		
 		<el-space :size="30" class="center wrap" style="row-gap: 1rem">
-			<a :href="$config.subscribe" target="_blank">
+			<a :href="$config.chat" target="_blank">
 				<v-button icon="tg" reverse @click="close" class="modal__button">{{ $t('link.subscribe') }}</v-button>
 			</a>
 			<el-button class="modal-link" @click="later"  type="text">{{ $t('link.later') }}</el-button>

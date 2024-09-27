@@ -17,52 +17,31 @@
 					<div class="short">{{ $t("catalogue.filter") }}</div>
 				</icon-label>
 			</v-button>
-			<div class="block-1">
+			<div
+				:class="`block-${i}`"
+				v-for="(property, i) in filters.properties.slice(0, 3)"
+			>
 				<el-dropdown trigger="click">
 					<spacer class="filter__item" :size="5">
-						Рост: <span class="accent">от {{ filters.height[0] }} до {{ filters.height[1] }}</span>
+						{{ property.name }}:
+						<span v-if="property.type === 'range'" class="accent">от {{ property.value[0] }} до {{ property.value[1] }}</span>
+						<span v-else class="accent">{{ property.options.find(({id}) => property.value === id).name }}</span>
 						<v-icon name="select"></v-icon>
 					</spacer>
 					<template #dropdown>
-						<div class="filter__group">
+						<div class="filter__group" v-if="property.type === 'range'">
 							<spacer>
-								<input class="filter__field" type="number" v-model="filters.height[0]" placeholder="От">
-								<input class="filter__field" type="number" v-model="filters.height[1]" placeholder="До">
+								<input class="filter__field" type="number" v-model="property.value[0]" placeholder="От">
+								-
+								<input class="filter__field" type="number" v-model="property.value[1]" placeholder="До">
 							</spacer>
 						</div>
-					</template>
-				</el-dropdown>
-			</div>
-			
-			<div class="block-2">
-				<el-dropdown trigger="click" class="block">
-					<spacer class="filter__item" :size="5">
-						Вес: <span class="accent">от {{ filters.weight[0] }}кг до {{ filters.weight[1] }}кг</span>
-						<v-icon name="select"></v-icon>
-					</spacer>
-					<template #dropdown>
-						<div class="filter__group">
-							<spacer>
-								<input class="filter__field" type="number" v-model="filters.weight[0]" placeholder="От">
-								<input class="filter__field" type="number" v-model="filters.weight[1]" placeholder="До">
-							</spacer>
-						</div>
-					</template>
-				</el-dropdown>
-			</div>
-			<div class="block-3">
-				<el-dropdown trigger="click" class="block">
-					<spacer class="filter__item" :size="5">
-						Цвет волос: <span class="accent">{{ filters.hair }}</span>
-						<v-icon name="select"></v-icon>
-					</spacer>
-					<template #dropdown>
-						<el-dropdown-menu>
+						<el-dropdown-menu v-else>
 							<el-dropdown-item
-								v-for="color in hair_colors"
-								@click="filters.hair = color"
-								:disabled="color === filters.hair"
-							>{{ color }}</el-dropdown-item>
+								v-for="option in property.options"
+								@click="property.value = option.id"
+								:disabled="option.id === property.value"
+							>{{ option.name }}</el-dropdown-item>
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
@@ -76,14 +55,13 @@
 					<template #dropdown>
 						<el-dropdown-menu>
 							<el-dropdown-item
-								v-for="sort in sorts"
+								v-for="sort in Object.keys(sorts)"
 								@click="filters.sort = sort"
 								:disabled="sort === filters.sort"
 							>{{ sort }}</el-dropdown-item>
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
-			
 			</div>
 			<div>
 				{{ $t('catalogue.found') }}: <span class="accent">128</span>
