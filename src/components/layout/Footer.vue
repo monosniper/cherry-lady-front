@@ -1,6 +1,7 @@
 <script setup>
 
 import DialogService, {DIALOGS} from "@/services/DialogService.js";
+import $config from "@/config.js";
 </script>
 
 <template>

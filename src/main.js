@@ -1,7 +1,6 @@
 import '@nanoandrew4/vue3-carousel-3d/dist/style.css'
 import 'vue-final-modal/style.css'
 import './assets/css/main.css'
-import '@splidejs/vue-splide/css';
 import 'vue3-carousel/dist/carousel.css'
 
 

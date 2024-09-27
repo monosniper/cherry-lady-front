@@ -63,6 +63,16 @@ export const i18n = createI18n({
 		},
 		button: 'Отправить анкету'
 	    },
+	    link: {
+		title: 'Друг!',
+		subtitle: 'Иногда {0} меняет свою ссылку.',
+		subtitle_2: 'Подпишись на наш {0}, что бы не потерять нас в случае блокировок.',
+		subscribe: 'Подписаться',
+		later: 'Потом',
+		dont_show: 'Не показывать',
+		accent: 'Cherry Lady',
+		accent_2: 'Телеграм-канал',
+	    },
 	    main: {},
 	    model: {
 		preferences: 'Предпочтения',
@@ -77,7 +87,7 @@ export const i18n = createI18n({
 		parameters: 'Параметры девушки',
 		services: 'Услуги',
 		pricing: 'Цены',
-		
+		dollars: 'Долларов',
 	    },
 	    policy: {
 		title: "Политика конфиденциальности"

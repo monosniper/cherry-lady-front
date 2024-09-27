@@ -122,9 +122,9 @@
 					</el-select>
 				</el-form-item>
 				<el-form-item>
-					<el-radio-group v-model="filters.leave" class="radio-group">
-						<el-radio value="1" size="large">Выезжаю</el-radio>
-						<el-radio value="2" size="large">Не выезжаю</el-radio>
+					<el-radio-group v-model="filters.exit" class="radio-group">
+						<el-radio :value="true" size="large">Выезжаю</el-radio>
+						<el-radio :value="false" size="large">Не выезжаю</el-radio>
 					</el-radio-group>
 				</el-form-item>
 			</div>
@@ -177,7 +177,7 @@
 			</div>
 			<div class="extended__title">{{ $t('filters.services') }}</div>
 			<div class="expended__subtitle">Секс</div>
-			<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+			<el-checkbox-group v-model="filters.tags" size="large" class="checkbox-group">
 				<el-checkbox label="Минет без резинки" value="8" />
 				<el-checkbox label="Минет горловой" value="9" />
 				<el-checkbox label="Минет в машине" value="10" />
@@ -189,7 +189,7 @@
 				<el-checkbox label="Поза 69" value="16" />
 			</el-checkbox-group>
 			<div class="expended__subtitle">Массаж</div>
-			<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+			<el-checkbox-group v-model="filters.tags" size="large" class="checkbox-group">
 				<el-checkbox label="Целуюсь" value="11" />
 				<el-checkbox label="Игрушки" value="12" />
 				<el-checkbox label="Окончание на грудь" value="13" />
@@ -198,7 +198,7 @@
 				<el-checkbox label="Поза 69" value="16" />
 			</el-checkbox-group>
 			<div class="expended__subtitle">Стриптиз</div>
-			<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+			<el-checkbox-group v-model="filters.tags" size="large" class="checkbox-group">
 				<el-checkbox label="Секс классический" value="1" />
 				<el-checkbox label="Секс анальный" value="2" />
 				<el-checkbox label="Секс групповой" value="3" />
@@ -214,7 +214,7 @@
 				<el-checkbox label="Окончание на грудь" value="13" />
 			</el-checkbox-group>
 			<div class="expended__subtitle">Садо-мазо</div>
-			<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+			<el-checkbox-group v-model="filters.tags" size="large" class="checkbox-group">
 				<el-checkbox label="Секс классический" value="1" />
 				<el-checkbox label="Секс анальный" value="2" />
 				<el-checkbox label="Секс групповой" value="3" />
@@ -235,50 +235,50 @@
 			<div class="extended__title">{{ $t('filters.pricing') }}</div>
 			<div class="expended__subtitle">Апартаменты</div>
 			<div class="extended__row">
-				<el-form-item class="extended__group" label="Возраст, лет">
+				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.age[0]"></el-input>
-						<el-input type="number" v-model="filters.age[1]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments[1][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments[1][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.age" range />
+					<el-slider  v-model="filters.prices.apartments[1]" range />
 				</el-form-item>
-				<el-form-item class="extended__group" label="Рост, см">
+				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours_2')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.height[0]"></el-input>
-						<el-input type="number" v-model="filters.height[1]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments[2][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments[2][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.height" range />
+					<el-slider  v-model="filters.prices.apartments[2]" range />
 				</el-form-item>
-				<el-form-item class="extended__group" label="Вес, кг">
+				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.night')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.weight[0]"></el-input>
-						<el-input type="number" v-model="filters.weight[1]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments.night[0]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments.night[1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.weight" range />
+					<el-slider  v-model="filters.prices.apartments.night" range />
 				</el-form-item>
 			</div>
 			<div class="expended__subtitle">Выезд</div>
 			<div class="extended__row">
-				<el-form-item class="extended__group" label="Возраст, лет">
+				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.age[0]"></el-input>
-						<el-input type="number" v-model="filters.age[1]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit[1][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit[1][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.age" range />
+					<el-slider  v-model="filters.prices.exit[1]" range />
 				</el-form-item>
-				<el-form-item class="extended__group" label="Рост, см">
+				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours_2')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.height[0]"></el-input>
-						<el-input type="number" v-model="filters.height[1]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit[2][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit[2][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.height" range />
+					<el-slider  v-model="filters.prices.exit[2]" range />
 				</el-form-item>
-				<el-form-item class="extended__group" label="Вес, кг">
+				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.night')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.weight[0]"></el-input>
-						<el-input type="number" v-model="filters.weight[1]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit.night[0]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit.night[1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.weight" range />
+					<el-slider  v-model="filters.prices.exit.night" range />
 				</el-form-item>
 			</div>
 		</el-form>
@@ -303,34 +303,7 @@
 	.filter__button {
 		padding: 15px 40px;
 	}
-	.expended__subtitle {
-		position: relative;
-		width: 100%;
-		font-size: 18px;
-		font-weight: 500;
-		margin-bottom: 1rem;
-	}
 	
-	.expended__subtitle::before {
-		content: '';
-		position: absolute;
-		bottom: -7px;
-		left: 0;
-		right: 0;
-		background: #DADADA;
-		height: 1px;
-	}
-	
-	.expended__subtitle::after {
-		content: '';
-		position: absolute;
-		bottom: -7px;
-		left: 0;
-		width: 100px;
-		background: var(--color-accent);
-		height: 3px;
-		border-radius: 3px;
-	}
 	
 	.extended__title {
 		font-size: 20px;

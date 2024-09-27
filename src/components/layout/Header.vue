@@ -1,5 +1,6 @@
 <script setup>
 
+import $config from "@/config.js";
 </script>
 
 <template>
@@ -8,9 +9,11 @@
 			<div class="between">
 				<logo></logo>
 				<spacer>
-					<v-button icon="tg" :round="false">
-						{{ $t('header.chat') }}
-					</v-button>
+					<a :href="$config.chat" target="_blank">
+						<v-button icon="tg" :round="false">
+							{{ $t('header.chat') }}
+						</v-button>
+					</a>
 					
 					<language-switch></language-switch>
 				</spacer>

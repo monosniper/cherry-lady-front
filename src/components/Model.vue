@@ -11,6 +11,8 @@
 		pricing: Object,
 		rating: Number,
 		id: Number,
+		tg: String,
+		wp: String,
 	})
 </script>
 
@@ -19,8 +21,8 @@
 		<div class="model__header">
 			<div class="model__name">{{ first_name }}</div>
 			<spacer size="small">
-				<v-button size="xs" circle icon="tg"></v-button>
-				<v-button size="xs" circle icon="wp"></v-button>
+				<a :href="tg" target="_blank"><v-button size="xs" circle icon="tg"></v-button></a>
+				<a :href="wp" target="_blank"><v-button size="xs" circle icon="wp"></v-button></a>
 			</spacer>
 		</div>
 		<div class="model__body">

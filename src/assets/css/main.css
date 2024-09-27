@@ -40,3 +40,54 @@
 	overflow: visible !important;
 }
 
+.expended__subtitle {
+	position: relative;
+	width: 100%;
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+
+.expended__subtitle::before {
+	content: '';
+	position: absolute;
+	bottom: -7px;
+	left: 0;
+	right: 0;
+	background: #DADADA;
+	height: 1px;
+}
+
+.expended__subtitle::after {
+	content: '';
+	position: absolute;
+	bottom: -7px;
+	left: 0;
+	width: 100px;
+	background: var(--color-accent);
+	height: 3px;
+	border-radius: 3px;
+}
+
+.el-rate {
+	transform: scale(1.2) translateX(20%);
+}
+
+@media screen and (max-width: 700px) {
+	.el-rate {
+		transform: none;
+	}
+	.title {
+		font-size: 24px !important;
+	}
+}
+
+.reviews {
+	.carousel__slide {
+		height: fit-content;
+		padding: 0 1rem;
+	}
+	.carousel__track {
+		height: fit-content;
+	}
+}

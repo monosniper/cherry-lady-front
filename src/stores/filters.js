@@ -12,8 +12,19 @@ class FilterStore {
 	    sort: 'Новые анкеты',
 	    tags: [],
 	    language: null,
-	    leave: null,
-	    services: [],
+	    exit: true,
+	    prices: {
+		apartments: {
+		    1: [30, 100],
+		    2: [30, 100],
+		    night: [30, 100],
+		},
+		exit: {
+		    1: [30, 100],
+		    2: [30, 100],
+		    night: [30, 100],
+		},
+	    },
 	})
 	
 	this.hair_colors = reactive([

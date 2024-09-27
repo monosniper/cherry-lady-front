@@ -1,5 +1,7 @@
 <script setup>
-
+	import ModelsStore from "@/stores/models.js";
+	
+	const { current } = ModelsStore
 </script>
 
 <template>
@@ -11,7 +13,7 @@
 			<swiper></swiper>
 		</div>
 		<div class="side flex align-center">
-			<model-info></model-info>
+			<model-info :data="current"></model-info>
 		</div>
 	</div>
 </template>

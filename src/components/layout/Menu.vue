@@ -1,5 +1,6 @@
 <script setup>
 
+import $config from "@/config.js";
 </script>
 
 <template>
@@ -10,9 +11,7 @@
 		<router-link class="menu__item" to="/">
 			{{ $t('policy.title') }}
 		</router-link>
-		<router-link class="menu__item" to="/">
-			{{ $t('footer.tech') }}
-		</router-link>
+		<a :href="$config.tech" class="menu__item" target="_blank">{{ $t('footer.tech') }}</a>
 	</div>
 </template>
 

@@ -17,10 +17,24 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 	<div class="model-slider">
 		<Carousel
 			ref="slider"
-			:itemsToShow="3.95"
+			:itemsToShow="1.2"
 			:wrapAround="true"
 			:transition="500"
 			@slide-end="handleSlide"
+			:breakpoints="{
+				700: {
+					itemsToShow: 1.5,
+				},
+				800: {
+					itemsToShow: 2,
+				},
+				1100: {
+					itemsToShow: 2.8,
+				},
+				1440: {
+					itemsToShow: 3.5,
+				},
+			}"
 		>
 			<Slide v-for="model in models" :key="model.id">
 				<div class="carousel__item" :style="{backgroundImage: `url(${model.image})`}"></div>
@@ -61,6 +75,22 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 	
 	.pagination__total {
 		color: #999999 !important;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.model-slider__pagination-wrapper {
+		bottom: 20px;
+		transform: scale(.8);
+	}
+	.carousel__track {
+		height: 430px;
+	}
+	.carousel__slide {
+		height: 340px;
+	}
+	.carousel__slide--active {
+		height: 430px;
 	}
 }
 </style>
