@@ -3,6 +3,10 @@ import {computed, ref, watch} from "vue";
 	
 	const props = defineProps({
 		total: Number,
+		loop: {
+			type: Boolean,
+			default: true
+		},
 	})
 	
 	const emit = defineEmits(["prev", 'next', 'change']);
@@ -16,18 +20,24 @@ import {computed, ref, watch} from "vue";
 	})
 
 	const prev = () => {
+		if(!props.loop) {
+			if(current.value === 1) return
+		}
 		current.value = current.value === 1 ? props.total : current.value - 1
 		emit('prev')
 	}
 	
 	const next = () => {
+		if(!props.loop) {
+			if(current.value === props.total) return
+		}
 		current.value = current.value === props.total ?  1 : current.value + 1
 		emit('next')
 	}
 	
 	const goTo = (page) => current.value = page
 
-	defineExpose({goTo})
+	defineExpose({ goTo, current })
 </script>
 
 <template>

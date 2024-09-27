@@ -9,10 +9,12 @@
 </script>
 
 <template>
-	<model-swiper style="margin-top: 1rem;"></model-swiper>
-	<model-info-main :model="model"></model-info-main>
-	<preferences :data="model.tags"></preferences>
-	<reviews :data="model.reviews"></reviews>
+	<div>
+		<model-swiper style="margin-top: 1rem;"></model-swiper>
+		<model-info-main :model="model"></model-info-main>
+		<preferences :data="model.tags"></preferences>
+		<reviews :data="model.reviews"></reviews>
+	</div>
 </template>
 
 <style scoped>

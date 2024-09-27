@@ -5,10 +5,10 @@ import $config from "@/config.js";
 
 <template>
 	<div class="menu">
-		<router-link class="menu__item" to="/">
+		<router-link class="menu__item" to="/terms">
 			{{ $t('terms.title') }}
 		</router-link>
-		<router-link class="menu__item" to="/">
+		<router-link class="menu__item" to="/policy">
 			{{ $t('policy.title') }}
 		</router-link>
 		<a :href="$config.tech" class="menu__item" target="_blank">{{ $t('footer.tech') }}</a>

@@ -3,16 +3,22 @@ import {createRouter, createWebHistory} from 'vue-router'
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     scrollBehavior(to, from, savedPosition) {
-	if (savedPosition) {
-	    return savedPosition;
-	}
-
+	let position = {
+	    top: 0
+	};
+	
 	if (to.hash) {
-	    return {
+	    position = {
 		el: to.hash,
 		behavior: 'smooth',
 	    }
 	}
+	
+	return new Promise((resolve, reject) => {
+	    setTimeout(() => {
+		resolve(position)
+	    }, 500)
+	})
     },
     routes: [
 	{

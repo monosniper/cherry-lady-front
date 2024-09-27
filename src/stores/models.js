@@ -192,7 +192,7 @@ class ModelsStore {
 	    {
 		id: 4,
 		image: i1,
-		first_name: 'Valeriya',
+		first_name: 'Valeriya 2',
 		last_name: 'Iriska',
 		location: 'Москва',
 		reviews: [
@@ -252,7 +252,7 @@ class ModelsStore {
 	    {
 		id: 5,
 		image: i2,
-		first_name: 'Valeriya',
+		first_name: 'Valeriya 2',
 		last_name: 'Valeriya',
 		location: 'Санкт-Петербург',
 		reviews: [
@@ -311,7 +311,7 @@ class ModelsStore {
 	    {
 		id: 6,
 		image: i3,
-		first_name: 'Anatoliy',
+		first_name: 'Anatoliy 2',
 		last_name: 'Virginia',
 		location: 'Псков',
 		reviews: [
