@@ -1,10 +1,12 @@
 <script setup>
 	import FilterStore from '@/stores/filters.js'
+	import __ from '@/helpers/translate.js'
 
 	const {
 		filters,
-		hair_colors,
 		sorts,
+		groups,
+		services,
 	} = FilterStore
 </script>
 
@@ -108,108 +110,55 @@
 			</div>
 			<div class="extended__title">{{ $t('filters.parameters') }}</div>
 			<div class="extended__row">
-				<el-form-item class="extended__group" label="Возраст, лет">
-					<el-space spacer="-">
-						<el-input type="number" v-model="filters.age[0]"></el-input>
-						<el-input type="number" v-model="filters.age[1]"></el-input>
-					</el-space>
-					<el-slider  v-model="filters.age" range />
-				</el-form-item>
-				<el-form-item class="extended__group" label="Рост, см">
-					<el-space spacer="-">
-						<el-input type="number" v-model="filters.height[0]"></el-input>
-						<el-input type="number" v-model="filters.height[1]"></el-input>
-					</el-space>
-					<el-slider  v-model="filters.height" range />
-				</el-form-item>
-				<el-form-item class="extended__group" label="Вес, кг">
-					<el-space spacer="-">
-						<el-input type="number" v-model="filters.weight[0]"></el-input>
-						<el-input type="number" v-model="filters.weight[1]"></el-input>
-					</el-space>
-					<el-slider  v-model="filters.weight" range />
-				</el-form-item>
-			</div>
-			<div class="extended__row">
-				<el-form-item class="extended__group" label="Возраст, лет">
-					<el-space spacer="-">
-						<el-input type="number" v-model="filters.age[0]"></el-input>
-						<el-input type="number" v-model="filters.age[1]"></el-input>
-					</el-space>
-					<el-slider  v-model="filters.age" range />
-				</el-form-item>
-				<el-form-item class="extended__group" label="Рост, см">
-					<el-space spacer="-">
-						<el-input type="number" v-model="filters.height[0]"></el-input>
-						<el-input type="number" v-model="filters.height[1]"></el-input>
-					</el-space>
-					<el-slider  v-model="filters.height" range />
-				</el-form-item>
-				<el-form-item class="extended__group" label="Вес, кг">
-					<el-space spacer="-">
-						<el-input type="number" v-model="filters.weight[0]"></el-input>
-						<el-input type="number" v-model="filters.weight[1]"></el-input>
-					</el-space>
-					<el-slider  v-model="filters.weight" range />
+				<el-form-item
+					v-for="property in filters.properties"
+					class="extended__group"
+					:label="property.name"
+				>
+					<component v-if="property.type === 'range'">
+						<el-space spacer="-">
+							<el-input type="number" v-model="property.value[0]"></el-input>
+							<el-input type="number" v-model="property.value[1]"></el-input>
+						</el-space>
+						<el-slider v-model="property.value" range />
+					</component>
+					<el-select
+						v-else-if="property.type === 'select'"
+					    v-model="filters.tags"
+						size="large"
+						:placeholder="property.name"
+						:multiple="property.multiple"
+					>
+						<el-option
+							v-for="option in property.options"
+							:value="option.id"
+							:label="option.name"
+						></el-option>
+					</el-select>
+					<el-radio-group
+						v-else-if="property.type === 'radio'"
+						v-model="property.value"
+						class="radio-group"
+					>
+						<el-radio
+							v-for="option in property.options"
+							:value="option.id"
+							size="large"
+						>{{ __(option.name) }}</el-radio>
+					</el-radio-group>
 				</el-form-item>
 			</div>
 			<div class="extended__title">{{ $t('filters.services') }}</div>
-			<div class="expended__subtitle">Секс</div>
-			<el-checkbox-group v-model="filters.tags" size="large" class="checkbox-group">
-				<el-checkbox label="Минет без резинки" value="8" />
-				<el-checkbox label="Минет горловой" value="9" />
-				<el-checkbox label="Минет в машине" value="10" />
-				<el-checkbox label="Целуюсь" value="11" />
-				<el-checkbox label="Игрушки" value="12" />
-				<el-checkbox label="Окончание на грудь" value="13" />
-				<el-checkbox label="Окончание на лицо" value="14" />
-				<el-checkbox label="Окончание в рот" value="15" />
-				<el-checkbox label="Поза 69" value="16" />
-			</el-checkbox-group>
-			<div class="expended__subtitle">Массаж</div>
-			<el-checkbox-group v-model="filters.tags" size="large" class="checkbox-group">
-				<el-checkbox label="Целуюсь" value="11" />
-				<el-checkbox label="Игрушки" value="12" />
-				<el-checkbox label="Окончание на грудь" value="13" />
-				<el-checkbox label="Окончание на лицо" value="14" />
-				<el-checkbox label="Окончание в рот" value="15" />
-				<el-checkbox label="Поза 69" value="16" />
-			</el-checkbox-group>
-			<div class="expended__subtitle">Стриптиз</div>
-			<el-checkbox-group v-model="filters.tags" size="large" class="checkbox-group">
-				<el-checkbox label="Секс классический" value="1" />
-				<el-checkbox label="Секс анальный" value="2" />
-				<el-checkbox label="Секс групповой" value="3" />
-				<el-checkbox label="Секс лесбийский" value="4" />
-				<el-checkbox label="Семейной паре" value="5" />
-				<el-checkbox label="Куннилингус" value="6" />
-				<el-checkbox label="Минет в резинке" value="7" />
-				<el-checkbox label="Минет без резинки" value="8" />
-				<el-checkbox label="Минет горловой" value="9" />
-				<el-checkbox label="Минет в машине" value="10" />
-				<el-checkbox label="Целуюсь" value="11" />
-				<el-checkbox label="Игрушки" value="12" />
-				<el-checkbox label="Окончание на грудь" value="13" />
-			</el-checkbox-group>
-			<div class="expended__subtitle">Садо-мазо</div>
-			<el-checkbox-group v-model="filters.tags" size="large" class="checkbox-group">
-				<el-checkbox label="Секс классический" value="1" />
-				<el-checkbox label="Секс анальный" value="2" />
-				<el-checkbox label="Секс групповой" value="3" />
-				<el-checkbox label="Секс лесбийский" value="4" />
-				<el-checkbox label="Семейной паре" value="5" />
-				<el-checkbox label="Куннилингус" value="6" />
-				<el-checkbox label="Минет в резинке" value="7" />
-				<el-checkbox label="Минет без резинки" value="8" />
-				<el-checkbox label="Минет горловой" value="9" />
-				<el-checkbox label="Минет в машине" value="10" />
-				<el-checkbox label="Целуюсь" value="11" />
-				<el-checkbox label="Игрушки" value="12" />
-				<el-checkbox label="Окончание на грудь" value="13" />
-				<el-checkbox label="Окончание на лицо" value="14" />
-				<el-checkbox label="Окончание в рот" value="15" />
-				<el-checkbox label="Поза 69" value="16" />
-			</el-checkbox-group>
+			<component v-for="group in groups">
+				<div class="expended__subtitle">{{ __(group.name) }}</div>
+				<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
+					<el-checkbox
+						v-for="service in services.filter(({ group_id }) => group_id === group.id)"
+						:label="__(service.name)"
+						:value="service.id"
+					/>
+				</el-checkbox-group>
+			</component>
 			<div class="extended__title">{{ $t('filters.pricing') }}</div>
 			<div class="expended__subtitle">Апартаменты</div>
 			<div class="extended__row">
@@ -310,8 +259,9 @@
 	
 	.extended {
 		.extended__row {
-			display: flex;
-			gap: 1.5rem;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 0 1.5rem;
 			align-items: center;
 		}
 		.extended__group {
