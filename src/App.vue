@@ -1,5 +1,5 @@
 <script setup>
-import {RouterView, useRoute} from 'vue-router'
+import {RouterView} from 'vue-router'
 	import { onMounted } from "vue";
 	
 	onMounted(() => {
@@ -7,8 +7,6 @@ import {RouterView, useRoute} from 'vue-router'
 			e.preventDefault();
 		});
 	})
-	
-	const route = useRoute()
 </script>
 
 <template>

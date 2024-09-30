@@ -15,7 +15,7 @@
 			<div
 				:class="['tag', `tag--${size}`]"
 				:key="item"
-				v-for="item in data.slice(0, limit ?? data.length)"
+				v-for="item in data?.slice(0, limit ?? data?.length)"
 			>{{ item }}</div>
 		</TransitionGroup>
 	</div>
