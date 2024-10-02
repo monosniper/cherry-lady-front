@@ -1,18 +1,19 @@
 <script setup>
 	import {useRoute} from "vue-router";
 	import ModelsStore from "@/stores/models.js";
+	import {ref, watch} from "vue";
 	
 	const route = useRoute()
 	const modelsStore = ModelsStore
 	const { data: models } = modelsStore
-	const model = models.find(model => model.id.toString() === route.params.model)
+	const model = ref(models.value.find(({ slug }) => slug === route.params.model))
 </script>
 
 <template>
-	<div>
-		<model-swiper style="margin-top: 1rem;"></model-swiper>
+	<div v-if="model">
+		<model-swiper :data="model.images" style="margin-top: 1rem;"></model-swiper>
 		<model-info-main :model="model"></model-info-main>
-		<preferences :data="model.tags"></preferences>
+		<preferences :data="model.services"></preferences>
 		<reviews :data="model.reviews"></reviews>
 	</div>
 </template>

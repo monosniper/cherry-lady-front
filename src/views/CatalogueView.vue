@@ -1,5 +1,7 @@
 <script setup>
-
+	import ModelsStore from "@/stores/models.js";
+	const modelsStore = ModelsStore
+	const { data } = modelsStore
 </script>
 
 <template>
@@ -8,7 +10,7 @@
 			<type-switch></type-switch>
 		</div>
 		<Filter></Filter>
-		<models></models>
+		<models :models="data.filter(({ images }) => images.length)"></models>
 	</div>
 </template>
 

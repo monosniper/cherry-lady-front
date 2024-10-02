@@ -1,16 +1,20 @@
 <script setup>
 	import StarIcon from '@icons/star.svg?raw'
 	import Tags from '@/components/shared/Tags.vue'
+	import __ from "@/helpers/translate.js";
 	import Properties from '@/components/shared/Properties.vue'
+	import {avg} from "../helpers/avg.js";
 
 	defineProps({
-		image: String,
-		first_name: String,
+		images: Array,
+		first_name: Object,
 		tags: Array,
 		properties: Array,
 		pricing: Object,
-		rating: Number,
+		reviews: Array,
+		exit: Boolean,
 		id: Number,
+		slug: String,
 		tg: String,
 		wp: String,
 	})
@@ -19,7 +23,7 @@
 <template>
 	<div class="model">
 		<div class="model__header">
-			<div class="model__name">{{ first_name }}</div>
+			<div class="model__name">{{ __(first_name) }}</div>
 			<spacer size="small">
 				<a :href="tg" target="_blank"><v-button size="xs" circle icon="tg"></v-button></a>
 				<a :href="wp" target="_blank"><v-button size="xs" circle icon="wp"></v-button></a>
@@ -27,9 +31,9 @@
 		</div>
 		<div class="model__body">
 			<div class="model__top">
-				<div class="model__img" :style="{backgroundImage: `url(${image})`}">
+				<div class="model__img" :style="{backgroundImage: `url(${images[0]})`}">
 					<div class="rating">
-						<icon-label :icon="StarIcon" svg>{{ rating }}</icon-label>
+						<icon-label :icon="StarIcon" svg>{{ avg(reviews).toFixed(1) }}</icon-label>
 					</div>
 				</div>
 				<div class="model__tags">
@@ -37,9 +41,18 @@
 				</div>
 			</div>
 			<div class="model__properties">
-				<properties :data="[...properties, { key: 'Цена', value: `от ${pricing[1]}$/час`, accent: true }]"></properties>
+				<properties :data="[...properties, {
+					id: 'price',
+					type: 'range',
+					name: {
+						ru: 'Цена',
+						en: 'Price',
+					},
+					value: `от ${pricing[exit ? 'exit' : 'apartments']['1 Час']}$/час`,
+					accent: true
+				}]"></properties>
 			</div>
-			<router-link :to="{name: 'model', params: { model: id }}" class="model__button">
+			<router-link :to="{name: 'model', params: { model: slug }}" class="model__button">
 				{{ $t('shared.details') }}
 			</router-link>
 		</div>

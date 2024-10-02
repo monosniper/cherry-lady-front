@@ -7,14 +7,15 @@ import $api from "@/api/index.js";
 
 class ModelsStore {
     constructor() {
-	this.data = reactive([])
+	this.data = ref([])
 	this.current = ref({})
-	this.fetchModels()
-	this.current.value = this.data.length ? this.data[0] : null
+	this.fetchModels().then(() => {
+	    this.current.value = this.data.value.length ? this.data.value[0] : null
+	})
     }
     
     async fetchModels() {
-	this.data = await $api.get('girls').then(({ data }) => data)
+	this.data.value = await $api.get('girls').then(({ data }) => data)
     }
     
     setCurrent(model) {
@@ -24,7 +25,7 @@ class ModelsStore {
     filtered() {
 	const { filters } = FilterStore
 	
-	return this.data.filter(model => {
+	return this.data.value.filter(model => {
 	    if(filters.height)
 	    
 	    return true

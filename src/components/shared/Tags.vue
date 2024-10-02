@@ -1,5 +1,6 @@
 <script setup>
-	defineProps({
+import __ from "@/helpers/translate.js";
+defineProps({
 		data: Array,
 		size: {
 			type: String,
@@ -16,7 +17,7 @@
 				:class="['tag', `tag--${size}`]"
 				:key="item"
 				v-for="item in data?.slice(0, limit ?? data?.length)"
-			>{{ item }}</div>
+			>{{ __(item.name) }}</div>
 		</TransitionGroup>
 	</div>
 </template>

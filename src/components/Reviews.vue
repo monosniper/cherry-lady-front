@@ -1,5 +1,6 @@
 <script setup>
 	import {ref} from "vue";
+	import __ from "@/helpers/translate.js";
 	import {Carousel, Slide} from 'vue3-carousel'
 	
 	defineProps({
@@ -18,7 +19,7 @@
 		class="reviews"
 		ref="slider"
 		:itemsToShow="1.2"
-		:wrapAround="true"
+		:wrapAround="false"
 		:transition="500"
 		@slide-end="handleSlide"
 		:breakpoints="{
@@ -48,7 +49,7 @@
 						score-template="{value}"
 					/>
 				</el-space>
-				<div class="review__content">{{ review.content }}</div>
+				<div class="review__content">{{ __(review.content) }}</div>
 			</div>
 		</Slide>
 	</Carousel>

@@ -1,11 +1,13 @@
 <script setup>
 	import {splitArray} from "@/helpers/splitArray.js";
+	import $config from "@/config.js";
+	import __ from "@/helpers/translate.js";
 	
 	const props = defineProps({
 		model: Object
 	})
 
-	const properties_split = splitArray(props.model.properties)
+	const properties_split = splitArray(props.model.properties.filter(({id}) => !Object.values($config.default_properties).includes(id)))
 </script>
 
 <template>
@@ -13,7 +15,7 @@
 		<model-info :data="model" class="model-info-main">
 			<template #third>
 				<icon-label icon="languages">
-					<span :key="model.languages">{{ model.languages }}</span>
+					<span :key="model.languages.map(({name}) => __(name)).join(', ')">{{ model.languages.map(({name}) => __(name)).join(', ') }}</span>
 				</icon-label>
 			</template>
 			<template #details><span></span></template>

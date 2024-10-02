@@ -1,32 +1,32 @@
 <script setup>
-import ModelsStore from "@/stores/models.js";
 import {onMounted, ref} from "vue";
 import {raw} from "@/helpers/raw.js";
 
-const modelsStore = ModelsStore
-const { data: models } = modelsStore
+const props = defineProps({
+	models: Array,
+})
 
 const pageSize = ref(12)
 const isMobile = ref(false)
-const total = Math.ceil(models.length / pageSize.value)
+const total = Math.ceil(props.models.length / pageSize.value)
 
 const paginationRef = ref()
-const pageModels = ref(raw(models).splice(0, pageSize.value))
+const pageModels = ref(raw(props.models).splice(0, pageSize.value))
 
-const next = () => pageModels.value = raw(models).splice((paginationRef.value.current - 1) * pageSize.value, (paginationRef.value.current + 1) * pageSize.value)
-const prev = () => pageModels.value = raw(models).splice((paginationRef.value.current - 1) * pageSize.value, paginationRef.value.current * pageSize.value)
+const next = () => pageModels.value = raw(props.models).splice((paginationRef.value.current - 1) * pageSize.value, (paginationRef.value.current + 1) * pageSize.value)
+const prev = () => pageModels.value = raw(props.models).splice((paginationRef.value.current - 1) * pageSize.value, paginationRef.value.current * pageSize.value)
 
 onMounted(() => {
 	if(window.innerWidth <= 600) {
 		isMobile.value = true
 		pageSize.value = 5
-		pageModels.value = raw(models).splice(0, pageSize.value)
+		pageModels.value = raw(props.models).splice(0, pageSize.value)
 	}
 })
 
 const more = () => {
 	pageSize.value += 5
-	pageModels.value = raw(models).splice(0, pageSize.value)
+	pageModels.value = raw(props.models).splice(0, pageSize.value)
 }
 
 </script>

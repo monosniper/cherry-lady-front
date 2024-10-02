@@ -1,10 +1,10 @@
 <script setup>
-import ModelsStore from "@/stores/models.js";
 import {Carousel, Slide} from 'vue3-carousel'
 import {ref} from "vue";
 
-const modelsStore = ModelsStore
-const {data: models} = modelsStore
+defineProps({
+	data: Array,
+})
 
 const slider = ref()
 const paginationRef = ref()
@@ -18,7 +18,7 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 		<Carousel
 			ref="slider"
 			:itemsToShow="1.2"
-			:wrapAround="true"
+			:wrapAround="false"
 			:transition="500"
 			@slide-end="handleSlide"
 			:breakpoints="{
@@ -36,8 +36,8 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 				},
 			}"
 		>
-			<Slide v-for="model in models" :key="model.id">
-				<div class="carousel__item" :style="{backgroundImage: `url(${model.image})`}"></div>
+			<Slide v-for="image in data" :key="image">
+				<div class="carousel__item" :style="{backgroundImage: `url(${image})`}"></div>
 			</Slide>
 		</Carousel>
 		<div class="model-slider__pagination-wrapper">
@@ -46,7 +46,7 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 				@next="() => slider.next()"
 				@change="(index) => slider.slideTo(index - 1)"
 				ref="paginationRef"
-				:total="models.length"
+				:total="data.length"
 				class="model-slider__pagination"
 			></pagination>
 		</div>

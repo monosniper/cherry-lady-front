@@ -1,4 +1,6 @@
 <script setup>
+	import __ from "@/helpers/translate.js";
+
 	defineProps({
 		data: Array,
 	})
@@ -9,10 +11,10 @@
 		<TransitionGroup name="list">
 			<div class="property"
 			     v-for="item in data"
-			     :key="item.key"
+			     :key="item.id"
 			>
-				<div class="property__item property__key">{{ item.key }}</div>
-				<div  :key="item.value" :class="['property__item property__value', {'property__value--accent': !!item.accent}]">{{ item.value }}</div>
+				<div class="property__item property__key">{{ __(item.name) }}</div>
+				<div :key="item.value" :class="['property__item property__value', {'property__value--accent': !!item.accent}]">{{ item.type === 'range' ? item.value : __(item.options?.find(({id}) => id.toString() === item.value)?.name)  }}</div>
 			</div>
 		</TransitionGroup>
 	</div>

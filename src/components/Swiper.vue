@@ -3,6 +3,8 @@
 	import StarIcon from '@icons/star.svg?raw'
 	import {findValueForRange} from "@/helpers/findValueForRange.js";
 	import ModelsStore from "@/stores/models.js";
+	import __ from "@/helpers/translate.js";
+	import {avg} from "../helpers/avg.js";
 	
 	const modelsStore = ModelsStore
 	const { data: models } = modelsStore
@@ -49,12 +51,12 @@
 		:border="0"
 		@before-slide-change="index => paginationRef.goTo(index + 1)"
 	>
-		<slide class="slide" :index="i" v-for="(model, i) in models">
+		<slide class="slide" :index="i" v-for="(model, i) in models.filter(model => model.images.length)">
 			<div class="slide-model">
 				<div class="rating">
-					<icon-label :icon="StarIcon" svg>{{ model.rating }}</icon-label>
+					<icon-label :icon="StarIcon" svg>{{ avg(model.reviews, 'rate').toFixed(1) }}</icon-label>
 				</div>
-				<img :src="model.image" :alt="model.first_name">
+				<img :src="model.images[0]" :alt="__(model.first_name)">
 			</div>
 		</slide>
 	</carousel-3d>
