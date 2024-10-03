@@ -3,7 +3,7 @@
 	import __ from "@/helpers/translate.js";
 
 	defineProps({
-		data: Array
+		data: Object
 	})
 	
 	const { data: groups } = GroupStore
@@ -13,8 +13,8 @@
 	<section>
 		<div class="container">
 			<div class="title">{{ $t('model.preferences') }}</div>
-			<component v-for="([group_id, services]) in Object.entries(data)">
-				<div class="expended__subtitle">{{ __(groups.find(({ id }) => id.toString() === group_id).name) }}</div>
+			<div v-for="([group_id, services]) in Object.entries(data)">
+				<div class="expended__subtitle">{{ __(groups.find(({ id }) => id.toString() === group_id.toString())?.name) }}</div>
 				<div class="preferences">
 					<div class="preference" v-for="service in services">
 						<div class="preference__icon">
@@ -26,7 +26,7 @@
 						</div>
 					</div>
 				</div>
-			</component>
+			</div>
 		</div>
 	</section>
 </template>

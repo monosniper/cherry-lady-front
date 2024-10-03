@@ -1,12 +1,12 @@
 <script setup>
 	import {useRoute} from "vue-router";
 	import ModelsStore from "@/stores/models.js";
-	import {ref, watch} from "vue";
+	import {computed, ref, watch} from "vue";
 	
 	const route = useRoute()
 	const modelsStore = ModelsStore
 	const { data: models } = modelsStore
-	const model = ref(models.value.find(({ slug }) => slug === route.params.model))
+	const model = computed(() => models.value.find(({ slug }) => slug === route.params.model))
 </script>
 
 <template>

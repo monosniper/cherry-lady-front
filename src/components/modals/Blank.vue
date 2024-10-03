@@ -2,6 +2,8 @@
 import {VueFinalModal} from "vue-final-modal";
 import DialogService, {DIALOGS} from "@/services/DialogService.js";
 import {ref} from "vue";
+import $api from "@/api/index.js";
+import {validateEmail} from "@/helpers/validateEmail.js";
 
 const modalName = DIALOGS.BLANK
 const validation = ref({
@@ -20,7 +22,7 @@ const whatsapp = ref('')
 const validate = () => {
 	validation.value.name = name.value.trim() !== ''
 	validation.value.phone = phone.value.trim() !== ''
-	validation.value.email = email.value.trim() !== ''
+	validation.value.email = email.value.trim() !== '' && validateEmail(email.value)
 	validation.value.telegram = telegram.value.trim() !== ''
 	validation.value.whatsapp = whatsapp.value.trim() !== ''
 
@@ -31,6 +33,14 @@ const handleClick = () => {
 	if(validate()) {
 		DialogService.close(modalName)
 		DialogService.open(DIALOGS.THANKS)
+		
+		$api.post('apply', {
+			name: name.value,
+			phone: phone.value,
+			email: email.value,
+			tg: telegram.value,
+			wp: whatsapp.value,
+		})
 		
 		name.value = ''
 		phone.value = ''

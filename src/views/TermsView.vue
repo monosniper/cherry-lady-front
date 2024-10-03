@@ -1,17 +1,14 @@
 <script setup>
+import SettingStore from '@/stores/settings.js'
+import __ from "@/helpers/translate.js";
 
+const { data: settings } = SettingStore
 </script>
 
 <template>
 	<div class="container">
 		<h1>{{ $t('terms.title') }}</h1>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda autem beatae, blanditiis dolore eligendi excepturi iusto maiores nostrum officia rem repellendus sapiente tempore totam ullam unde ut vel voluptatum.
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda autem beatae, blanditiis dolore eligendi excepturi iusto maiores nostrum officia rem repellendus sapiente tempore totam ullam unde ut vel voluptatum.
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda autem beatae, blanditiis dolore eligendi excepturi iusto maiores nostrum officia rem repellendus sapiente tempore totam ullam unde ut vel voluptatum.
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda autem beatae, blanditiis dolore eligendi excepturi iusto maiores nostrum officia rem repellendus sapiente tempore totam ullam unde ut vel voluptatum.
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda autem beatae, blanditiis dolore eligendi excepturi iusto maiores nostrum officia rem repellendus sapiente tempore totam ullam unde ut vel voluptatum.
-		</p>
+		<p v-html="__(settings.terms)"></p>
 	</div>
 </template>
 

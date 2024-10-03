@@ -1,6 +1,8 @@
 <script setup>
 
-import $config from "@/config.js";
+import SettingStore from '@/stores/settings.js'
+
+const { data: settings } = SettingStore
 </script>
 
 <template>
@@ -9,7 +11,7 @@ import $config from "@/config.js";
 			<div class="between">
 				<logo></logo>
 				<spacer>
-					<a :href="$config.chat" target="_blank">
+					<a :href="settings.chat" target="_blank">
 						<v-button icon="tg" :round="false">
 							{{ $t('header.chat') }}
 						</v-button>

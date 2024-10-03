@@ -1,6 +1,7 @@
 <script setup>
+import SettingStore from '@/stores/settings.js'
 
-import $config from "@/config.js";
+const { data: settings } = SettingStore
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import $config from "@/config.js";
 		<router-link class="menu__item" to="/policy">
 			{{ $t('policy.title') }}
 		</router-link>
-		<a :href="$config.tech" class="menu__item" target="_blank">{{ $t('footer.tech') }}</a>
+		<a :href="settings.tech" class="menu__item" target="_blank">{{ $t('footer.tech') }}</a>
 	</div>
 </template>
 
