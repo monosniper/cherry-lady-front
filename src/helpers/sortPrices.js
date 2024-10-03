@@ -1,13 +1,17 @@
-export function sortPrices(pricing, ascending = true) {
-    const sorted = {};
-    
-    Object.keys(pricing).forEach(category => {
-	const entries = Object.entries(pricing[category]);
+export function sortPrices(dataArray, exit, ascending = true) {
+    return dataArray.sort((a, b) => {
+	const keys = Object.keys(a.pricing[exit ? 'exit' : 'apartments']);
 	
-	entries.sort(([, priceA], [, priceB]) => ascending ? priceA - priceB : priceB - priceA);
+	for (let key of keys) {
+	    const priceA = parseFloat(a.pricing[exit ? 'exit' : 'apartments'][key]);
+	    const priceB = parseFloat(b.pricing[exit ? 'exit' : 'apartments'][key]);
+	    
+	    // Сравниваем цены
+	    if (priceA !== priceB) {
+		return ascending ? priceA - priceB : priceB - priceA;
+	    }
+	}
 	
-	sorted[category] = Object.fromEntries(entries);
+	return 0; // Если все цены равны
     });
-    
-    return sorted;
 }

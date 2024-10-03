@@ -88,6 +88,16 @@ export const i18n = createI18n({
 		services: 'Услуги',
 		pricing: 'Цены',
 		dollars: 'Долларов',
+		exit: 'Выезжаю',
+		apartments: 'Не выезжаю',
+		all: 'Все',
+		sorts: {
+		    new: 'Новые анкеты',
+		    popular: 'Популярные',
+		    reviews: 'С отзывами',
+		    cheap: 'Дешевые',
+		    expensive: 'Дорогие',
+		},
 	    },
 	    policy: {
 		title: "Политика конфиденциальности"

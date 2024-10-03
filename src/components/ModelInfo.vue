@@ -44,7 +44,7 @@
 			</icon-label>
 			<slot name="third"></slot>
 			<icon-label icon="age">
-				<Transition name="fade" mode="out-in">
+				<Transition v-if="data.properties" name="fade" mode="out-in">
 					<span :key="data.properties.find(({id}) => id === $config.default_properties.age)?.value">{{ data.properties.find(({id}) => id === $config.default_properties.age)?.value }} года</span>
 				</Transition>
 			</icon-label>
@@ -54,7 +54,7 @@
 <!--				<properties :data="toRaw(data.properties).filter(({id}) => !Object.values($config.default_properties).includes(id))" style="margin-bottom: 20px;"></properties>-->
 			</slot>
 		</div>
-		<spacer style="margin-bottom: 30px;">
+		<spacer style="margin-bottom: 30px;" v-if="data.pricing">
 			<Transition name="fade" mode="out-in">
 				<span class="price" :key="data.pricing[data.exit ? 'exit' : 'apartments']['1 Час']">{{ data.pricing[data.exit ? 'exit' : 'apartments']['1 Час'] }}$/час</span>
 			</Transition>

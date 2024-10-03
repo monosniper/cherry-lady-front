@@ -1,12 +1,20 @@
 <script setup>
 	import FilterStore from '@/stores/filters.js'
+	import ModelsStore from '@/stores/models.js'
 	import __ from '@/helpers/translate.js'
+	
+	defineProps({
+		total: Number
+	})
 
 	const {
 		filters,
 		sorts,
 		groups,
+		tags,
 		services,
+		languages,
+		properties,
 	} = FilterStore
 </script>
 
@@ -20,14 +28,14 @@
 				</icon-label>
 			</v-button>
 			<div
-				:class="`block-${i}`"
-				v-for="(property, i) in filters.properties.slice(0, 3)"
+				:class="`block-${i+1}`"
+				v-for="(property, i) in filters.properties.filter(({ multiple }) => !multiple).slice(0, 3)"
 			>
 				<el-dropdown trigger="click">
 					<spacer class="filter__item" :size="5">
-						{{ property.name }}:
-						<span v-if="property.type === 'range'" class="accent">от {{ property.value[0] }} до {{ property.value[1] }}</span>
-						<span v-else class="accent">{{ property.options.find(({id}) => property.value === id).name }}</span>
+						{{ __(property.name) }}:
+						<span v-if="property.value && property.type === 'range'" class="accent">от {{ property.value[0] }} до {{ property.value[1] }}</span>
+						<span v-else class="accent">{{ __(property.options.find(({id}) => property.value === id)?.name) ?? $t('filters.all') }}</span>
 						<v-icon name="select"></v-icon>
 					</spacer>
 					<template #dropdown>
@@ -43,7 +51,7 @@
 								v-for="option in property.options"
 								@click="property.value = option.id"
 								:disabled="option.id === property.value"
-							>{{ option.name }}</el-dropdown-item>
+							>{{ __(option.name) }}</el-dropdown-item>
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
@@ -51,7 +59,7 @@
 			<div class="block-4">
 				<el-dropdown trigger="click" class="block">
 					<spacer class="filter__item" :size="5">
-						Сортировка: <span class="accent">{{ filters.sort }}</span>
+						Сортировка: <span class="accent">{{ $t('filters.sorts.'+filters.sort) }}</span>
 						<v-icon name="select"></v-icon>
 					</spacer>
 					<template #dropdown>
@@ -60,13 +68,13 @@
 								v-for="sort in Object.keys(sorts)"
 								@click="filters.sort = sort"
 								:disabled="sort === filters.sort"
-							>{{ sort }}</el-dropdown-item>
+							>{{ $t('filters.sorts.'+sort) }}</el-dropdown-item>
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
 			</div>
 			<div>
-				{{ $t('catalogue.found') }}: <span class="accent">128</span>
+				{{ $t('catalogue.found') }}: <span class="accent">{{ total }}</span>
 			</div>
 		</spacer>
 	</div>
@@ -82,29 +90,35 @@
 			<div class="extended__row">
 				<el-form-item class="extended__group" label="По тегам">
 					<el-select v-model="filters.tags" size="large" placeholder="Выберите теги" multiple>
-						<el-option value="1" label="hello"></el-option>
-						<el-option value="2" label="hello 2"></el-option>
-						<el-option value="3" label="hello 3"></el-option>
+						<el-option
+							v-for="tag in tags"
+							:value="tag.id"
+							:label="__(tag.name)"
+						></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item class="extended__group" label="По языку">
 					<el-select v-model="filters.language" size="large" placeholder="Выберите теги">
-						<el-option value="1" label="hello"></el-option>
-						<el-option value="2" label="hello 2"></el-option>
-						<el-option value="3" label="hello 3"></el-option>
+						<el-option
+							v-for="language in languages"
+							:value="language.id"
+							:label="__(language.name)"
+						></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item class="extended__group" label="Сортировка">
 					<el-select v-model="filters.sort" size="large" placeholder="Выберите теги">
-						<el-option value="1" label="hello"></el-option>
-						<el-option value="2" label="hello 2"></el-option>
-						<el-option value="3" label="hello 3"></el-option>
+						<el-option
+							v-for="sort in Object.keys(sorts)"
+							:value="sort"
+							:label="$t('filters.sorts.'+sort)"
+						></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item>
 					<el-radio-group v-model="filters.exit" class="radio-group">
-						<el-radio :value="true" size="large">Выезжаю</el-radio>
-						<el-radio :value="false" size="large">Не выезжаю</el-radio>
+						<el-radio :value="true" size="large">{{ $t('filters.exit') }}</el-radio>
+						<el-radio :value="false" size="large">{{ $t('filters.apartments') }}</el-radio>
 					</el-radio-group>
 				</el-form-item>
 			</div>
@@ -113,26 +127,26 @@
 				<el-form-item
 					v-for="property in filters.properties"
 					class="extended__group"
-					:label="property.name"
+					:label="__(property.name)"
 				>
-					<component v-if="property.type === 'range'">
+					<div v-if="property.type === 'range'">
 						<el-space spacer="-">
 							<el-input type="number" v-model="property.value[0]"></el-input>
 							<el-input type="number" v-model="property.value[1]"></el-input>
 						</el-space>
-						<el-slider v-model="property.value" range />
-					</component>
+						<el-slider :min="property.min" :max="property.max" v-model="property.value" range />
+					</div>
 					<el-select
 						v-else-if="property.type === 'select'"
-					    v-model="filters.tags"
+					    v-model="property.value"
 						size="large"
-						:placeholder="property.name"
+						:placeholder="__(property.name)"
 						:multiple="property.multiple"
 					>
 						<el-option
 							v-for="option in property.options"
 							:value="option.id"
-							:label="option.name"
+							:label="__(option.name)"
 						></el-option>
 					</el-select>
 					<el-radio-group
@@ -149,7 +163,7 @@
 				</el-form-item>
 			</div>
 			<div class="extended__title">{{ $t('filters.services') }}</div>
-			<component v-for="group in groups">
+			<div v-for="group in groups">
 				<div class="expended__subtitle">{{ __(group.name) }}</div>
 				<el-checkbox-group v-model="filters.services" size="large" class="checkbox-group">
 					<el-checkbox
@@ -158,54 +172,84 @@
 						:value="service.id"
 					/>
 				</el-checkbox-group>
-			</component>
+			</div>
 			<div class="extended__title">{{ $t('filters.pricing') }}</div>
 			<div class="expended__subtitle">Апартаменты</div>
 			<div class="extended__row">
 				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.prices.apartments[1][0]"></el-input>
-						<el-input type="number" v-model="filters.prices.apartments[1][1]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments['1 Час'][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments['1 Час'][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.prices.apartments[1]" range />
+					<el-slider
+						:min="ModelsStore.pricingDefaults.value.apartments['1 Час'].min"
+						:max="ModelsStore.pricingDefaults.value.apartments['1 Час'].max"
+						v-model="filters.prices.apartments['1 Час']"
+						range
+					/>
 				</el-form-item>
 				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours_2')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.prices.apartments[2][0]"></el-input>
-						<el-input type="number" v-model="filters.prices.apartments[2][1]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments['2 Часа'][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments['2 Часа'][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.prices.apartments[2]" range />
+					<el-slider
+						:min="ModelsStore.pricingDefaults.value.apartments['2 Часа'].min"
+						:max="ModelsStore.pricingDefaults.value.apartments['2 Часа'].max"
+						v-model="filters.prices.apartments['2 Часа']"
+						range
+					/>
 				</el-form-item>
 				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.night')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.prices.apartments.night[0]"></el-input>
-						<el-input type="number" v-model="filters.prices.apartments.night[1]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments['Ночь'][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.apartments['Ночь'][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.prices.apartments.night" range />
+					<el-slider
+						:min="ModelsStore.pricingDefaults.value.apartments['Ночь'].min"
+						:max="ModelsStore.pricingDefaults.value.apartments['Ночь'].max"
+						v-model="filters.prices.apartments['Ночь']"
+						range
+					/>
 				</el-form-item>
 			</div>
 			<div class="expended__subtitle">Выезд</div>
 			<div class="extended__row">
 				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.prices.exit[1][0]"></el-input>
-						<el-input type="number" v-model="filters.prices.exit[1][1]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit['1 Час'][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit['1 Час'][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.prices.exit[1]" range />
+					<el-slider
+						:min="ModelsStore.pricingDefaults.value.exit['1 Час'].min"
+						:max="ModelsStore.pricingDefaults.value.exit['1 Час'].max"
+						v-model="filters.prices.exit['1 Час']"
+						range
+					/>
 				</el-form-item>
 				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours_2')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.prices.exit[2][0]"></el-input>
-						<el-input type="number" v-model="filters.prices.exit[2][1]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit['2 Часа'][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit['2 Часа'][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.prices.exit[2]" range />
+					<el-slider
+						:min="ModelsStore.pricingDefaults.value.exit['2 Часа'].min"
+						:max="ModelsStore.pricingDefaults.value.exit['2 Часа'].max"
+						v-model="filters.prices.exit['2 Часа']"
+						range
+					/>
 				</el-form-item>
 				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.night')}`">
 					<el-space spacer="-">
-						<el-input type="number" v-model="filters.prices.exit.night[0]"></el-input>
-						<el-input type="number" v-model="filters.prices.exit.night[1]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit['Ночь'][0]"></el-input>
+						<el-input type="number" v-model="filters.prices.exit['Ночь'][1]"></el-input>
 					</el-space>
-					<el-slider  v-model="filters.prices.exit.night" range />
+					<el-slider
+						:min="ModelsStore.pricingDefaults.value.exit['Ночь'].min"
+						:max="ModelsStore.pricingDefaults.value.exit['Ночь'].max"
+						v-model="filters.prices.exit['Ночь']"
+						range
+					/>
 				</el-form-item>
 			</div>
 		</el-form>
@@ -219,18 +263,19 @@
 </template>
 
 <style scoped>
-.filter__button--outline {
-	background: #fff;
-	color: var(--color-dark);
-	font-size: 14px;
-}
-.filter__button--outline:hover {
-	background: #f5f5f5;
-}
+	.filter__button--outline {
+		background: #fff;
+		color: var(--color-dark);
+		font-size: 14px;
+	}
+	
+	.filter__button--outline:hover {
+		background: #f5f5f5;
+	}
+	
 	.filter__button {
 		padding: 15px 40px;
 	}
-	
 	
 	.extended__title {
 		font-size: 20px;
@@ -260,9 +305,9 @@
 	.extended {
 		.extended__row {
 			display: grid;
+			align-items: flex-start;
 			grid-template-columns: repeat(3, 1fr);
 			gap: 0 1.5rem;
-			align-items: center;
 		}
 		.extended__group {
 			flex: 1;

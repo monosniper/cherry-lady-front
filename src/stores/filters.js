@@ -8,104 +8,56 @@ class FilterStore {
 	
 	this.filters = reactive({
 	    test: null,
-	    properties: [
-		{
-		    id: 1,
-		    name: 'Цвет волос',
-		    type: 'select',
-		    value: 1,
-		    multiple: true,
-		    options: [
-			{id: 1, name: 'Рыжий'},
-			{id: 2, name: 'Еще какой то'},
-			{id: 3, name: 'Еще какой то 2'},
-			{id: 4, name: 'Еще какой то 3'},
-		    ]
-		},
-		{
-		    id: 2,
-		    name: 'Рост',
-		    type: 'range',
-		    value: [160, 190],
-		},
-		{
-		    id: 3,
-		    name: 'Вес',
-		    type: 'range',
-		    value: [160, 190],
-		},
-		{
-		    id: 4,
-		    name: 'Возраст',
-		    type: 'range',
-		    value: [160, 190],
-		},
-		{
-		    id: 5,
-		    name: 'Размер груди',
-		    type: 'range',
-		    value: [1, 4],
-		},
-		{
-		    id: 6,
-		    name: 'Размер обуви',
-		    type: 'range',
-		    value: [35, 46],
-		},
-		{
-		    id: 7,
-		    name: 'Размер одежды',
-		    type: 'range',
-		    value: [35, 70],
-		},
-	    ],
-	    sort: 'Новые анкеты',
+	    properties: [],
+	    sort: 'new',
 	    tags: [],
 	    services: [],
 	    language: null,
 	    exit: true,
 	    prices: {
 		apartments: {
-		    1: [30, 100],
-		    2: [30, 100],
-		    night: [30, 100],
+		    '1 Час': [30, 100],
+		    '2 Часа': [30, 100],
+		    'Ночь': [30, 100],
 		},
 		exit: {
-		    1: [30, 100],
-		    2: [30, 100],
-		    night: [30, 100],
+		    '1 Час': [30, 100],
+		    '2 Часа': [30, 100],
+		    'Ночь': [30, 100],
 		},
 	    },
 	})
 	
-	this.groups = [
-	    {
-		id: 1,
-		name: {
-		    ru: 'Садо-мазо',
-		    en: 'Садо-мазо',
-		}
-	    }
-	]
-	
-	this.services = [
-	    {
-		id: 1,
-		name: {
-		    ru: 'dasdad',
-		    en: 'dasdad',
-		},
-		group_id: 1
-	    }
-	]
-	
+	this.tags = ref([])
+	this.properties = ref([])
+	this.services = ref([])
+	this.groups = ref([])
+	this.languages = ref([])
+
 	this.sorts = {
-	    'Новые анкеты': (data) => data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
-	    'Популярные': (data) => data.sort((a, b) => b.views - a.views),
-	    'С отзывами': (data) => data.filter(item => item.reviews.length > 0),
-	    'Дешевые': (data) => sortPrices(data, true),
-	    'Дорогие': (data) => sortPrices(data, false),
+	    new: (data) => data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
+	    popular: (data) => data.sort((a, b) => b.views - a.views),
+	    reviews: (data) => data.filter(item => item.reviews.length > 0),
+	    cheap: (data) => sortPrices(data, this.filters.exit, true),
+	    expensive: (data) => sortPrices(data, this.filters.exit, false),
 	}
+	
+	this.fetch().then(() => {
+	    this.filters.properties = this.properties.value.map(property => {
+		return {
+		    ...property,
+		    value: property.type === 'range' ? [property.min, property.max] : null
+		}
+	    })
+	})
+    }
+    
+    async fetch() {
+	this.tags.value = await $api.get('tags').then(({ data }) => data)
+	this.properties.value = await $api.get('properties').then(({ data }) => data)
+	this.services.value = await $api.get('services').then(({ data }) => data)
+	this.groups.value = await $api.get('groups').then(({ data }) => data)
+	this.languages.value = await $api.get('languages').then(({ data }) => data)
     }
 }
 

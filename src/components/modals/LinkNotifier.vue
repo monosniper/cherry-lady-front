@@ -47,8 +47,8 @@
 			<a :href="$config.chat" target="_blank">
 				<v-button icon="tg" reverse @click="close" class="modal__button">{{ $t('link.subscribe') }}</v-button>
 			</a>
-			<el-button class="modal-link" @click="later"  type="text">{{ $t('link.later') }}</el-button>
-			<el-button class="modal-link" @click="dontShow" type="text">{{ $t('link.dont_show') }}</el-button>
+			<el-link :underline="false" class="modal-link" @click="later">{{ $t('link.later') }}</el-link>
+			<el-link :underline="false" class="modal-link" @click="dontShow">{{ $t('link.dont_show') }}</el-link>
 		</el-space>
 	</VueFinalModal>
 </template>

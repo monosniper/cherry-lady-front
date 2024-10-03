@@ -1,7 +1,8 @@
 <script setup>
 	import ModelsStore from "@/stores/models.js";
+	import {computed} from "vue";
 	const modelsStore = ModelsStore
-	const { data } = modelsStore
+	const filtered = computed(() => modelsStore.filtered())
 </script>
 
 <template>
@@ -9,8 +10,8 @@
 		<div class="center" style="margin-bottom: 2rem;">
 			<type-switch></type-switch>
 		</div>
-		<Filter></Filter>
-		<models :models="data.filter(({ images }) => images.length)"></models>
+		<Filter :total="filtered.length"></Filter>
+		<models :data="filtered"></models>
 	</div>
 </template>
 
