@@ -52,7 +52,7 @@
 					accent: true
 				}]"></properties>
 			</div>
-			<router-link :to="{name: 'model', params: { model: slug }}" class="model__button">
+			<router-link :to="{name: 'model', params: { model: slug ?? 'undefined' }}" class="model__button">
 				{{ $t('shared.details') }}
 			</router-link>
 		</div>

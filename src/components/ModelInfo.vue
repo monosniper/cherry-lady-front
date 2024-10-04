@@ -36,7 +36,7 @@
 					</Transition>
 					|
 					<Transition name="fade" mode="out-in">
-						<router-link :to="{name: 'model', params: { model: data.slug }, hash: '#reviews'}" class="underline" :key="data.reviews?.length">
+						<router-link :to="{name: 'model', params: { model: data.slug ?? 'undefined' }, hash: '#reviews'}" class="underline" :key="data.reviews?.length">
 							{{ data.reviews?.length }} отзывов
 						</router-link>
 					</Transition>
@@ -69,7 +69,7 @@
 		</spacer>
 		<spacer class="model-info__footer" size="large">
 			<slot name="details">
-				<router-link :to="{name: 'model', params: { model: data.slug }}">
+				<router-link :to="{name: 'model', params: { model: data.slug ?? 'undefined' }}">
 					<v-button class="details">
 						{{ $t('shared.details')}}
 					</v-button>
