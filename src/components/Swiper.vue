@@ -40,7 +40,7 @@ import {computed, onMounted, onUnmounted, ref, watch} from "vue";
 		}, value)
 	})
 
-	const models = ref([])
+	const models = ref(props.data)
 
 	watch(() => props.data.length, (val) => {
 		models.value = props.data
