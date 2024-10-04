@@ -10,6 +10,7 @@
 	const open = () => DialogService.open(modalName)
 	
 	const dontShow = () => {
+		localStorage.setItem('do_not_show', 'true')
 		close()
 	}
 	
@@ -19,7 +20,11 @@
 		setTimeout(open, 300000)
 	}
 	
-	onMounted(() => setTimeout(open, 3000))
+	onMounted(() => {
+		if(localStorage.getItem('do_not_show') === null) {
+			setTimeout(open, 3000)
+		}
+	})
 </script>
 
 <template>

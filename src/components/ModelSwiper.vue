@@ -18,7 +18,7 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 		<Carousel
 			ref="slider"
 			:itemsToShow="1.2"
-			:wrapAround="false"
+			:wrapAround="true"
 			:transition="500"
 			@slide-end="handleSlide"
 			:breakpoints="{
