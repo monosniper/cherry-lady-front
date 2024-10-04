@@ -1,7 +1,7 @@
 <script setup>
 	import ModelsStore from "@/stores/models.js";
 	
-	const { current } = ModelsStore
+	const { current, data } = ModelsStore
 </script>
 
 <template>
@@ -10,7 +10,7 @@
 			<div class="center" style="margin-bottom: 30px;">
 				<type-switch></type-switch>
 			</div>
-			<swiper></swiper>
+			<swiper :data="data"></swiper>
 		</div>
 		<div class="side flex align-center">
 			<model-info v-if="current" :data="current"></model-info>

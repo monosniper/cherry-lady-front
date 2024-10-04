@@ -1,13 +1,16 @@
 <script setup>
-	import {onMounted, onUnmounted, ref, watch} from "vue";
+import {computed, onMounted, onUnmounted, ref, watch} from "vue";
 	import StarIcon from '@icons/star.svg?raw'
 	import {findValueForRange} from "@/helpers/findValueForRange.js";
 	import ModelsStore from "@/stores/models.js";
 	import __ from "@/helpers/translate.js";
 	import {avg} from "../helpers/avg.js";
 	
+	const props = defineProps({
+		data: Array,
+	})
+	
 	const modelsStore = ModelsStore
-	const { data: models } = modelsStore
 	
 	const slider = ref()
 	const paginationRef = ref()
@@ -36,10 +39,17 @@
 			1200: [400, 600],
 		}, value)
 	})
+
+	const models = ref([])
+
+	watch(() => props.data.length, (val) => {
+		models.value = props.data
+	})
 </script>
 
 <template>
 	<carousel-3d
+		v-if="models.length"
 		ref="slider"
 		class="swiper-container"
 		:display="3"
@@ -62,6 +72,7 @@
 	</carousel-3d>
 	
 	<pagination
+		v-if="models.length"
 		@prev="() => slider.goPrev()"
 		@next="() => slider.goNext()"
 		@change="(index) => modelsStore.setCurrent(models[index - 1])"
