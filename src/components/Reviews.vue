@@ -14,7 +14,7 @@
 </script>
 
 <template>
-	<div id="reviews" class="title"><span class="gray">Отзывы</span> Клиентов</div>
+	<div id="reviews" class="title"><span class="gray">{{ $t('shared.reviews.1') }}</span> {{ $t('shared.reviews.2') }}</div>
 	<Carousel
 		class="reviews"
 		ref="slider"
@@ -38,7 +38,7 @@
 			<div class="review">
 				<div class="review__date">{{ review.published_at }}</div>
 				<el-space class="review__rate">
-					<span>Оценка:</span>
+					<span>{{ $t('shared.rate') }}:</span>
 					<el-rate
 						size="large"
 						v-model="review.rate"

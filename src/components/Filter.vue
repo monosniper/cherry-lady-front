@@ -34,16 +34,16 @@
 				<el-dropdown trigger="click">
 					<spacer class="filter__item" :size="5">
 						{{ __(property.name) }}:
-						<span v-if="property.value && property.type === 'range'" class="accent">от {{ property.value[0] }} до {{ property.value[1] }}</span>
+						<span v-if="property.value && property.type === 'range'" class="accent">{{ $t('filters.from') }} {{ property.value[0] }} {{ $t('filters.to') }} {{ property.value[1] }}</span>
 						<span v-else class="accent">{{ __(property.options.find(({id}) => property.value === id)?.name) ?? $t('filters.all') }}</span>
 						<v-icon name="select"></v-icon>
 					</spacer>
 					<template #dropdown>
 						<div class="filter__group" v-if="property.type === 'range'">
 							<spacer>
-								<input class="filter__field" type="number" v-model="property.value[0]" placeholder="От">
+								<input class="filter__field" type="number" v-model="property.value[0]" :placeholder="$t('filters.from')">
 								-
-								<input class="filter__field" type="number" v-model="property.value[1]" placeholder="До">
+								<input class="filter__field" type="number" v-model="property.value[1]" :placeholder="$t('filters.to')">
 							</spacer>
 						</div>
 						<el-dropdown-menu v-else>
@@ -59,7 +59,7 @@
 			<div class="block-4">
 				<el-dropdown trigger="click" class="block">
 					<spacer class="filter__item" :size="5">
-						Сортировка: <span class="accent">{{ $t('filters.sorts.'+filters.sort) }}</span>
+						{{ $t('filters.sort') }}: <span class="accent">{{ $t('filters.sorts.'+filters.sort) }}</span>
 						<v-icon name="select"></v-icon>
 					</spacer>
 					<template #dropdown>
@@ -88,8 +88,8 @@
 		<el-form label-position="top" size="large" class="extended">
 			<div class="extended__title">{{ $t('filters.main') }}</div>
 			<div class="extended__row">
-				<el-form-item class="extended__group" label="По тегам">
-					<el-select v-model="filters.tags" size="large" placeholder="Выберите теги" multiple>
+				<el-form-item class="extended__group" :label="$t('filters.by_tags')">
+					<el-select v-model="filters.tags" size="large" :placeholder="$t('filters.by_tags')" multiple>
 						<el-option
 							v-for="tag in tags"
 							:value="tag.id"
@@ -97,8 +97,8 @@
 						></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item class="extended__group" label="По языку">
-					<el-select v-model="filters.language" size="large" placeholder="Выберите теги">
+				<el-form-item class="extended__group" :label="$t('filters.by_language')">
+					<el-select v-model="filters.language" size="large" :placeholder="$t('filters.by_language')">
 						<el-option
 							v-for="language in languages"
 							:value="language.id"
@@ -106,8 +106,8 @@
 						></el-option>
 					</el-select>
 				</el-form-item>
-				<el-form-item class="extended__group" label="Сортировка">
-					<el-select v-model="filters.sort" size="large" placeholder="Выберите теги">
+				<el-form-item class="extended__group" :label="$t('filters.sort')">
+					<el-select v-model="filters.sort" size="large">
 						<el-option
 							v-for="sort in Object.keys(sorts)"
 							:value="sort"
@@ -174,7 +174,7 @@
 				</el-checkbox-group>
 			</div>
 			<div class="extended__title">{{ $t('filters.pricing') }}</div>
-			<div class="expended__subtitle">Апартаменты</div>
+			<div class="expended__subtitle">{{ $t('filters.price_apartments') }}</div>
 			<div class="extended__row">
 				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours')}`">
 					<el-space spacer="-">
@@ -213,7 +213,7 @@
 					/>
 				</el-form-item>
 			</div>
-			<div class="expended__subtitle">Выезд</div>
+			<div class="expended__subtitle">{{ $t('filters.price_exit') }}</div>
 			<div class="extended__row">
 				<el-form-item class="extended__group" :label="`${$t('filters.dollars')}/${$t('shared.hours')}`">
 					<el-space spacer="-">

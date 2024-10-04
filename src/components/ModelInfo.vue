@@ -2,7 +2,6 @@
 	import {avg} from "../helpers/avg.js";
 	import __ from "@/helpers/translate.js";
 	import $config from "@/config.js";
-	import {toRaw} from "vue";
 	
 	defineProps({
 		data: Object
@@ -37,7 +36,7 @@
 					|
 					<Transition name="fade" mode="out-in">
 						<router-link :to="{name: 'model', params: { model: data.slug ?? 'undefined' }, hash: '#reviews'}" class="underline" :key="data.reviews?.length">
-							{{ data.reviews?.length }} отзывов
+							{{ data.reviews?.length }} {{ $t('shared.reviews_count') }}
 						</router-link>
 					</Transition>
 				</spacer>
@@ -45,7 +44,7 @@
 			<slot name="third"></slot>
 			<icon-label icon="age">
 				<Transition v-if="data.properties" name="fade" mode="out-in">
-					<span :key="data.properties.find(({id}) => id === $config.default_properties.age)?.value">{{ data.properties.find(({id}) => id === $config.default_properties.age)?.value }} года</span>
+					<span :key="data.properties.find(({id}) => id === $config.default_properties.age)?.value">{{ data.properties.find(({id}) => id === $config.default_properties.age)?.value }} {{ $t('shared.years') }}</span>
 				</Transition>
 			</icon-label>
 		</div>
@@ -56,15 +55,15 @@
 		</div>
 		<spacer style="margin-bottom: 30px;" v-if="data.pricing">
 			<Transition name="fade" mode="out-in">
-				<span class="price" :key="data.pricing[data.exit ? 'exit' : 'apartments']['1 Час']">{{ data.pricing[data.exit ? 'exit' : 'apartments']['1 Час'] }}$/час</span>
+				<span class="price" :key="data.pricing[data.exit ? 'exit' : 'apartments']['1 Час']">{{ data.pricing[data.exit ? 'exit' : 'apartments']['1 Час'] }}$/{{ $t('shared.hours') }}</span>
 			</Transition>
 			<div class="sep">|</div>
 			<Transition name="fade" mode="out-in">
-				<span class="price" :key="data.pricing[data.exit ? 'exit' : 'apartments']['2 Часа']">{{ data.pricing[data.exit ? 'exit' : 'apartments']['2 Часа'] }}$/2 часа</span>
+				<span class="price" :key="data.pricing[data.exit ? 'exit' : 'apartments']['2 Часа']">{{ data.pricing[data.exit ? 'exit' : 'apartments']['2 Часа'] }}$/{{ $t('shared.hours_2') }}</span>
 			</Transition>
 			<div class="sep">|</div>
 			<Transition name="fade" mode="out-in">
-				<span :key="data.pricing[data.exit ? 'exit' : 'apartments']['Ночь']" class="price">{{ data.pricing[data.exit ? 'exit' : 'apartments']['Ночь'] }}$/ночь</span>
+				<span :key="data.pricing[data.exit ? 'exit' : 'apartments']['Ночь']" class="price">{{ data.pricing[data.exit ? 'exit' : 'apartments']['Ночь'] }}$/{{ $t('shared.night') }}</span>
 			</Transition>
 		</spacer>
 		<spacer class="model-info__footer" size="large">
