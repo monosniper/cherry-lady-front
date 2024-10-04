@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/catalogue", "destination": "/index.html", "permanent": true },
+    { "source": "/terms", "destination": "/index.html", "permanent": true },
+    { "source": "/policy", "destination": "/index.html", "permanent": true },
+    { "source": "/:model", "destination": "/index.html", "permanent": true }
+  ]
+}
