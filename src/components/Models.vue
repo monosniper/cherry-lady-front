@@ -53,7 +53,7 @@ watch(() => props.data, (value) => {
 		ref="paginationRef"
 		:total="total"
 	></pagination>
-	<div class="center" v-if="isMobile && pageModels.length !== models.length" style="margin-bottom: 50px;">
+	<div class="center" v-if="isMobile && pageModels.length !== data.length" style="margin-bottom: 50px;">
 		<v-button @click="more" class="more" reverse icon="select">{{ $t('shared.more') }}</v-button>
 	</div>
 </template>

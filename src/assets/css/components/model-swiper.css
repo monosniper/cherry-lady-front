@@ -28,7 +28,7 @@
 }
 
 .carousel__viewport {
-	overflow: visible !important;
+	overflow-y: visible !important;
 }
 
 .carousel__track {
