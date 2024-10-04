@@ -356,7 +356,7 @@
 	}
 
 @media screen and (max-width: 550px) {
-	.extended__row {
+	.extended .extended__row {
 		grid-template-columns: repeat(2, 1fr);
 	}
 	.checkbox-group {
@@ -365,7 +365,7 @@
 }
 
 @media screen and (max-width: 380px) {
-	.extended__row {
+	.extended .extended__row {
 		grid-template-columns: 1fr;
 	}
 	.checkbox-group {
