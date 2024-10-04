@@ -26,7 +26,12 @@
 	}
 }
 
-.reviews .carousel__viewport {
+.carousel {
+	overflow-x: hidden;
+	max-width: 100dvw;
+}
+
+.carousel__viewport {
 	overflow: visible !important;
 }
 

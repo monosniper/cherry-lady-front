@@ -27,10 +27,6 @@
 	filter: none;
 }
 
-.carousel__viewport {
-	overflow-y: visible !important;
-}
-
 .carousel__track {
 	height: 630px;
 	align-items: center !important;
