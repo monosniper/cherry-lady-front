@@ -13,7 +13,7 @@
 	<section>
 		<div class="container">
 			<div class="title">{{ $t('model.preferences') }}</div>
-			<div v-for="([group_id, services]) in Object.entries(data)">
+			<div v-for="([group_id, services]) in Object.entries(data)" class="group">
 				<div class="expended__subtitle">{{ __(groups.find(({ id }) => id.toString() === group_id.toString())?.name) }}</div>
 				<div class="preferences">
 					<div class="preference" v-for="service in services">
@@ -58,7 +58,7 @@
 		margin-top: 2rem;
 	}
 	
-	.preferences:not(:last-child) {
+	.group:not(:last-child) {
 		margin-bottom: 3rem;
 	}
 	
