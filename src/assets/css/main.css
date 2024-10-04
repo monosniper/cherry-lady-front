@@ -26,6 +26,10 @@
 	}
 }
 
+.reviews .carousel__viewport {
+	overflow: visible !important;
+}
+
 .extended-wrapper {
 	width: 770px !important;
 	max-width: 100%;
