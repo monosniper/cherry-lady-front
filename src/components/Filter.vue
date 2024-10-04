@@ -355,22 +355,9 @@
 		}
 	}
 
-@media screen and (max-width: 650px) {
-	.extended__row {
-		flex-wrap: wrap;
-		
-		.extended__group {
-			flex: none;
-			flex-basis: 30%;
-		}
-	}
-}
-
 @media screen and (max-width: 550px) {
 	.extended__row {
-		.extended__group {
-			flex-basis: 45%;
-		}
+		grid-template-columns: repeat(2, 1fr);
 	}
 	.checkbox-group {
 		grid-template-columns: 1fr 1fr;
@@ -379,9 +366,7 @@
 
 @media screen and (max-width: 380px) {
 	.extended__row {
-		.extended__group {
-			flex-basis: 100%;
-		}
+		grid-template-columns: 1fr;
 	}
 	.checkbox-group {
 		grid-template-columns: 1fr;
