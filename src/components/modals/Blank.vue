@@ -23,8 +23,8 @@ const validate = () => {
 	validation.value.name = name.value.trim() !== ''
 	validation.value.phone = phone.value.trim() !== '' && phone.value.trim().length >= 11 && phone.value.trim().length <= 16
 	validation.value.email = email.value.trim() !== '' && validateEmail(email.value)
-	validation.value.telegram = telegram.value.trim() !== ''
-	validation.value.whatsapp = whatsapp.value.trim() !== ''
+	validation.value.telegram = telegram.value.trim() !== '' && telegram.value.trim().length >= 11 && telegram.value.trim().length <= 16
+	validation.value.whatsapp = whatsapp.value.trim() !== '' && whatsapp.value.trim().length >= 11 && whatsapp.value.trim().length <= 16
 
 	return Object.values(validation.value).filter(v => !!v).length === 5
 }
