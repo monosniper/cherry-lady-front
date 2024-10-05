@@ -4,6 +4,7 @@ import DialogService, {DIALOGS} from "@/services/DialogService.js";
 import {ref} from "vue";
 import $api from "@/api/index.js";
 import {validateEmail} from "@/helpers/validateEmail.js";
+import {isValidNumberString} from "@/helpers/isValidNumberString.js";
 
 const modalName = DIALOGS.BLANK
 const validation = ref({
@@ -21,10 +22,10 @@ const whatsapp = ref('')
 
 const validate = () => {
 	validation.value.name = name.value.trim() !== ''
-	validation.value.phone = phone.value !== '' && phone.value.length >= 11 && phone.value.length <= 16
+	validation.value.phone = phone.value.trim() !== '' && phone.value.trim().length >= 11 && phone.value.trim().length <= 16 && isValidNumberString(phone.value.trim())
 	validation.value.email = email.value.trim() !== '' && validateEmail(email.value)
 	validation.value.telegram = telegram.value.trim() !== ''
-	validation.value.whatsapp = whatsapp.value !== '' && whatsapp.value.length >= 11 && whatsapp.value.length <= 16
+	validation.value.whatsapp = whatsapp.value.trim() !== '' && whatsapp.value.trim().length >= 11 && whatsapp.value.trim().length <= 16 && isValidNumberString(whatsapp.value.trim())
 
 	return Object.values(validation.value).filter(v => !!v).length === 5
 }
@@ -80,7 +81,7 @@ const handleClick = () => {
 			<spacer class="modal__row">
 				<div class="modal__group">
 					<label for="phone" class="modal__label">{{ $t('blank.form.phone.label') }}</label>
-					<input v-model="phone" :class="{modal__field: true, 'modal__field--error': !validation.phone}" id="phone" type="number" min="11" max="16" :placeholder="$t('blank.form.phone.placeholder')" />
+					<input v-model="phone" :class="{modal__field: true, 'modal__field--error': !validation.phone}" id="phone" type="tel" min="11" max="16" :placeholder="$t('blank.form.phone.placeholder')" />
 				</div>
 				<div class="modal__group">
 					<label for="telegram" class="modal__label">{{ $t('blank.form.telegram.label') }}</label>
