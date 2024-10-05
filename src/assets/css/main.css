@@ -32,7 +32,7 @@
 }
 
 .carousel__viewport {
-	overflow: visible !important;
+	padding: 50px 0;
 }
 
 .extended-wrapper {

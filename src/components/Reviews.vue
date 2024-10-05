@@ -19,7 +19,7 @@
 		class="reviews"
 		ref="slider"
 		:itemsToShow="1.2"
-		:wrapAround="false"
+		:wrapAround="true"
 		:transition="500"
 		@slide-end="handleSlide"
 		:breakpoints="{
@@ -38,15 +38,12 @@
 			<div class="review">
 				<div class="review__date">{{ review.published_at }}</div>
 				<el-space class="review__rate">
-					<span>{{ $t('shared.rate') }}:</span>
+					<span>{{ $t('shared.rate') }}: <span class="accent">{{ review.rate.toFixed(1) }}</span></span>
 					<el-rate
 						size="large"
 						v-model="review.rate"
 						disabled
-						show-score
 						:colors="['#C01B58', '#C01B58', '#C01B58']"
-						text-color="#C01B58"
-						score-template="{value}"
 					/>
 				</el-space>
 				<div class="review__content">{{ __(review.content) }}</div>

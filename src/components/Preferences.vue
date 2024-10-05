@@ -22,7 +22,7 @@
 						</div>
 						<div class="preference__body">
 							<div class="preference__title">{{ __(service.name) }}</div>
-							<div v-if="__(service.comment).trim() !== ''" class="preference__comment">{{ __(service.comment) }}</div>
+							<div v-if="__(service.comment)?.trim() !== ''" class="preference__comment">{{ __(service.comment) }}</div>
 						</div>
 					</div>
 				</div>
