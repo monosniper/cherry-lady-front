@@ -44,7 +44,7 @@
 		font-size: 40px !important;
 		font-weight: bold;
 		font-family: Montserrat, sans-serif;
-		margin-bottom: 60px;
+		margin-bottom: 20px;
 	}
 	
 	.expended__subtitle {
