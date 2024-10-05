@@ -25,8 +25,8 @@
 		<div class="model__header">
 			<div class="model__name">{{ __(first_name) }}</div>
 			<spacer size="small">
-				<a :href="tg" target="_blank"><v-button size="xs" circle icon="tg"></v-button></a>
-				<a :href="wp" target="_blank"><v-button size="xs" circle icon="wp"></v-button></a>
+				<a :href="'https://t.me/' + tg" target="_blank"><v-button size="xs" circle icon="tg"></v-button></a>
+				<a :href="'https://wa.me/' + wp" target="_blank"><v-button size="xs" circle icon="wp"></v-button></a>
 			</spacer>
 		</div>
 		<div class="model__body">

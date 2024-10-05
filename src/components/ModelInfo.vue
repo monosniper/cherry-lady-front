@@ -75,8 +75,8 @@
 				</router-link>
 			</slot>
 			<spacer size="small">
-				<a :href="data.tg" target="_blank"><v-button circle icon="tg"></v-button></a>
-				<a :href="data.wp" target="_blank"><v-button circle icon="wp"></v-button></a>
+				<a :href="'https://t.me/' + data.tg" target="_blank"><v-button circle icon="tg"></v-button></a>
+				<a :href="'https://wa.me/' + data.wp" target="_blank"><v-button circle icon="wp"></v-button></a>
 			</spacer>
 		</spacer>
 	</div>
