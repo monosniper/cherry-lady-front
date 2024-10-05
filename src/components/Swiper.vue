@@ -30,7 +30,7 @@ import {computed, onMounted, onUnmounted, ref, watch} from "vue";
 	watch(innerWidth, (value) => {
 		space.value = findValueForRange({
 			0: 40,
-			400: 100,
+			440: 100,
 			1200: 200,
 		}, value)
 		
