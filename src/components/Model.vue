@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="model__properties">
-				<properties :data="[...properties, {
+				<properties :data="[...properties.slice(0, 5), {
 					id: 'price',
 					type: 'range',
 					name: {
