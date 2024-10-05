@@ -117,6 +117,7 @@
 				</el-form-item>
 				<el-form-item>
 					<el-radio-group v-model="filters.exit" class="radio-group">
+						<el-radio :value="'all'" size="large">{{ $t('filters.all') }}</el-radio>
 						<el-radio :value="true" size="large">{{ $t('filters.exit') }}</el-radio>
 						<el-radio :value="false" size="large">{{ $t('filters.apartments') }}</el-radio>
 					</el-radio-group>

@@ -63,8 +63,9 @@ class ModelsStore {
 
 	return FilterStore.sorts[filters.sort](this.data.value
 	    .filter(({ exit, images, properties, languages, tags, pricing, services }) => {
-		let filter = exit === filters.exit &&
-		    images.length
+		let filter = images.length;
+		
+		if(filters.exit !== 'all') filter = exit === filters.exit
 		
 		if(filters.language && !languages.map(({ id }) => id).includes(filters.language)) filter = false
 		
