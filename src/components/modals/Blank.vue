@@ -21,7 +21,7 @@ const whatsapp = ref('')
 
 const validate = () => {
 	validation.value.name = name.value.trim() !== ''
-	validation.value.phone = phone.value.trim() !== ''
+	validation.value.phone = phone.value.trim() !== '' && phone.value.trim().length >= 11 && phone.value.trim().length <= 16
 	validation.value.email = email.value.trim() !== '' && validateEmail(email.value)
 	validation.value.telegram = telegram.value.trim() !== ''
 	validation.value.whatsapp = whatsapp.value.trim() !== ''
@@ -80,7 +80,7 @@ const handleClick = () => {
 			<spacer class="modal__row">
 				<div class="modal__group">
 					<label for="phone" class="modal__label">{{ $t('blank.form.phone.label') }}</label>
-					<input v-model="phone" :class="{modal__field: true, 'modal__field--error': !validation.phone}" id="phone" type="tel" :placeholder="$t('blank.form.phone.placeholder')" />
+					<input v-model="phone" :class="{modal__field: true, 'modal__field--error': !validation.phone}" id="phone" type="number" min="11" max="16" :placeholder="$t('blank.form.phone.placeholder')" />
 				</div>
 				<div class="modal__group">
 					<label for="telegram" class="modal__label">{{ $t('blank.form.telegram.label') }}</label>

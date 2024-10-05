@@ -13,7 +13,7 @@ class FilterStore {
 	    tags: [],
 	    services: [],
 	    language: null,
-	    exit: true,
+	    exit: 'all',
 	    prices: {
 		apartments: {
 		    '1 Час': [30, 100],

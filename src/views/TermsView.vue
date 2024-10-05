@@ -8,7 +8,7 @@ const { data: settings } = SettingStore
 <template>
 	<div class="container">
 		<h1>{{ $t('terms.title') }}</h1>
-		<p v-html="__(settings.terms)"></p>
+		<p style="margin-bottom: 3rem;" v-html="__(settings.terms)"></p>
 	</div>
 </template>
 
