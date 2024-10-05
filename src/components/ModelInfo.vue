@@ -2,9 +2,11 @@
 	import {avg} from "../helpers/avg.js";
 	import __ from "@/helpers/translate.js";
 	import $config from "@/config.js";
+	import {toRaw} from "vue";
 	
 	defineProps({
-		data: Object
+		data: Object,
+		limit: Number
 	})
 </script>
 
@@ -49,8 +51,8 @@
 			</icon-label>
 		</div>
 		<div class="model-info__properties">
-			<slot name="properties">
-<!--				<properties :data="toRaw(data.properties).filter(({id}) => !Object.values($config.default_properties).includes(id))" style="margin-bottom: 20px;"></properties>-->
+			<slot name="properties" v-if="data.properties">
+				<properties :data="toRaw(data.properties).filter(({id}) => !Object.values($config.default_properties).includes(id)).slice(0, limit ?? data.properties.length)" style="margin-bottom: 20px;"></properties>
 			</slot>
 		</div>
 		<spacer style="margin-bottom: 30px;" v-if="data.pricing">

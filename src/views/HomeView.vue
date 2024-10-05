@@ -13,7 +13,7 @@
 			<swiper :data="data"></swiper>
 		</div>
 		<div class="side flex align-center">
-			<model-info v-if="current" :data="current"></model-info>
+			<model-info limit="6" v-if="current" :data="current"></model-info>
 		</div>
 	</div>
 </template>
