@@ -136,3 +136,7 @@
 		}
 	}
 }
+
+.el-checkbox__label {
+	white-space: normal !important;
+}
