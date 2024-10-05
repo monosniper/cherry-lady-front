@@ -34,14 +34,14 @@
 <style scoped>
 	section {
 		background: var(--color-gray);
-		padding: 80px 0;
+		padding: 30px 0;
 		margin-bottom: 60px;
 	}
 	
 	.title {
 		text-align: center;
 		color: var(--color-dark);
-		font-size: 40px;
+		font-size: 40px !important;
 		font-weight: bold;
 		font-family: Montserrat, sans-serif;
 		margin-bottom: 60px;

@@ -101,6 +101,7 @@ export const i18n = createI18n({
 				price_apartments: 'Апартаменты',
 				price_exit: 'Выезд',
 				all: 'Все',
+				reset: 'Сбросить',
 				sorts: {
 					new: 'Новые анкеты',
 					popular: 'Популярные',
@@ -158,6 +159,7 @@ export const i18n = createI18n({
 				main: 'General',
 				sort: 'Sort by',
 				by_tags: 'By tags',
+				reset: 'Reset',
 				choose_tags: 'Choose tags',
 				by_language: 'By language',
 				choose_languages: 'Choose languages',

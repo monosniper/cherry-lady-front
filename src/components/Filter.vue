@@ -14,7 +14,6 @@
 		tags,
 		services,
 		languages,
-		properties,
 	} = FilterStore
 </script>
 
@@ -256,7 +255,7 @@
 		</el-form>
 		<div class="center">
 			<el-space size="large">
-				<v-button class="filter__button filter__button--outline" @click="filters.extend = false">{{ $t('shared.cancel') }}</v-button>
+				<v-button class="filter__button filter__button--outline" @click="FilterStore.reset()">{{ $t('filters.reset') }}</v-button>
 				<v-button class="filter__button" @click="filters.extend = false">{{ $t('shared.search') }}</v-button>
 			</el-space>
 		</div>

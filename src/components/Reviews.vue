@@ -62,11 +62,10 @@
 
 <style scoped>
 	.title {
-		font-size: 40px;
+		font-size: 40px !important;
 		text-align: center;
 		font-weight: bold;
 		color: var(--color-dark);
-		margin-bottom: 4rem;
 		font-family: Montserrat, sans-serif;
 		
 		.gray {
@@ -76,7 +75,6 @@
 	}
 	
 	.reviews {
-		margin-bottom: 4rem;
 	}
 	
 	.review {

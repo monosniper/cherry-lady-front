@@ -60,7 +60,7 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 
 .model-slider__pagination-wrapper {
 	position: absolute;
-	bottom: 50px;
+	bottom: 80px;
 	display: flex;
 	justify-content: center;
 	z-index: 10;
@@ -80,7 +80,7 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 
 @media screen and (max-width: 700px) {
 	.model-slider__pagination-wrapper {
-		bottom: 20px;
+		bottom: 80px;
 		transform: scale(.8);
 	}
 	.carousel__track {
