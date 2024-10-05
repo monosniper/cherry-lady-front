@@ -8,7 +8,7 @@ const { data: settings } = SettingStore
 <template>
 	<div class="container">
 		<h1>{{ $t('policy.title') }}</h1>
-		<p style="margin-bottom: 3rem;" v-html="__(settings.policy)"></p>
+		<p style="margin-bottom: 3rem;" v-html="__(settings.privacy)"></p>
 	</div>
 </template>
 
