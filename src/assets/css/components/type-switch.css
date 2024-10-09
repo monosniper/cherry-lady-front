@@ -44,3 +44,11 @@
 		}
 	}
 }
+
+@media screen and (max-width: 500px) {
+	.switch {
+		a {
+			padding: 6px 20px;
+		}
+	}
+}
