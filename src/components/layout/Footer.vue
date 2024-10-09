@@ -1,6 +1,7 @@
 <script setup>
 
 import DialogService, {DIALOGS} from "@/services/DialogService.js";
+import BlankIcon from '@/assets/icons/blank.svg?raw'
 
 </script>
 
@@ -10,7 +11,7 @@ import DialogService, {DIALOGS} from "@/services/DialogService.js";
 			<div class="flex between align-center footer__wrapper">
 				<logo dark></logo>
 				<Menu></Menu>
-				<v-button @click="DialogService.open(DIALOGS.BLANK)" icon="blank" dark reverse>{{ $t('footer.apply') }}</v-button>
+				<v-button svg @click="DialogService.open(DIALOGS.BLANK)" :icon="BlankIcon" dark reverse>{{ $t('footer.apply') }}</v-button>
 			</div>
 		</div>
 	</footer>

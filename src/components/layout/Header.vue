@@ -1,6 +1,7 @@
 <script setup>
 
 import SettingStore from '@/stores/settings.js'
+import TgIcon from '@/assets/icons/tg.svg?raw'
 
 const { data: settings } = SettingStore
 </script>
@@ -12,7 +13,7 @@ const { data: settings } = SettingStore
 				<logo></logo>
 				<spacer>
 					<a :href="settings.chat" target="_blank">
-						<v-button icon="tg" :round="false">
+						<v-button svg :icon="TgIcon" :round="false">
 							{{ $t('header.chat') }}
 						</v-button>
 					</a>

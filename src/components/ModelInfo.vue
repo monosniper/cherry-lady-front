@@ -3,6 +3,11 @@
 	import __ from "@/helpers/translate.js";
 	import $config from "@/config.js";
 	import {toRaw} from "vue";
+	import TgIcon from '@/assets/icons/tg.svg?raw'
+	import WpIcon from '@/assets/icons/wp.svg?raw'
+	import LocationIcon from '@/assets/icons/location.svg?raw'
+	import RatingIcon from '@/assets/icons/rating.svg?raw'
+	import AgeIcon from '@/assets/icons/age.svg?raw'
 	
 	defineProps({
 		data: Object,
@@ -25,12 +30,12 @@
 		<tags :data="data.tags" style="margin-bottom: 20px;"></tags>
 		
 		<div class="model-info__icons flex wrap">
-			<icon-label icon="location">
+			<icon-label svg :icon="LocationIcon">
 				<Transition name="fade" mode="out-in">
 					<span :key="__(data.location)">{{ __(data.location) }}</span>
 				</Transition>
 			</icon-label>
-			<icon-label icon="rating">
+			<icon-label svg :icon="RatingIcon">
 				<spacer size="small">
 					<Transition name="fade" mode="out-in">
 						<span :key="avg(data.reviews, 'rate')">{{ avg(data.reviews, 'rate').toFixed(1) }}</span>
@@ -44,7 +49,7 @@
 				</spacer>
 			</icon-label>
 			<slot name="third"></slot>
-			<icon-label icon="age">
+			<icon-label svg :icon="AgeIcon">
 				<Transition v-if="data.properties" name="fade" mode="out-in">
 					<span :key="data.properties.find(({id}) => id === $config.default_properties.age)?.value">{{ data.properties.find(({id}) => id === $config.default_properties.age)?.value }} {{ $t('shared.years') }}</span>
 				</Transition>
@@ -77,14 +82,16 @@
 				</router-link>
 			</slot>
 			<spacer size="small">
-				<a :href="'https://t.me/' + data.tg" target="_blank"><v-button circle icon="tg"></v-button></a>
-				<a :href="'https://wa.me/' + data.wp" target="_blank"><v-button circle icon="wp"></v-button></a>
+				<a :href="'https://t.me/' + data.tg" target="_blank"><v-button svg circle :icon="TgIcon"></v-button></a>
+				<a :href="'https://wa.me/' + data.wp" target="_blank"><v-button svg circle :icon="WpIcon"></v-button></a>
 			</spacer>
 		</spacer>
 	</div>
 </template>
 
 <style scoped>
+
+
 .name-enter-active, .name-leave-active {
 	opacity: 0;
 	transform: translateY(-20px);

@@ -2,6 +2,9 @@
 	import FilterStore from '@/stores/filters.js'
 	import ModelsStore from '@/stores/models.js'
 	import __ from '@/helpers/translate.js'
+	import SelectIcon from '@/assets/icons/select.svg?raw'
+	import FilterIcon from '@/assets/icons/filter.svg?raw'
+	import FilterUpIcon from '@/assets/icons/filter_up.svg?raw'
 	
 	defineProps({
 		total: Number
@@ -21,7 +24,7 @@
 	<div class="filter">
 		<spacer class="between">
 			<v-button :round="false" size="small" @click="filters.extend = true">
-				<icon-label icon="filter">
+				<icon-label svg :icon="filters.extend ? FilterUpIcon : FilterIcon">
 					<div class="long">{{ $t("catalogue.extended_filter") }}</div>
 					<div class="short">{{ $t("catalogue.filter") }}</div>
 				</icon-label>
@@ -35,7 +38,7 @@
 						{{ __(property.name) }}:
 						<span v-if="property.value && property.type === 'range'" class="accent">{{ $t('filters.from') }} {{ property.value[0] }} {{ $t('filters.to') }} {{ property.value[1] }}</span>
 						<span v-else class="accent">{{ __(property.options.find(({id}) => property.value === id)?.name) ?? $t('filters.all') }}</span>
-						<v-icon name="select"></v-icon>
+						<v-icon svg :name="SelectIcon"></v-icon>
 					</spacer>
 					<template #dropdown>
 						<div class="filter__group" v-if="property.type === 'range'">
@@ -59,7 +62,7 @@
 				<el-dropdown trigger="click" class="block">
 					<spacer class="filter__item" :size="5">
 						{{ $t('filters.sort') }}: <span class="accent">{{ $t('filters.sorts.'+filters.sort) }}</span>
-						<v-icon name="select"></v-icon>
+						<v-icon svg :name="SelectIcon"></v-icon>
 					</spacer>
 					<template #dropdown>
 						<el-dropdown-menu>

@@ -3,6 +3,7 @@
 	import {VueFinalModal} from "vue-final-modal";
 	import {onMounted} from "vue";
 	import $config from "@/config.js";
+	import TimesIcon from '@icons/times.svg?raw'
 	
 	const modalName = DIALOGS.NOTIFIER
 	
@@ -36,7 +37,7 @@
 		content-class="modal__content"
 	>
 		<div class="modal__close" @click="close">
-			<v-icon name="times"></v-icon>
+			<v-icon svg :name="TimesIcon"></v-icon>
 		</div>
 		
 		<div class="modal__title">{{ $t('link.title') }}</div>

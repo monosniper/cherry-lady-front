@@ -1,4 +1,7 @@
 <script setup>
+	import LogoIcon from '@/assets/icons/logo.svg?raw'
+	import DarkLogoIcon from '@/assets/icons/logo_dark.svg?raw'
+
 	const props = defineProps({
 		dark: {
 			type: Boolean,
@@ -6,17 +9,12 @@
 		}
 	})
 	
-	import {ref} from "vue";
-	
-	const icon = import(`@images/${props.dark ? 'logo_dark' : 'logo'}.png`)
-	const src = ref('')
-	
-	icon.then(rs => src.value = rs.default)
+	const src = props.dark ? DarkLogoIcon : LogoIcon
 </script>
 
 <template>
 	<router-link class="logo" to="/">
-		<img :src="src" alt="Logo">
+		<v-icon svg :name="src"></v-icon>
 	</router-link>
 </template>
 

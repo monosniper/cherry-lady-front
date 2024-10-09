@@ -5,6 +5,7 @@ import {ref} from "vue";
 import $api from "@/api/index.js";
 import {validateEmail} from "@/helpers/validateEmail.js";
 import {isValidNumberString} from "@/helpers/isValidNumberString.js";
+import TimesIcon from '@/assets/icons/times.svg?raw'
 
 const modalName = DIALOGS.BLANK
 const validation = ref({
@@ -61,7 +62,7 @@ const handleClick = () => {
 		content-class="modal__content"
 	>
 		<div class="modal__close" @click="DialogService.close(modalName)">
-			<v-icon name="times"></v-icon>
+			<v-icon svg :name="TimesIcon"></v-icon>
 		</div>
 		
 		<div class="modal__title">{{ $t('blank.title') }}</div>

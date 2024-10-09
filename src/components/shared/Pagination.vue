@@ -1,5 +1,7 @@
 <script setup>
 import {computed, ref, watch} from "vue";
+import LeftIcon from '@/assets/icons/left.svg?raw'
+import RightIcon from '@/assets/icons/right.svg?raw'
 	
 	const props = defineProps({
 		total: Number,
@@ -42,12 +44,12 @@ import {computed, ref, watch} from "vue";
 
 <template>
 	<div class="pagination">
-		<v-icon @click="prev" class="arrow arrow--prev" name="left"></v-icon>
+		<v-icon @click="prev" class="arrow arrow--prev" svg :name="LeftIcon"></v-icon>
 		<div class="pagination__item">
 			<div class="pagination__current">{{ format_current }}</div>
 			<div class="pagination__total">{{ format_total }}</div>
 		</div>
-		<v-icon @click="next" class="arrow arrow--next" name="right"></v-icon>
+		<v-icon @click="next" class="arrow arrow--next" svg :name="RightIcon"></v-icon>
 	</div>
 </template>
 

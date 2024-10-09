@@ -1,6 +1,7 @@
 <script setup>
 	import GroupStore from '@/stores/groups.js'
 	import __ from "@/helpers/translate.js";
+	import CheckIcon from '@/assets/icons/check.svg?raw'
 
 	defineProps({
 		data: Object
@@ -18,7 +19,7 @@
 				<div class="preferences">
 					<div class="preference" v-for="service in services">
 						<div class="preference__icon">
-							<v-icon name="check"></v-icon>
+							<v-icon svg :name="CheckIcon"></v-icon>
 						</div>
 						<div class="preference__body">
 							<div class="preference__title">{{ __(service.name) }}</div>

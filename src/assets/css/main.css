@@ -26,6 +26,11 @@
 	}
 }
 
+.lang__flag i {
+	width: 25px;
+	display: flex;
+}
+
 .carousel {
 	overflow-x: hidden;
 	max-width: 100dvw;

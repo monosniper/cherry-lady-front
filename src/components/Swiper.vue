@@ -1,5 +1,5 @@
 <script setup>
-import {computed, onMounted, onUnmounted, ref, watch} from "vue";
+import {onMounted, onUnmounted, ref, watch} from "vue";
 	import StarIcon from '@icons/star.svg?raw'
 	import {findValueForRange} from "@/helpers/findValueForRange.js";
 	import ModelsStore from "@/stores/models.js";
