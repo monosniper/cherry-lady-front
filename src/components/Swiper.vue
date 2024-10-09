@@ -70,6 +70,13 @@ import {onMounted, onUnmounted, ref, watch} from "vue";
 			</div>
 		</slide>
 	</carousel-3d>
+	<el-skeleton animated class="skeleton" v-else>
+		<template #template>
+			<el-skeleton-item variant="image" :style="`width: ${size[0] / 3}px; height: ${size[1] - 100}px`" />
+			<el-skeleton-item variant="image" :style="`width: ${size[0]}px; height: ${size[1]}px`" />
+			<el-skeleton-item variant="image" :style="`width: ${size[0] / 3}px; height: ${size[1] - 100}px`" />
+		</template>
+	</el-skeleton>
 	
 	<pagination
 		v-if="models.length"
@@ -108,6 +115,13 @@ import {onMounted, onUnmounted, ref, watch} from "vue";
 			max-height: 100%;
 			object-fit: cover;
 		}
+	}
+	
+	.skeleton {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		justify-content: center;
 	}
 	
 	.slide.current {
