@@ -30,7 +30,7 @@ import EnIcon from '@/assets/icons/en.svg?raw'
 		</div>
 		
 		<div class="lang__menu">
-			<div class="lang__item" @click="current.name = lang.name" v-for="lang in languages.filter(l => l.name !== current.name)">
+			<div class="lang__item" @click="current = lang" v-for="lang in languages.filter(l => l.name !== current.name)">
 				<div class="lang__flag">
 					<v-icon svg :width="25" :name="lang.icon"></v-icon>
 				</div>
