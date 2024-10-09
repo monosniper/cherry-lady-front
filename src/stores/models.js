@@ -63,7 +63,7 @@ class ModelsStore {
 	const {
 	    filters,
 	} = FilterStore
-	return this.data.value
+
 	return FilterStore.sorts[filters.sort](this.data.value
 	    .filter(({exit, images, properties, languages, tags, pricing, services}) => {
 		let filter = images.length;
