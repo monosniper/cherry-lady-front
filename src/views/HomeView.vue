@@ -7,7 +7,7 @@
 <template>
 	<div class="container sides" style="margin-bottom: 45px;">
 		<div class="side">
-			<div class="center" style="margin-bottom: 30px;">
+			<div class="center">
 				<type-switch></type-switch>
 			</div>
 			<swiper :data="data"></swiper>
@@ -31,6 +31,10 @@
 		width: 100%;
 	}
 	
+	.center {
+		margin-bottom: 30px;
+	}
+	
 	@media screen and (max-width: 1200px) {
 		.sides {
 			grid-template-columns: 1fr 1fr;
@@ -47,6 +51,12 @@
 		.side:last-child {
 			max-width: 100%;
 			margin: 0 auto;
+		}
+	}
+	
+	@media screen and (max-width: 500px) {
+		.center {
+			margin-bottom: 0;
 		}
 	}
 </style>

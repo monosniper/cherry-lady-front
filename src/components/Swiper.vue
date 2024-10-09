@@ -132,4 +132,10 @@ import {onMounted, onUnmounted, ref, watch} from "vue";
 			color: var(--color-accent);
 		}
 	}
+	@media screen and (max-width: 500px) {
+		.swiper-container {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+	}
 </style>

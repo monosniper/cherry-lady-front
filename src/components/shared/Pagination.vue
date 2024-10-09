@@ -96,4 +96,21 @@ import RightIcon from '@/assets/icons/right.svg?raw'
 			display: flex;
 		}
 	}
+	@media screen and (max-width: 500px) {
+		.pagination {
+			gap: 1rem;
+			
+			.pagination__current {
+				font-size: 24px;
+			}
+			
+			.pagination__total {
+				font-size: 15px;
+			}
+			
+			.arrow svg {
+				width: 30px;
+			}
+		}
+	}
 </style>

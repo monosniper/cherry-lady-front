@@ -31,6 +31,18 @@
 	display: flex;
 }
 
+@media screen and (max-width: 500px) {
+	.pagination {
+		margin-bottom: .5rem;
+		.arrow {
+			font-size: 10px;
+			svg {
+				width: 35px;
+			}
+		}
+	}
+}
+
 .carousel {
 	overflow-x: hidden;
 	max-width: 100dvw;
