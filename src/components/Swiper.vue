@@ -45,15 +45,10 @@ import {onMounted, onUnmounted, ref, watch} from "vue";
 	watch(() => props.data.length, (val) => {
 		models.value = props.data
 	})
-
-	const closeBody = () => document.body.style.overflow = 'hidden';
-	const openBody = () => document.body.style.overflow = 'auto';
 </script>
 
 <template>
 	<carousel-3d
-		@touchstart="closeBody"
-		@touchend="openBody"
 		v-if="models.length"
 		ref="slider"
 		class="swiper-container"

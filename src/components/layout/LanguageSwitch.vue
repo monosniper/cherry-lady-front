@@ -4,37 +4,58 @@ import {i18n} from "@/i18n.js";
 import RuIcon from '@/assets/icons/ru.svg?raw'
 import EnIcon from '@/assets/icons/en.svg?raw'
 	
-	const current = ref({
-		name: 'ru',
-		icon: RuIcon
-	})
+	// const current = ref({
+	// 	name: 'ru',
+	// 	icon: RuIcon
+	// })
 
-	const languages = [{
-		name: 'ru',
-		icon: RuIcon
-	}, {
-		name: 'en',
-		icon: EnIcon
-	}]
+	// const languages = [{
+	// 	name: 'ru',
+	// 	icon: RuIcon
+	// }, {
+	// 	name: 'en',
+	// 	icon: EnIcon
+	// }]
 	
-	watch(current, (lang) => i18n.global.locale = lang.name)
+	// watch(current, (lang) => i18n.global.locale = lang.name)
+const current = ref('ru')
+const languages = ['en', 'ru']
+
+watch(current, (lang) => i18n.global.locale = lang)
 </script>
 
 <template>
+<!--	<div class="lang">-->
+<!--		<div class="lang__item">-->
+<!--			<div class="lang__flag">-->
+<!--				<v-icon svg :width="25" :name="current.icon"></v-icon>-->
+<!--			</div>-->
+<!--			<div class="lang__current">{{ current.name }}</div>-->
+<!--		</div>-->
+<!--		-->
+<!--		<div class="lang__menu">-->
+<!--			<div class="lang__item" @click="current = lang" v-for="lang in languages.filter(l => l.name !== current.name)">-->
+<!--				<div class="lang__flag">-->
+<!--					<v-icon svg :width="25" :name="lang.icon"></v-icon>-->
+<!--				</div>-->
+<!--				<div class="lang__current">{{ lang.name }}</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
 	<div class="lang">
 		<div class="lang__item">
 			<div class="lang__flag">
-				<v-icon svg :width="25" :name="current.icon"></v-icon>
+				<v-icon :width="25" :name="current"></v-icon>
 			</div>
-			<div class="lang__current">{{ current.name }}</div>
+			<div class="lang__current">{{ current }}</div>
 		</div>
 		
 		<div class="lang__menu">
-			<div class="lang__item" @click="current = lang" v-for="lang in languages.filter(l => l.name !== current.name)">
+			<div class="lang__item" @click="current = lang" v-for="lang in languages.filter(l => l !== current)">
 				<div class="lang__flag">
-					<v-icon svg :width="25" :name="lang.icon"></v-icon>
+					<v-icon :width="25" :name="lang"></v-icon>
 				</div>
-				<div class="lang__current">{{ lang.name }}</div>
+				<div class="lang__current">{{ lang }}</div>
 			</div>
 		</div>
 	</div>
