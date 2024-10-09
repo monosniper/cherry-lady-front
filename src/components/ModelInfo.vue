@@ -16,16 +16,17 @@
 </script>
 
 <template>
-	<div class="model-info">
+	<div class="model-info" v-if="data.id">
+	
+<!--		<div class="model-name" v-if="data.id">-->
+<!--			<Transition name="name" mode="out-in">-->
+<!--				<span class="model-name__accent" :key="__(data.first_name)">{{ __(data.first_name) }}</span>-->
+<!--			</Transition>-->
+<!--			<Transition name="name" mode="out-in">-->
+<!--				<span :key="__(data.last_name)">{{ __(data.last_name) }}</span>-->
+<!--			</Transition>-->
+<!--		</div>-->
 		
-		<div class="model-name">
-			<Transition name="name" mode="out-in">
-				<span class="model-name__accent" :key="__(data.first_name)">{{ __(data.first_name) }}</span>
-			</Transition>
-			<Transition name="name" mode="out-in">
-				<span :key="__(data.last_name)">{{ __(data.last_name) }}</span>
-			</Transition>
-		</div>
 		
 		<tags :data="data.tags" style="margin-bottom: 20px;"></tags>
 		
@@ -87,6 +88,7 @@
 			</spacer>
 		</spacer>
 	</div>
+	<el-skeleton loading animated class="skeleton" :rows="12" v-else></el-skeleton>
 </template>
 
 <style scoped>
