@@ -206,11 +206,15 @@
 
 @media screen and (max-width: 600px) {
 	.model {
-		height: fit-content;
-		max-height: none;
 		z-index: 10;
-		backdrop-filter: blur(35px);
-		box-shadow: 0 3px 0 0 rgba(192, 27, 88, 0.81), 0 -4px 3px 0 rgba(192, 27, 88, 0.9);
+		box-shadow: none;
+		height: 534px;
+		
+		.model-content {
+			height: 534px;
+			backdrop-filter: blur(35px);
+			box-shadow: 0 3px 0 0 rgba(192, 27, 88, 0.81), 0 -4px 3px 0 rgba(192, 27, 88, 0.9);
+		}
 		
 		.model__img {
 			height: 260px;
@@ -222,20 +226,17 @@
 		}
 		
 		.model__top {
+			margin-bottom: 10px;
 			gap: 10px;
 		}
 		
 		.model__properties {
 			opacity: 1;
-			height: 170px;
-		}
-		.model__button {
-			opacity: 1;
+			height: 190px;
 		}
 		
-		.model__body {
-			border-left: 1px solid rgba(192, 27, 88, 0.2);
-			border-right: 1px solid rgba(192, 27, 88, 0.2);
+		.model__button {
+			opacity: 1;
 		}
 	}
 }
