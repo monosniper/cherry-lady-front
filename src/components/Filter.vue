@@ -265,7 +265,7 @@
 	</el-drawer>
 </template>
 
-<style scoped>
+<style>
 	.filter__button--outline {
 		background: #fff;
 		color: var(--color-dark);
@@ -359,6 +359,20 @@
 	}
 
 @media screen and (max-width: 550px) {
+	.filter {
+		padding: 0 15px;
+		padding-top: 8px;
+		padding-bottom: 12px;
+		
+		button {
+			padding: 2px 15px;
+			
+			svg {
+				width: 20px;
+			}
+		}
+	}
+	
 	.extended .extended__row {
 		grid-template-columns: repeat(2, 1fr);
 	}

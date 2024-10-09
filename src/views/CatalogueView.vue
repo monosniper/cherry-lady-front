@@ -7,7 +7,7 @@
 
 <template>
 	<div class="container">
-		<div class="center" style="margin-bottom: 2rem;">
+		<div class="center">
 			<type-switch></type-switch>
 		</div>
 		<Filter :total="filtered.length"></Filter>
@@ -16,5 +16,12 @@
 </template>
 
 <style scoped>
-
+.center {
+	margin-bottom: 2rem;
+}
+	@media screen and (max-width: 500px) {
+		.center {
+			margin-bottom: 15px;
+		}
+	}
 </style>

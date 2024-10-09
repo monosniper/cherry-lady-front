@@ -26,10 +26,5 @@ const { data: settings } = SettingStore
 </template>
 
 <style scoped>
-	@media screen and (max-width: 500px) {
-		header {
-			padding-top: 10px;
-			padding-bottom: 15px;
-		}
-	}
+
 </style>
