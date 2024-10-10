@@ -44,12 +44,12 @@
 }
 
 .carousel {
-	overflow-x: hidden;
+	overflow-x: visible;
 	max-width: 100dvw;
 }
 
 .carousel__viewport {
-	padding: 50px 0;
+	overflow: visible !important;
 }
 
 .extended-wrapper {

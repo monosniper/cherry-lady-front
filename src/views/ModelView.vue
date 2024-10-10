@@ -2,6 +2,7 @@
 import {useRoute, useRouter} from "vue-router";
 	import ModelsStore from "@/stores/models.js";
 	import {computed, ref, watch} from "vue";
+	import BackIcon from '@/assets/icons/back.svg?raw'
 	
 	const route = useRoute()
 	const router = useRouter()
@@ -13,7 +14,7 @@ import {useRoute, useRouter} from "vue-router";
 <template>
 	<div v-if="model">
 		<div class="container" style="margin-bottom: 2rem;">
-			<v-button @click="router.go(-1)" icon="back" size="small">
+			<v-button class="btn-back" @click="router.go(-1)" :icon="BackIcon" svg size="small">
 				{{ $t('shared.back') }}
 			</v-button>
 		</div>
@@ -24,6 +25,9 @@ import {useRoute, useRouter} from "vue-router";
 	</div>
 </template>
 
-<style scoped>
-
+<style>
+	.btn-back svg {
+		height: 20px;
+		width: 20px;
+	}
 </style>

@@ -2,6 +2,7 @@
 	import {splitArray} from "@/helpers/splitArray.js";
 	import $config from "@/config.js";
 	import __ from "@/helpers/translate.js";
+	import LanguagesIcon from '@/assets/icons/languages.svg?raw'
 	
 	const props = defineProps({
 		model: Object
@@ -14,7 +15,7 @@
 	<div class="container">
 		<model-info :data="model" class="model-info-main">
 			<template #third>
-				<icon-label icon="languages">
+				<icon-label svg :icon="LanguagesIcon">
 					<span :key="model.languages.map(({name}) => __(name)).join(', ')">{{ model.languages.map(({name}) => __(name)).join(', ') }}</span>
 				</icon-label>
 			</template>

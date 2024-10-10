@@ -1,6 +1,7 @@
 <script setup>
 import {onMounted, ref, watch} from "vue";
 import {raw} from "@/helpers/raw.js";
+import SelectIcon from "@/assets/icons/select.svg?raw";
 
 const props = defineProps({
 	data: Array,
@@ -54,7 +55,7 @@ watch(() => props.data, (value) => {
 		:total="total"
 	></pagination>
 	<div class="center" v-if="isMobile && pageModels.length !== data.length" style="margin-bottom: 50px;">
-		<v-button @click="more" class="more" reverse icon="select">{{ $t('shared.more') }}</v-button>
+		<v-button @click="more" class="more" reverse svg :icon="SelectIcon">{{ $t('shared.more') }}</v-button>
 	</div>
 </template>
 

@@ -75,6 +75,7 @@
 	}
 	
 	.reviews {
+		padding: 20px 0;
 	}
 	
 	.review {

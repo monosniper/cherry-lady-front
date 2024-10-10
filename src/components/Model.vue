@@ -1,5 +1,7 @@
 <script setup>
 	import StarIcon from '@icons/star.svg?raw'
+	import TgIcon from '@icons/tg.svg?raw'
+	import WpIcon from '@icons/wp.svg?raw'
 	import Tags from '@/components/shared/Tags.vue'
 	import __ from "@/helpers/translate.js";
 	import Properties from '@/components/shared/Properties.vue'
@@ -26,8 +28,8 @@
 			<div class="model__header">
 				<div class="model__name">{{ __(first_name) }}</div>
 				<spacer size="small">
-					<a :href="'https://t.me/' + tg" target="_blank"><v-button size="xs" circle icon="tg"></v-button></a>
-					<a :href="'https://wa.me/' + wp" target="_blank"><v-button size="xs" circle icon="wp"></v-button></a>
+					<a :href="'https://t.me/' + tg" target="_blank"><v-button class="shadow-btn" size="xs" circle svg :icon="TgIcon"></v-button></a>
+					<a :href="'https://wa.me/' + wp" target="_blank"><v-button class="shadow-btn" size="xs" circle svg :icon="WpIcon"></v-button></a>
 				</spacer>
 			</div>
 			<div class="model__body">
@@ -61,7 +63,16 @@
 	</div>
 </template>
 
-<style scoped>
+<style>
+.shadow-btn {
+	backdrop-filter: blur(35px);
+	box-shadow: 0 2px 0 0 rgba(192, 27, 88, 0.51), 0 -2px 4px 0 rgba(192, 27, 88, 0.4) !important;
+	
+	svg {
+		width: 20px;
+		height: 20px;
+	}
+}
 .model:hover {
 	z-index: 10;
 	box-shadow: none;
@@ -118,6 +129,7 @@
 		position: absolute;
 		inset: 0;
 		border-radius: 30px;
+		overflow: hidden;
 	}
 	
 	.model__body {
@@ -125,7 +137,6 @@
 		background: #fff;
 		border-bottom-left-radius: 30px;
 		border-bottom-right-radius: 30px;
-		overflow: hidden;
 	}
 	
 	.model__button {

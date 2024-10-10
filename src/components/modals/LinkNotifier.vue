@@ -4,6 +4,7 @@
 	import {onMounted} from "vue";
 	import $config from "@/config.js";
 	import TimesIcon from '@icons/times.svg?raw'
+	import TgIcon from '@icons/tg.svg?raw'
 	
 	const modalName = DIALOGS.NOTIFIER
 	
@@ -51,7 +52,7 @@
 		
 		<el-space :size="30" class="center wrap" style="row-gap: 1rem">
 			<a :href="$config.chat" target="_blank">
-				<v-button icon="tg" reverse @click="close" class="modal__button">{{ $t('link.subscribe') }}</v-button>
+				<v-button svg :icon="TgIcon" reverse @click="close" class="modal__button">{{ $t('link.subscribe') }}</v-button>
 			</a>
 			<el-link :underline="false" class="modal-link" @click="later">{{ $t('link.later') }}</el-link>
 			<el-link :underline="false" class="modal-link" @click="dontShow">{{ $t('link.dont_show') }}</el-link>
