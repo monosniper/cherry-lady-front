@@ -60,7 +60,7 @@
 	></pagination>
 </template>
 
-<style scoped>
+<style>
 	.title {
 		font-size: 40px !important;
 		text-align: center;
@@ -75,7 +75,11 @@
 	}
 	
 	.reviews {
-		padding: 20px 0;
+		padding: 10px 0;
+		
+		.carousel__viewport {
+			padding: 10px 0;
+		}
 	}
 	
 	.review {
@@ -99,6 +103,8 @@
 		.review__content {
 			color: #676767;
 		}
+		
+		
 	}
 	
 	@media screen and (max-width: 700px) {
