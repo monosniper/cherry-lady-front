@@ -43,14 +43,14 @@
 	}
 }
 
-.carousel {
-	overflow-x: visible;
-	max-width: 100dvw;
-}
+/*.carousel {*/
+/*	overflow-x: visible;*/
+/*	max-width: 100dvw;*/
+/*}*/
 
-.carousel__viewport {
-	overflow: visible !important;
-}
+/*.carousel__viewport {*/
+/*	overflow: visible !important;*/
+/*}*/
 
 .extended-wrapper {
 	width: 770px !important;

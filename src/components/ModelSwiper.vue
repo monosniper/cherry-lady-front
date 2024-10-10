@@ -56,11 +56,18 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 <style>
 .model-slider {
 	position: relative;
+	margin: 0 !important;
+	margin-top: -10px !important;
+	margin-bottom: -20px !important;
+	
+	.carousel__viewport {
+		padding: 50px 0;
+	}
 }
 
 .model-slider__pagination-wrapper {
 	position: absolute;
-	bottom: 30px;
+	bottom: 90px;
 	display: flex;
 	justify-content: center;
 	z-index: 10;
@@ -80,7 +87,7 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 
 @media screen and (max-width: 700px) {
 	.model-slider__pagination-wrapper {
-		bottom: 30px;
+		bottom: 70px;
 		transform: scale(.8);
 	}
 	.carousel__track {
@@ -91,6 +98,9 @@ const handleSlide = ({ currentSlideIndex }) => paginationRef.value.goTo(currentS
 	}
 	.carousel__slide--active {
 		height: 430px;
+	}
+	.model-slider {
+		margin-top: -30px !important;
 	}
 }
 </style>

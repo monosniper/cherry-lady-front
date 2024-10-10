@@ -30,7 +30,6 @@
 
 <style>
 	.model-info-main {
-		margin: 3rem 0;
 		text-align: center;
 		
 		.model-name {

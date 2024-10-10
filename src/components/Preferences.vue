@@ -66,12 +66,12 @@
 	.preference {
 		display: flex;
 		gap: 10px;
-		font-size: 14px;
+		font-size: 16px;
 		align-items: center;
 		font-family: Inter, sans-serif;
 		
 		.preference__title {
-			font-size: 16px;
+			font-size: 18px;
 			color: var(--color-dark);
 		}
 		
