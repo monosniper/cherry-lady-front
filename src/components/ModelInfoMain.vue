@@ -31,6 +31,7 @@
 <style>
 	.model-info-main {
 		text-align: center;
+		margin-bottom: 3rem;
 		
 		.model-name {
 			justify-content: center;

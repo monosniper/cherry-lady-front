@@ -55,10 +55,10 @@
 					accent: true
 				}]"></properties>
 				</div>
-				<router-link :to="{name: 'model', params: { model: slug ?? 'undefined' }}" class="model__button">
-					{{ $t('shared.details') }}
-				</router-link>
 			</div>
+			<router-link :to="{name: 'model', params: { model: slug ?? 'undefined' }}" class="model__button">
+				{{ $t('shared.details') }}
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -78,7 +78,7 @@
 	box-shadow: none;
 	
 	.model-content {
-		height: 534px;
+		height: 560px;
 		backdrop-filter: blur(35px);
 		box-shadow: 0 3px 0 0 rgba(192, 27, 88, 0.81), 0 -4px 3px 0 rgba(192, 27, 88, 0.9);
 	}
@@ -129,7 +129,6 @@
 		position: absolute;
 		inset: 0;
 		border-radius: 30px;
-		overflow: hidden;
 	}
 	
 	.model__body {
@@ -137,6 +136,9 @@
 		background: #fff;
 		border-bottom-left-radius: 30px;
 		border-bottom-right-radius: 30px;
+		height: calc(100% - 60px);
+		overflow: hidden;
+		
 	}
 	
 	.model__button {
