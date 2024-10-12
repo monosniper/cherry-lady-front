@@ -221,7 +221,7 @@
 	.model {
 		z-index: 10;
 		box-shadow: none;
-		height: 534px;
+		height: 560px;
 		
 		.model-content {
 			height: 560px;
