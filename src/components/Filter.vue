@@ -384,7 +384,7 @@
 		grid-template-columns: 1fr 1fr;
 	}
 	.filter__panel {
-		justify-content: space-evenly;
+		//justify-content: space-evenly;
 	}
 }
 
