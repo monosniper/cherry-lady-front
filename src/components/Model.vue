@@ -224,7 +224,7 @@
 		height: 534px;
 		
 		.model-content {
-			height: 534px;
+			height: 560px;
 			backdrop-filter: blur(35px);
 			box-shadow: 0 3px 0 0 rgba(192, 27, 88, 0.81), 0 -4px 3px 0 rgba(192, 27, 88, 0.9);
 		}

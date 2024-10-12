@@ -22,7 +22,7 @@
 
 <template>
 	<div class="filter">
-		<spacer class="between">
+		<spacer class="filter__panel">
 			<v-button :round="false" size="small" @click="filters.extend = true">
 				<icon-label svg :icon="filters.extend ? FilterUpIcon : FilterIcon">
 					<div class="long">{{ $t("catalogue.extended_filter") }}</div>
@@ -285,6 +285,10 @@
 		font-weight: 600;
 		margin-bottom: 1rem;
 	}
+	
+	.filter__panel {
+		justify-content: space-between;
+	}
 
 	.filter {
 		padding: 15px 30px;
@@ -378,6 +382,9 @@
 	}
 	.checkbox-group {
 		grid-template-columns: 1fr 1fr;
+	}
+	.filter__panel {
+		justify-content: space-evenly;
 	}
 }
 
