@@ -75,7 +75,7 @@
 					</template>
 				</el-dropdown>
 			</div>
-			<div>
+			<div style="transform: translateY(1px);">
 				{{ $t('catalogue.found') }}: <span class="accent">{{ total }}</span>
 			</div>
 		</spacer>
