@@ -1,7 +1,7 @@
 <script setup>
 import {ref, watch} from "vue";
 import { useI18n } from 'vue-i18n'
-const { t, locale } = useI18n()
+const { t, locale } = useI18n({ useScope: 'global' })
 import RuIcon from '@/assets/icons/ru.svg?raw'
 import EnIcon from '@/assets/icons/en.svg?raw'
 	
