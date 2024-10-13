@@ -2,10 +2,14 @@
 import SettingStore from '@/stores/settings.js'
 import TgIcon from '@/assets/icons/tg.svg?raw'
 import {i18n} from "@/i18n.js";
-import {computed} from "vue";
+import {ref, watch} from "vue";
 
 const { data: settings } = SettingStore
-const url = computed(() => settings.chat[i18n.global.locale])
+const url = ref(settings.chat.ru)
+
+watch(() => i18n.global.locale, (value) => {
+	url.value = settings.chat[value]
+})
 </script>
 
 <template>
