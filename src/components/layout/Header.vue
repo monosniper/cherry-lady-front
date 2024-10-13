@@ -1,15 +1,10 @@
 <script setup>
 import SettingStore from '@/stores/settings.js'
 import TgIcon from '@/assets/icons/tg.svg?raw'
-import {i18n} from "@/i18n.js";
-import {ref, watch} from "vue";
+import { useI18n } from 'vue-i18n'
+const { t, locale } = useI18n()
 
 const { data: settings } = SettingStore
-const url = ref(settings.chat.ru)
-
-watch(() => i18n.global.locale, (value) => {
-	url.value = settings.chat[value]
-})
 </script>
 
 <template>
@@ -18,9 +13,9 @@ watch(() => i18n.global.locale, (value) => {
 			<div class="between">
 				<logo></logo>
 				<spacer>
-					<a :href="url" target="_blank">
+					<a :href="settings.chat[locale]" target="_blank">
 						<v-button svg :icon="TgIcon" :round="false">
-							{{ $t('header.chat') }}
+							{{ t('header.chat') }}
 						</v-button>
 					</a>
 					
