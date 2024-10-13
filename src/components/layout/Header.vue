@@ -1,7 +1,7 @@
 <script setup>
-
 import SettingStore from '@/stores/settings.js'
 import TgIcon from '@/assets/icons/tg.svg?raw'
+import {i18n} from "@/i18n.js";
 
 const { data: settings } = SettingStore
 </script>
@@ -12,7 +12,7 @@ const { data: settings } = SettingStore
 			<div class="between">
 				<logo></logo>
 				<spacer>
-					<a :href="settings.chat" target="_blank">
+					<a :href="settings.chat[i18n.global.locale]" target="_blank">
 						<v-button svg :icon="TgIcon" :round="false">
 							{{ $t('header.chat') }}
 						</v-button>
