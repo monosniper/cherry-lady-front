@@ -2,8 +2,10 @@
 import SettingStore from '@/stores/settings.js'
 import TgIcon from '@/assets/icons/tg.svg?raw'
 import {i18n} from "@/i18n.js";
+import {computed} from "vue";
 
 const { data: settings } = SettingStore
+const url = computed(() => settings.chat[i18n.global.locale])
 </script>
 
 <template>
@@ -12,7 +14,7 @@ const { data: settings } = SettingStore
 			<div class="between">
 				<logo></logo>
 				<spacer>
-					<a :href="settings.chat[i18n.locale]" target="_blank">
+					<a :href="url" target="_blank">
 						<v-button svg :icon="TgIcon" :round="false">
 							{{ $t('header.chat') }}
 						</v-button>
