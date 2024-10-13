@@ -1,5 +1,7 @@
-import {i18n} from "@/i18n.js";
+import { useI18n } from 'vue-i18n'
 
 export default function __(item) {
-    return item ? item[i18n.global.locale] : null
+    const { locale } = useI18n()
+    
+    return item ? item[locale] : null
 }
