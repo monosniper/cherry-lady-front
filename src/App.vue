@@ -1,11 +1,19 @@
 <script setup>
-import {RouterView} from 'vue-router'
-	import { onMounted } from "vue";
-	
+import {RouterView, useRoute} from 'vue-router'
+import {onMounted, watch} from "vue";
+import {useI18n} from "vue-i18n";
+
+	const route = useRoute()
+	const { locale } = useI18n()
+
 	onMounted(() => {
 		document.addEventListener('gesturestart', function (e) {
 			e.preventDefault();
 		});
+	})
+
+	watch(() => route.query.lang, lang => {
+		locale.value = lang
 	})
 </script>
 
