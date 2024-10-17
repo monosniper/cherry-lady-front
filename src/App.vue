@@ -22,8 +22,6 @@ import {RouterView} from 'vue-router'
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-	//position: fixed;
-	//inset: 0;
 	transition: opacity 0.3s ease;
 }
 

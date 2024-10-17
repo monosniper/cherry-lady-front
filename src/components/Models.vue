@@ -93,6 +93,7 @@ watch(() => props.data, (value) => {
 		.models {
 			justify-content: center;
 			grid-template-columns: 300px;
+			margin-top: 18px !important;
 		}
 	}
 </style>
