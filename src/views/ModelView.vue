@@ -14,7 +14,7 @@ import {useRoute, useRouter} from "vue-router";
 <template>
 	<div v-if="model">
 		<div class="container">
-			<v-button class="btn-back" @click="router.go(-1)" :icon="BackIcon" svg size="small">
+			<v-button style="z-index: 100;position: relative;" class="btn-back" @click="router.go(-1)" :icon="BackIcon" svg size="small">
 				{{ $t('shared.back') }}
 			</v-button>
 		</div>
