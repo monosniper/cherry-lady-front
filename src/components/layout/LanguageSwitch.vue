@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
 import RuIcon from '@/assets/icons/ru.svg?raw'
 import EnIcon from '@/assets/icons/en.svg?raw'
+import {useRoute} from "vue-router";
 	
 	// const current = ref({
 	// 	name: 'ru',
@@ -22,7 +23,16 @@ import EnIcon from '@/assets/icons/en.svg?raw'
 const current = ref(locale.value)
 const languages = ['en', 'ru']
 
-watch(current, (lang) => locale.value = lang)
+watch(current, (lang) => {
+	console.log(lang)
+	locale.value = lang
+})
+const route = useRoute()
+watch(() => route.query.lang, lang => {
+	if(lang === 'en' || lang === 'ru') {
+		current.value = lang
+	}
+})
 </script>
 
 <template>
@@ -46,7 +56,8 @@ watch(current, (lang) => locale.value = lang)
 	<div class="lang">
 		<div class="lang__item">
 			<div class="lang__flag">
-				<v-icon :width="25" :name="current"></v-icon>
+				<v-icon :width="25" v-show="current === 'en'" name="en"></v-icon>
+				<v-icon :width="25" v-show="current === 'ru'" name="ru"></v-icon>
 			</div>
 			<div class="lang__current">{{ current }}</div>
 		</div>
@@ -54,7 +65,8 @@ watch(current, (lang) => locale.value = lang)
 		<div class="lang__menu">
 			<div class="lang__item" @click="current = lang" v-for="lang in languages.filter(l => l !== current)">
 				<div class="lang__flag">
-					<v-icon :width="25" :name="lang"></v-icon>
+					<v-icon :width="25" v-show="lang === 'en'" name="en"></v-icon>
+					<v-icon :width="25" v-show="lang === 'ru'" name="ru"></v-icon>
 				</div>
 				<div class="lang__current">{{ lang }}</div>
 			</div>

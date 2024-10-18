@@ -13,7 +13,9 @@ import {useI18n} from "vue-i18n";
 	})
 
 	watch(() => route.query.lang, lang => {
-		locale.value = lang
+		if(lang === 'en' || lang === 'ru') {
+			locale.value = lang
+		}
 	})
 </script>
 
