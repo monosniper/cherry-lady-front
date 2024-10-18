@@ -12,7 +12,7 @@ import {useI18n} from "vue-i18n";
 		});
 		
 		if(window.Telegram) {
-			window.Telegram.WebApp.isExpanded = true
+			window.Telegram.WebApp.expand()
 		}
 	})
 
