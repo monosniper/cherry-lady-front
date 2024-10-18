@@ -19,7 +19,7 @@ import EnIcon from '@/assets/icons/en.svg?raw'
 	// }]
 	
 	// watch(current, (lang) => i18n.global.locale = lang.name)
-const current = ref('ru')
+const current = ref(locale.value)
 const languages = ['en', 'ru']
 
 watch(current, (lang) => locale.value = lang)
