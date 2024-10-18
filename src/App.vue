@@ -10,6 +10,10 @@ import {useI18n} from "vue-i18n";
 		document.addEventListener('gesturestart', function (e) {
 			e.preventDefault();
 		});
+		
+		if(window.Telegram) {
+			window.Telegram.WebApp.isExpanded = true
+		}
 	})
 
 	watch(() => route.query.lang, lang => {

@@ -5,6 +5,7 @@
 	import $config from "@/config.js";
 	import TimesIcon from '@icons/times.svg?raw'
 	import TgIcon from '@icons/tg.svg?raw'
+	import SettingStore from "@/stores/settings.js";
 	
 	const modalName = DIALOGS.NOTIFIER
 	
@@ -27,6 +28,8 @@
 			setTimeout(open, 3000)
 		}
 	})
+	
+	const { data: settings } = SettingStore
 </script>
 
 <template>
@@ -51,7 +54,7 @@
 		</i18n-t>
 		
 		<el-space :size="30" class="center wrap" style="row-gap: 1rem">
-			<a :href="$config.chat" target="_blank">
+			<a :href="settings.chat.ru" target="_blank">
 				<v-button svg :icon="TgIcon" reverse @click="close" class="modal__button">{{ $t('link.subscribe') }}</v-button>
 			</a>
 			<el-link :underline="false" class="modal-link" @click="later">{{ $t('link.later') }}</el-link>
