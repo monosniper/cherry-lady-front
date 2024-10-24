@@ -2,8 +2,6 @@
 import {ref, watch} from "vue";
 import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
-import RuIcon from '@/assets/icons/ru.svg?raw'
-import EnIcon from '@/assets/icons/en.svg?raw'
 import {useRoute} from "vue-router";
 	
 	// const current = ref({
@@ -21,16 +19,25 @@ import {useRoute} from "vue-router";
 	
 	// watch(current, (lang) => i18n.global.locale = lang.name)
 const current = ref(locale.value)
-const languages = ['en', 'ru']
+const languages = ['en', 'ru', 'ar']
 
 watch(current, (lang) => {
-	console.log(lang)
 	locale.value = lang
+	if (lang === 'ar') {
+		document.documentElement.setAttribute('dir', 'rtl');
+	} else {
+		document.documentElement.setAttribute('dir', 'ltr');
+	}
 })
 const route = useRoute()
 watch(() => route.query.lang, lang => {
-	if(lang === 'en' || lang === 'ru') {
+	if(lang === 'en' || lang === 'ru' || lang === 'ar') {
 		current.value = lang
+	}
+	if (lang === 'ar') {
+		document.documentElement.setAttribute('dir', 'rtl');
+	} else {
+		document.documentElement.setAttribute('dir', 'ltr');
 	}
 })
 </script>
@@ -58,6 +65,7 @@ watch(() => route.query.lang, lang => {
 			<div class="lang__flag">
 				<v-icon :width="25" v-show="current === 'en'" name="en"></v-icon>
 				<v-icon :width="25" v-show="current === 'ru'" name="ru"></v-icon>
+				<v-icon :width="25" v-show="current === 'ar'" name="ar"></v-icon>
 			</div>
 			<div class="lang__current">{{ current }}</div>
 		</div>
@@ -67,6 +75,7 @@ watch(() => route.query.lang, lang => {
 				<div class="lang__flag">
 					<v-icon :width="25" v-show="lang === 'en'" name="en"></v-icon>
 					<v-icon :width="25" v-show="lang === 'ru'" name="ru"></v-icon>
+					<v-icon :width="25" v-show="lang === 'ar'" name="ar"></v-icon>
 				</div>
 				<div class="lang__current">{{ lang }}</div>
 			</div>
@@ -108,6 +117,7 @@ watch(() => route.query.lang, lang => {
 			display: flex;
 			flex-direction: column;
 			position: absolute;
+			gap: 5px;
 		}
 		
 		.lang__current {
