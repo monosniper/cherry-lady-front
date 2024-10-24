@@ -42,6 +42,7 @@ import Thanks from "@/components/modals/Thanks.vue";
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import Model from "@/components/Model.vue";
+import 'swiper/css/bundle';
 
 
 const app = createApp(App)

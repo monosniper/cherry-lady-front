@@ -1,6 +1,7 @@
 <script setup>
 	import FilterStore from '@/stores/filters.js'
 	import ModelsStore from '@/stores/models.js'
+	import CategoriesStore from '@/stores/categories.js'
 	import __ from '@/helpers/translate.js'
 	import SelectIcon from '@/assets/icons/select.svg?raw'
 	import FilterIcon from '@/assets/icons/filter.svg?raw'
@@ -18,6 +19,8 @@
 		services,
 		languages,
 	} = FilterStore
+	
+	const { data: categories } = CategoriesStore
 </script>
 
 <template>
@@ -123,6 +126,15 @@
 						<el-radio :value="true" size="large">{{ $t('filters.exit') }}</el-radio>
 						<el-radio :value="false" size="large">{{ $t('filters.apartments') }}</el-radio>
 					</el-radio-group>
+				</el-form-item>
+				<el-form-item :label="$t('filters.category')">
+					<el-select v-model="filters.sort" size="large">
+						<el-option
+							v-for="category in Object.keys(categories)"
+							:value="category.id"
+							:label="__(category.name)"
+						></el-option>
+					</el-select>
 				</el-form-item>
 			</div>
 			<div class="extended__title">{{ $t('filters.parameters') }}</div>
