@@ -54,8 +54,8 @@ watch(() => route.query.category, category => {
 				v-for="category in categories"
 			>
 				<div
-					:class="['category', {category_active: category.id === filters.category}]"
-					@click="handleClick(category.id)"
+					:class="['category', {category_active: category.slug === filters.category}]"
+					@click="handleClick(category.slug)"
 				>{{ __(category.name) }}</div>
 			</swiper-slide>
 		</swiper>
@@ -63,8 +63,8 @@ watch(() => route.query.category, category => {
 			<div class="categories__vertical">
 				<div
 					v-for="category in categories"
-					:class="['category', {category_active: category.id === filters.category}]"
-					@click="handleClick(category.id)"
+					:class="['category', {category_active: category.slug === filters.category}]"
+					@click="handleClick(category.slug)"
 				>{{ __(category.name) }}</div>
 			</div>
 		</el-drawer>

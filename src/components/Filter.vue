@@ -139,7 +139,7 @@
 					<el-select v-model="filters.category" size="large" :placeholder="$t('filters.category')">
 						<el-option
 							v-for="category in categories"
-							:value="category.id"
+							:value="category.slug"
 							:label="__(category.name)"
 						></el-option>
 					</el-select>
