@@ -11,7 +11,7 @@ const { data: settings } = SettingStore
 <template>
 	<header>
 		<div class="container">
-			<div class="between align-center" style="gap: 3rem;">
+			<div class="between align-center header__wrapper">
 				<logo></logo>
 				<Categories></Categories>
 				<spacer>
@@ -29,5 +29,7 @@ const { data: settings } = SettingStore
 </template>
 
 <style scoped>
-
+	.header__wrapper {
+		gap: 3rem;
+	}
 </style>

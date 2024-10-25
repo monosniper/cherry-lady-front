@@ -6,6 +6,7 @@
 	import SelectIcon from '@/assets/icons/select.svg?raw'
 	import FilterIcon from '@/assets/icons/filter.svg?raw'
 	import FilterUpIcon from '@/assets/icons/filter_up.svg?raw'
+	import {ref, watch} from "vue";
 	
 	defineProps({
 		total: Number
@@ -21,6 +22,13 @@
 	} = FilterStore
 	
 	const { data: categories } = CategoriesStore
+	
+	// const category = ref()
+	//
+	// watch(category, id => {
+	// 	console.log(id)
+	// 	filters.category = id
+	// })
 </script>
 
 <template>
@@ -128,9 +136,9 @@
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item :label="$t('filters.category')">
-					<el-select v-model="filters.sort" size="large">
+					<el-select v-model="filters.category" size="large" :placeholder="$t('filters.category')">
 						<el-option
-							v-for="category in Object.keys(categories)"
+							v-for="category in categories"
 							:value="category.id"
 							:label="__(category.name)"
 						></el-option>
