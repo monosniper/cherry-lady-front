@@ -5,7 +5,7 @@ import __ from '@/helpers/translate.js'
 import FilterStore from "@/stores/filters.js";
 import {useRoute, useRouter} from "vue-router";
 import BurgerIcon from '@/assets/icons/burger.svg?raw'
-import {ref} from "vue";
+import {ref, watch} from "vue";
 
 const { data: categories } = CategoryStore
 const {
@@ -23,6 +23,18 @@ const handleClick = (id) => {
 	}
 }
 const drawer = ref(false)
+if(route.query.category) {
+	if(route.name !== 'catalogue') {
+		router.push('/catalogue?category='+route.query.category)
+	}
+	filters.category = parseInt(route.query.category)
+}
+watch(() => route.query.category, category => {
+	if(route.name !== 'catalogue') {
+		router.push('/catalogue?category='+category)
+	}
+	filters.category = parseInt(category)
+})
 </script>
 
 <template>
