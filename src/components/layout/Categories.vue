@@ -27,13 +27,13 @@ if(route.query.category) {
 	if(route.name !== 'catalogue') {
 		router.push('/catalogue?category='+route.query.category)
 	}
-	filters.category = parseInt(route.query.category)
+	filters.category = route.query.category
 }
 watch(() => route.query.category, category => {
 	if(route.name !== 'catalogue') {
 		router.push('/catalogue?category='+category)
 	}
-	filters.category = parseInt(category)
+	filters.category = category
 })
 </script>
 
