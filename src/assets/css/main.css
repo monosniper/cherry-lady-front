@@ -5,9 +5,9 @@
 @import 'tools.css';
 @import 'components.css';
 
-[dir="rtl"] * {
-	text-align: right !important;
-}
+/*[dir="rtl"] * {*/
+/*	text-align: right !important;*/
+/*}*/
 
 .rating {
 	transition: color .5s;
