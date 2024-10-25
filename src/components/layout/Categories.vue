@@ -16,7 +16,10 @@ const route = useRoute()
 const router = useRouter()
 
 const handleClick = (id) => {
-	filters.category = id
+	if(filters.categories.includes(id)) {
+		filters.categories = filters.categories.filter(slug => slug !== id)
+	} else filters.categories.push(id)
+	
 	
 	if(route.name !== 'catalogue') {
 		router.push('/catalogue')
@@ -27,13 +30,13 @@ if(route.query.category) {
 	if(route.name !== 'catalogue') {
 		router.push('/catalogue?category='+route.query.category)
 	}
-	filters.category = route.query.category
+	filters.categories.push(route.query.category)
 }
 watch(() => route.query.category, category => {
 	if(route.name !== 'catalogue') {
 		router.push('/catalogue?category='+category)
 	}
-	filters.category = category
+	filters.categories.push(category)
 })
 </script>
 
@@ -54,7 +57,7 @@ watch(() => route.query.category, category => {
 				v-for="category in categories"
 			>
 				<div
-					:class="['category', {category_active: category.slug === filters.category}]"
+					:class="['category', {category_active: filters.categories.includes(category.slug)}]"
 					@click="handleClick(category.slug)"
 				>{{ __(category.name) }}</div>
 			</swiper-slide>
@@ -63,7 +66,7 @@ watch(() => route.query.category, category => {
 			<div class="categories__vertical">
 				<div
 					v-for="category in categories"
-					:class="['category', {category_active: category.slug === filters.category}]"
+					:class="['category', {category_active: filters.categories.includes(category.slug)}]"
 					@click="handleClick(category.slug)"
 				>{{ __(category.name) }}</div>
 			</div>

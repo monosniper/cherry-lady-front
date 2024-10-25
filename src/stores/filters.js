@@ -15,7 +15,7 @@ class FilterStore {
 	    services: [],
 	    language: null,
 	    exit: 'all',
-	    category: null,
+	    categories: [],
 	    prices: {
 		apartments: {
 		    '1 Час': [30, 100],

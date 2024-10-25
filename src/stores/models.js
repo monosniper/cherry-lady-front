@@ -100,8 +100,8 @@ class ModelsStore {
 		    })
 		}
 		
-		if (filters.category) {
-		    if(category_id !== filters.category) filter = false
+		if (filters.categories) {
+		    if(!filters.categories.includes(category_id)) filter = false
 		}
 		
 		if (filters.properties.length) {

@@ -1,7 +1,19 @@
 <script setup>
 	import ModelsStore from "@/stores/models.js";
+	import {computed} from "vue";
+	import FilterStore from "@/stores/filters.js";
 	
 	const { current, data } = ModelsStore
+	const {
+		filters,
+	} = FilterStore
+	const filtered = computed(() => data.value.filter(({ category_id }) => {
+		let filter = true
+		if (filters.categories) {
+			if(!filters.category.includes(category_id)) filter = false
+		}
+		return filter
+	}))
 </script>
 
 <template>
@@ -10,7 +22,7 @@
 			<div class="center">
 				<type-switch></type-switch>
 			</div>
-			<swiper :data="data"></swiper>
+			<swiper :data="filtered"></swiper>
 		</div>
 		<div class="side flex align-center">
 			<model-info limit="6" :data="current"></model-info>

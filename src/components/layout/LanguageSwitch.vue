@@ -23,22 +23,22 @@ const languages = ['en', 'ru', 'ar']
 
 watch(current, (lang) => {
 	locale.value = lang
-	if (lang === 'ar') {
-		document.documentElement.setAttribute('dir', 'rtl');
-	} else {
-		document.documentElement.setAttribute('dir', 'ltr');
-	}
+	// if (lang === 'ar') {
+	// 	document.documentElement.setAttribute('dir', 'rtl');
+	// } else {
+	// 	document.documentElement.setAttribute('dir', 'ltr');
+	// }
 })
 const route = useRoute()
 watch(() => route.query.lang, lang => {
 	if(lang === 'en' || lang === 'ru' || lang === 'ar') {
 		current.value = lang
 	}
-	if (lang === 'ar') {
-		document.documentElement.setAttribute('dir', 'rtl');
-	} else {
-		document.documentElement.setAttribute('dir', 'ltr');
-	}
+	// if (lang === 'ar') {
+	// 	document.documentElement.setAttribute('dir', 'rtl');
+	// } else {
+	// 	document.documentElement.setAttribute('dir', 'ltr');
+	// }
 })
 </script>
 

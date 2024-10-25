@@ -20,11 +20,11 @@ import {useI18n} from "vue-i18n";
 		if(lang === 'en' || lang === 'ru' || lang === 'ar') {
 			locale.value = lang
 		}
-		if (lang === 'ar') {
-			document.documentElement.setAttribute('dir', 'rtl');
-		} else {
-			document.documentElement.setAttribute('dir', 'ltr');
-		}
+		// if (lang === 'ar') {
+		// 	document.documentElement.setAttribute('dir', 'rtl');
+		// } else {
+		// 	document.documentElement.setAttribute('dir', 'ltr');
+		// }
 	})
 </script>
 
