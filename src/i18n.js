@@ -60,7 +60,7 @@ export const i18n = createI18n({
 		    },
 		    whatsapp: {
 			label: 'Whatsapp',
-			placeholder: 'Ссылка на ваш Ватсап',
+			placeholder: 'Whatsapp',
 		    },
 		},
 		button: 'Отправить анкету'
@@ -331,7 +331,7 @@ export const i18n = createI18n({
 		    },
 		    "whatsapp": {
 			"label": "Whatsapp",
-			"placeholder": "Link to your WhatsApp"
+			"placeholder": "WhatsApp"
 		    }
 		},
 		"button": "Submit the form"
