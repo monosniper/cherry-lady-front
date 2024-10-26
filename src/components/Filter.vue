@@ -136,7 +136,7 @@
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item :label="$t('filters.category')">
-					<el-select multiple v-model="filters.categories" size="large" :placeholder="$t('filters.category')">
+					<el-select v-model="filters.category" size="large" :placeholder="$t('filters.category')">
 						<el-option
 							v-for="category in categories"
 							:value="category.slug"

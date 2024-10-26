@@ -7,10 +7,10 @@
 	const {
 		filters,
 	} = FilterStore
-	const filtered = computed(() => data.value.filter(({ category_id }) => {
+	const filtered = computed(() => data.value.filter(({ category_ids }) => {
 		let filter = true
-		if (filters.categories) {
-			if(!filters.category.includes(category_id)) filter = false
+		if (filters.category) {
+			if(!category_ids.includes(filters.category)) filter = false
 		}
 		return filter
 	}))
