@@ -49,6 +49,7 @@ import {onMounted, onUnmounted, ref, watch} from "vue";
 
 <template>
 	<carousel-3d
+		:key="`models-${models.length}`"
 		v-if="models.length"
 		ref="slider"
 		class="swiper-container"
@@ -77,9 +78,11 @@ import {onMounted, onUnmounted, ref, watch} from "vue";
 			<el-skeleton-item variant="image" :style="`width: ${size[0] / 3}px; height: ${size[1] - 100}px`" />
 		</template>
 	</el-skeleton>
+
 	
 	<pagination
 		v-if="models.length"
+		:key="`models-${models.length}`"
 		@prev="() => slider.goPrev()"
 		@next="() => slider.goNext()"
 		@change="(index) => modelsStore.setCurrent(models[index - 1])"
