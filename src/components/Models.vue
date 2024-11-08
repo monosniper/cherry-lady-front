@@ -9,7 +9,7 @@ const props = defineProps({
 
 const pageSize = ref(12)
 const isMobile = ref(false)
-const total = Math.ceil(props.data.length / pageSize.value)
+const total = ref(Math.ceil(props.data.length / pageSize.value))
 
 const paginationRef = ref()
 
@@ -33,6 +33,7 @@ const more = () => {
 
 watch(() => props.data, (value) => {
 	pageModels.value = raw(props.data).splice(0, pageSize.value)
+	total.value = Math.ceil(props.data.length / pageSize.value)
 })
 
 </script>
