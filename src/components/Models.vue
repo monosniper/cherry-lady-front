@@ -15,7 +15,11 @@ const paginationRef = ref()
 
 const pageModels = ref(raw(props.data).splice(0, pageSize.value))
 
-const next = () => pageModels.value = raw(props.data).splice((paginationRef.value.current - 1) * pageSize.value, (paginationRef.value.current + 1) * pageSize.value)
+const next = () => {
+	pageModels.value = raw(props.data).splice((paginationRef.value.current - 1) * pageSize.value, (paginationRef.value.current + 1) * pageSize.value)
+	console.log(props.data)
+	console.log((paginationRef.value.current - 1) * pageSize.value, (paginationRef.value.current + 1) * pageSize.value)
+}
 const prev = () => pageModels.value = raw(props.data).splice((paginationRef.value.current - 1) * pageSize.value, paginationRef.value.current * pageSize.value)
 
 onMounted(() => {
