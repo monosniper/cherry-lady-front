@@ -9,8 +9,7 @@ const props = defineProps({
 
 const pageSize = ref(12)
 const isMobile = ref(false)
-// const total = Math.ceil(props.data.length / pageSize.value)
-const total = props.data.length
+const total = Math.ceil(props.data.length / pageSize.value)
 
 const paginationRef = ref()
 
@@ -47,7 +46,7 @@ watch(() => props.data, (value) => {
 	</div>
 
 	<pagination
-		v-if="total > pageSize"
+		v-if="data.length > pageSize"
 		:loop="false"
 		style="margin-bottom: 50px;margin-top: 60px;"
 		@next="next"
