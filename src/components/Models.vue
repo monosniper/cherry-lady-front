@@ -9,7 +9,8 @@ const props = defineProps({
 
 const pageSize = ref(12)
 const isMobile = ref(false)
-const total = Math.ceil(props.data.length / pageSize.value)
+// const total = Math.ceil(props.data.length / pageSize.value)
+const total = props.data.length
 
 const paginationRef = ref()
 

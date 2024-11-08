@@ -78,7 +78,6 @@ import {onMounted, onUnmounted, ref, watch} from "vue";
 			<el-skeleton-item variant="image" :style="`width: ${size[0] / 3}px; height: ${size[1] - 100}px`" />
 		</template>
 	</el-skeleton>
-
 	
 	<pagination
 		v-if="models.length"
