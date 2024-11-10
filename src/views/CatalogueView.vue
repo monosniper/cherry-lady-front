@@ -1,8 +1,18 @@
 <script setup>
 	import ModelsStore from "@/stores/models.js";
 	import {computed} from "vue";
+	import FilterStore from "@/stores/filters.js";
 	const modelsStore = ModelsStore
-	const filtered = computed(() => modelsStore.filtered())
+	const {
+		filters,
+	} = FilterStore
+	const filtered = computed(() => modelsStore.filtered().filter(({ category_ids }) => {
+		let filter = true
+		if (filters.category) {
+			if(!category_ids.includes(filters.category)) filter = false
+		}
+		return filter
+	}))
 </script>
 
 <template>

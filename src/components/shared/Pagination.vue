@@ -15,7 +15,7 @@ import RightIcon from '@/assets/icons/right.svg?raw'
 	
 	const current = ref(1)
 	const format_current = computed(() => current.value < 10 ? `0${current.value}` : current.value)
-	const format_total = props.total < 10 ? `0${props.total}` : props.total
+	const format_total = computed(() => props.total < 10 ? `0${props.total}` : props.total)
 
 	watch(current, (value) => {
 		emit('change', value)

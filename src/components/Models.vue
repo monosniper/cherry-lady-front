@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref, watch} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import {raw} from "@/helpers/raw.js";
 import SelectIcon from "@/assets/icons/select.svg?raw";
 
@@ -7,33 +7,35 @@ const props = defineProps({
 	data: Array,
 })
 
+const currentModels = ref(raw(props.data))
 const pageSize = ref(12)
 const isMobile = ref(false)
-const total = ref(Math.ceil(props.data.length / pageSize.value))
+const total = ref(1)
 
 const paginationRef = ref()
-
-const pageModels = ref(raw(props.data).splice(0, pageSize.value))
-
-const next = () => pageModels.value = raw(props.data).splice((paginationRef.value.current - 1) * pageSize.value, paginationRef.value.current * pageSize.value)
-const prev = () => pageModels.value = raw(props.data).splice((paginationRef.value.current - 1) * pageSize.value, paginationRef.value.current * pageSize.value)
 
 onMounted(() => {
 	if(window.innerWidth <= 600) {
 		isMobile.value = true
 		pageSize.value = 5
-		pageModels.value = raw(props.data).splice(0, pageSize.value)
 	}
 })
 
 const more = () => {
 	pageSize.value += 5
-	pageModels.value = raw(props.data).splice(0, pageSize.value)
+	currentModels.value = raw(props.data).splice(0, pageSize.value)
 }
 
-watch(() => props.data, (value) => {
-	pageModels.value = raw(props.data).splice(0, pageSize.value)
-	total.value = Math.ceil(props.data.length / pageSize.value)
+watch(() => props.data.length, (count) => {
+	paginationRef.value.current = 1
+	total.value = Math.ceil(count / pageSize.value)
+	currentModels.value = raw(props.data).splice((paginationRef.value.current - 1) * pageSize.value, pageSize.value)
+})
+
+watch(() => paginationRef.value?.current, (page) => {
+	if(page) {
+		currentModels.value = raw(props.data).splice((page - 1) * pageSize.value, pageSize.value)
+	}
 })
 
 </script>
@@ -41,21 +43,19 @@ watch(() => props.data, (value) => {
 <template>
 	<div class="models">
 		<model
-			v-for="model in pageModels"
+			v-for="model in currentModels"
 			v-bind="model"
 		></model>
 	</div>
 
 	<pagination
-		v-if="data.length > pageSize"
+		v-if="!isMobile"
 		:loop="false"
 		style="margin-bottom: 50px;margin-top: 60px;"
-		@next="next"
-		@prev="prev"
 		ref="paginationRef"
 		:total="total"
 	></pagination>
-	<div class="center" v-if="isMobile && pageModels.length !== data.length" style="margin-bottom: 50px;">
+	<div class="center" v-else style="margin-bottom: 50px;">
 		<v-button @click="more" class="more" reverse svg :icon="SelectIcon">{{ $t('shared.more') }}</v-button>
 	</div>
 </template>
