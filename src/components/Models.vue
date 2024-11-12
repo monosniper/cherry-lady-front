@@ -15,6 +15,8 @@ const total = ref(1)
 const paginationRef = ref()
 
 onMounted(() => {
+	total.value = Math.ceil(props.data.length / pageSize.value)
+	
 	if(window.innerWidth <= 600) {
 		isMobile.value = true
 		pageSize.value = 5
